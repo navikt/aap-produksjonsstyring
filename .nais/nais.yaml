@@ -28,6 +28,17 @@ spec:
   observability:
     tracing:
       enabled: true
+    logging:
+      destinations:
+        - id: elastic
+        - id: loki
+  azure:
+    application:
+      enabled: true
+      allowAllUsers: true
+    sidecar:
+      enabled: true
+      autoLogin: true
   ingresses:
   {{#each ingresses as |url|}}
      - {{url}}
