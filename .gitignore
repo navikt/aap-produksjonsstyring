@@ -42,3 +42,4 @@ next-env.d.ts
 #Co-authors
 .git-co-authors.yaml
 .husky/prepare-commit-msg
+/.eslintcache
