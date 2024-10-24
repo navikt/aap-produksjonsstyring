@@ -4,6 +4,8 @@ Kort beskrivelse av hva prosjektet dreier seg om.
 
 # Komme i gang
 
+Kopier `.env.template` og rename den til `.env.local`
+
 `yarn dev`
 
 ### Github package registry

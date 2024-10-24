@@ -885,6 +885,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/ds-css@npm:^7.4.0":
+  version: 7.4.0
+  resolution: "@navikt/ds-css@npm:7.4.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F7.4.0%2F6deeedbd9c6e72968cfd94a9462a2f814a99684d"
+  checksum: 10c0/ff64cd8feb250dbcfa4bde3ab43e95681ff99823a1b6032958d424286adde5d56b49641a474d77d58f5ddbfd99531ed674e3778a4b531dec89890c74eecd9e32
+  languageName: node
+  linkType: hard
+
 "@navikt/ds-react@npm:^7.4.0":
   version: 7.4.0
   resolution: "@navikt/ds-react@npm:7.4.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F7.4.0%2F001a7e59cb2bb331a0f571b020e43792a7f082b0"
@@ -1937,6 +1944,7 @@ __metadata:
   dependencies:
     "@navikt/aap-felles-prettier": "npm:^1.9.7"
     "@navikt/aap-felles-utils": "npm:^1.9.7"
+    "@navikt/ds-css": "npm:^7.4.0"
     "@navikt/ds-react": "npm:^7.4.0"
     "@navikt/eslint-config-aap": "npm:^1.9.7"
     "@opentelemetry/api": "npm:^1.9.0"
