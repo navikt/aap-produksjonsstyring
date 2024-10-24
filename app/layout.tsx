@@ -1,7 +1,7 @@
 import '@navikt/ds-css';
 import 'styles/globals.css';
 
-import { hentBrukerInformasjon, logError, verifyUserLoggedIn } from '@navikt/aap-felles-utils';
+import { BrukerInformasjon, hentBrukerInformasjon, logError, verifyUserLoggedIn } from '@navikt/aap-felles-utils';
 import { AppHeader } from 'components/appheader/AppHeader';
 
 export const metadata = {
@@ -10,12 +10,14 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  let brukerInformasjon: BrukerInformasjon;
   try {
     await verifyUserLoggedIn();
+    brukerInformasjon = await hentBrukerInformasjon();
   } catch (err) {
-    logError('verifyUserLoggedIn', err);
+    logError('rootlayout', err);
+    throw err;
   }
-  const brukerInformasjon = await hentBrukerInformasjon();
 
   return (
     <html lang="nb">
