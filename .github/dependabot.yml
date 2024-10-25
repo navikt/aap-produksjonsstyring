@@ -6,6 +6,10 @@ registries:
     url: https://npm.pkg.github.com
     token: ${{ secrets.READER_TOKEN }}
 updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: monthly
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -13,6 +17,9 @@ updates:
     open-pull-requests-limit: 10
     registries: '*'
     ignore:
+      - dependency-name: 'prettier'
+      - dependency-name: '@typescript/eslint*'
+      - dependency-name: 'eslint-*'
       - dependency-name: 'eslint'
         versions: [ '9.x' ]
     groups:
@@ -40,3 +47,13 @@ updates:
           - '@testing-library/dom'
           - '@testing-library/jest-dom'
           - 'jsdom'
+      otel:
+        patterns:
+          - '@opentelemetry/api'
+          - '@opentelemetry/api-logs'
+          - '@opentelemetry/instrumentation'
+          - '@opentelemetry/resources'
+          - '@opentelemetry/sdk-logs'
+          - '@opentelemetry/sdk-metrics'
+          - '@opentelemetry/sdk-trace-base'
+          - '@vercel/otel'
