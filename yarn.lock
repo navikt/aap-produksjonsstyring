@@ -917,9 +917,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/eslint-config-aap@npm:^1.9.7":
-  version: 1.9.7
-  resolution: "@navikt/eslint-config-aap@npm:1.9.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Feslint-config-aap%2F1.9.7%2F5bca2b5d59ade999e5cee5a325563207c481b859"
+"@navikt/eslint-config-aap@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@navikt/eslint-config-aap@npm:2.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Feslint-config-aap%2F2.0.0%2F9a18e277b6cfe90ae0c941628de0896806add957"
   peerDependencies:
     "@typescript-eslint/eslint-plugin": ^7.7.0
     "@typescript-eslint/parser": ^7.7.0
@@ -929,7 +929,7 @@ __metadata:
     eslint-plugin-jsx-a11y: ^6.7.1
     eslint-plugin-react: ^7.34.1
     eslint-plugin-react-hooks: ^4.6.0
-  checksum: 10c0/542a139254223fe81aebc2407830287b5e4057e687af38a1e80d7f48d65dc2443474e1984ba9c117537cfbcb1a59c29b067ec2ca57c2bff54394806135703092
+  checksum: 10c0/fec1bb0b0e95e8b3eb91a56f1f30232260f1b1e38966159619ee42305cf9dede30ef9163fb8fbfc62b9398974173dbe7c1eda963ad06383d9c5e803aeb317a98
   languageName: node
   linkType: hard
 
@@ -1866,7 +1866,7 @@ __metadata:
     "@navikt/aap-felles-utils": "npm:^2.0.0"
     "@navikt/ds-css": "npm:^7.4.0"
     "@navikt/ds-react": "npm:^7.4.0"
-    "@navikt/eslint-config-aap": "npm:^1.9.7"
+    "@navikt/eslint-config-aap": "npm:^2.0.0"
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/api-logs": "npm:^0.54.0"
     "@opentelemetry/instrumentation": "npm:^0.54.0"
