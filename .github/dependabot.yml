@@ -6,6 +6,10 @@ registries:
     url: https://npm.pkg.github.com
     token: ${{ secrets.READER_TOKEN }}
 updates:
+  - package-ecosystem: 'docker'
+    directory: "/"
+    schedule:
+      interval: weekly
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
@@ -17,6 +21,7 @@ updates:
     open-pull-requests-limit: 10
     registries: '*'
     ignore:
+      - dependency-name: '@navikt/eslint-config-aap'
       - dependency-name: 'prettier'
       - dependency-name: '@typescript/eslint*'
       - dependency-name: 'eslint-*'
