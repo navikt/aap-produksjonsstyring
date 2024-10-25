@@ -29,3 +29,14 @@ updates:
       team-deps:
         patterns:
           - '@navikt/aap-felles*'
+      testing:
+        patterns:
+          - 'vitest'
+          - 'vitest-fetch-mock'
+          - '@vitest/coverage-v8'
+          - '@vitejs/plugin-react'
+          - '@testing-library/react'
+          - '@testing-library/user-event'
+          - '@testing-library/dom'
+          - '@testing-library/jest-dom'
+          - 'jsdom'
