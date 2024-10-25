@@ -23,7 +23,7 @@ updates:
     ignore:
       - dependency-name: '@navikt/eslint-config-aap'
       - dependency-name: 'prettier'
-      - dependency-name: '@typescript/eslint*'
+      - dependency-name: '@typescript-eslint*'
       - dependency-name: 'eslint-*'
       - dependency-name: 'eslint'
         versions: [ '9.x' ]
