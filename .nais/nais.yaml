@@ -39,6 +39,10 @@ spec:
     sidecar:
       enabled: true
       autoLogin: true
+  accessPolicy:
+    outbound:
+      rules:
+        - application: statistikk
   ingresses:
   {{#each ingresses as |url|}}
      - {{url}}
