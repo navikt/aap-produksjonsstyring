@@ -852,13 +852,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-prettier@npm:^1.9.7":
-  version: 1.9.7
-  resolution: "@navikt/aap-felles-prettier@npm:1.9.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-prettier%2F1.9.7%2F6c5360e0715a161c54c41f861612dcd02a6965dd"
+"@navikt/aap-felles-prettier@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@navikt/aap-felles-prettier@npm:2.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-prettier%2F2.0.0%2F7e623131e2953cf959070e783245014a4c995dc2"
   dependencies:
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
     prettier: "npm:^3.3.3"
-  checksum: 10c0/cae4f3e905a9b8a955d26d42bbe41b7a38338925e61197cce6b835cb06c71d17184a82b4bf7e45f34ea5423d2ce427b61de5683b54be830074e10a7e72d8d35f
+  checksum: 10c0/704e3cf64ac8d6ca39e667e133d04db2ee8e4ff22fb2dc517e1cd43ec90cee61f68318f91e0d5f73e0772f059dcfae221a5b829858d01e140a71b1df887a0dfb
   languageName: node
   linkType: hard
 
@@ -1862,7 +1862,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aap-produksjonsstyring@workspace:."
   dependencies:
-    "@navikt/aap-felles-prettier": "npm:^1.9.7"
+    "@navikt/aap-felles-prettier": "npm:^2.0.0"
     "@navikt/aap-felles-utils": "npm:^2.0.0"
     "@navikt/ds-css": "npm:^7.4.0"
     "@navikt/ds-react": "npm:^7.4.0"
