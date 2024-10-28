@@ -8,8 +8,9 @@ export default async function Home() {
   return (
     <div className={styles.page}>
       <h1>Produksjonsstyring</h1>
-      <pre> {JSON.stringify(res, null, ' ')}</pre>
-      <MyPlot x={res.map((t) => new Date(t.dag))} y={res.map((t) => t.snitt)} />
+      <div style={{ width: '90vw', height: '90vh' }}>
+        <MyPlot x={res.map((t) => new Date(t.dag))} y={res.map((t) => t.snitt / 3600)} />
+      </div>
     </div>
   );
 }
