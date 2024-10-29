@@ -26,7 +26,9 @@ export default async function Home() {
           <h2> Åpne behandlinger per avklaringsbehov</h2>
           <ul>
             {perAvklaringsbehov.map((behov) => (
-              <li key={behov.behov}>{behov.antall}</li>
+              <li key={behov.behov}>
+                Behov: <b>{behov.behov}</b>. Antall: {behov.antall}
+              </li>
             ))}
           </ul>
         </div>
