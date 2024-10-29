@@ -28,8 +28,11 @@ jobs:
           echo "DIFF_STATUS=$DIFF_STATUS" >> $GITHUB_ENV
       - if: env.DIFF_STATUS != 0
         run: |
-          cp -f ./aap-workflows/.github/workflows/dependabot-frontend-next.yml ./my-repo/.github/dependabot.yml 
           cd my-repo
-          gh pr create --title "Dependabot config" --body "Ny config hentet fra navikt/aap-workflows dependabot-frontend-next.yml"
+          git checkout -b dependabot-config-update
+          cp -f ../aap-workflows/.github/workflows/dependabot-frontend-next.yml ./.github/dependabot.yml 
+          git add .
+          git commit -m "oppdatert dependabot config"
+          gh pr create --title "Dependabot config" --body ":construction_worker: Ny config hentet fra navikt/aap-workflows dependabot-frontend-next.yml"
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
