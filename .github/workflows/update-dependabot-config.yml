@@ -1,0 +1,35 @@
+name: Update dependabot config
+
+on:
+  workflow_dispatch:
+
+jobs:
+  checkForConfigUpdate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: ./my-repo
+      - uses: actions/checkout@v4
+        with:
+          repository: navikt/aap-workflows
+          path: ./aap-workwflows
+          token: ${{ secrets.github_token }}
+      - name: check diff
+        id: check-diff
+        run: |
+          DIFF_STATUS="$(cmp --silent $./my-repo/.github/dependabot.yml $./aap-workflows/workflows/dependabot-frontend-next.yml; echo $?)"
+          echo "Files differ: $DIFF_STATUS"
+          echo "DIFF_STATUS=$DIFF_STATUS" >> $GITHUB_ENV
+      - if: env.DIFF_STATUS != 0
+        run: |
+          cp -f ./aap-workflows/workflows/dependabot-frontend-next.yml ./my-repo/.github.yml 
+          cd my-repo
+          gh pr create --title "Dependabot config" --body "Ny config hentet fra navikt/aap-workflows/dependabot-frontend-next.yml"
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
