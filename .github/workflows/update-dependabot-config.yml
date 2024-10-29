@@ -31,7 +31,7 @@ jobs:
           cd my-repo
           git config --global user.email "aap-dependabot-updater@nav.no"
           git config --global user.name "AAP felles dependabot config sync"
-          git checkout -b dependabot-config-update
+          git checkout -b "dependabot-config-update-$(date +"%Y%m%d%H%M%S")"
           cp -f ../aap-workflows/.github/workflows/dependabot-frontend-next.yml ./.github/dependabot.yml 
           git add .
           git commit -m "oppdatert dependabot config"
