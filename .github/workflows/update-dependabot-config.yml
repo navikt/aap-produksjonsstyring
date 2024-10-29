@@ -38,4 +38,4 @@ jobs:
           git push origin HEAD
           gh pr create --title ":arrow_up: Dependabot config" --body "Ny config hentet fra navikt/aap-workflows dependabot-frontend-next.yml"
         env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+          GH_TOKEN: ${{ secrets.github_token }}
