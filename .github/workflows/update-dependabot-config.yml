@@ -35,6 +35,6 @@ jobs:
           cp -f ../aap-workflows/.github/workflows/dependabot-frontend-next.yml ./.github/dependabot.yml 
           git add .
           git commit -m "oppdatert dependabot config"
-          gh pr create --head --title "Dependabot config" --body ":construction_worker: Ny config hentet fra navikt/aap-workflows dependabot-frontend-next.yml"
+          gh pr create --title ":arrow_up: Dependabot config" --body "Ny config hentet fra navikt/aap-workflows dependabot-frontend-next.yml" --head
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
