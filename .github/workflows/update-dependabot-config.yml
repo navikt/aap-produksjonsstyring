@@ -29,6 +29,8 @@ jobs:
       - if: env.DIFF_STATUS != 0
         run: |
           cd my-repo
+          git config --global user.email "aap-dependabot-updater@nav.no"
+          git config --global user.name "AAP felles dependabot config sync"
           git checkout -b dependabot-config-update
           cp -f ../aap-workflows/.github/workflows/dependabot-frontend-next.yml ./.github/dependabot.yml 
           git add .
