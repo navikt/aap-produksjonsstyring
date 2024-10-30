@@ -1,6 +1,5 @@
 import '@navikt/ds-css';
-import 'styles/globals.css';
-
+import styles from './layout.module.css';
 import { BrukerInformasjon, hentBrukerInformasjon, logError, verifyUserLoggedIn } from '@navikt/aap-felles-utils';
 import { AppHeader } from 'components/appheader/AppHeader';
 
@@ -21,7 +20,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="nb">
-      <body>
+      <body className={styles.body}>
         <AppHeader brukerInformasjon={brukerInformasjon} />
         {children}
       </body>

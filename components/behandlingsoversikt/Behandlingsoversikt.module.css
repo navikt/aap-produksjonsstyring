@@ -1,0 +1,7 @@
+.behandlingsoversikt {
+  padding-top: var(--a-spacing-6);
+}
+.behandlingerOppsummert > div {
+  border-left: 2px solid var(--a-border-subtle);
+  padding-left: var(--a-spacing-4);
+}

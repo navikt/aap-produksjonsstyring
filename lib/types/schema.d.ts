@@ -25,10 +25,10 @@ export interface paths {
           /** @example {
            *       "saksnummer": "4LFL5CW",
            *       "sakStatus": "LØPENDE",
-           *       "behandlingReferanse": "3d4a4eda-b246-4525-8671-aa1f60d8b1f7",
+           *       "behandlingReferanse": "1901f968-671c-4c33-a2c6-9c7dd3430b50",
            *       "relatertBehandling": null,
-           *       "behandlingOpprettetTidspunkt": "2024-10-30T09:04:09.725299",
-           *       "mottattTid": "2024-10-29T09:04:09.725304",
+           *       "behandlingOpprettetTidspunkt": "2024-10-30T10:45:43.35438",
+           *       "mottattTid": "2024-10-29T10:45:43.354385",
            *       "status": "OPPRETTET",
            *       "behandlingType": "Førstegangsbehandling",
            *       "ident": "1403199012345",
@@ -44,13 +44,13 @@ export interface paths {
            *           "endringer": [
            *             {
            *               "status": "OPPRETTET",
-           *               "tidsstempel": "2024-10-30T08:54:09.725144",
+           *               "tidsstempel": "2024-10-30T10:35:43.354206",
            *               "frist": null,
            *               "endretAv": "Kelvin"
            *             },
            *             {
            *               "status": "AVSLUTTET",
-           *               "tidsstempel": "2024-10-30T08:59:09.725162",
+           *               "tidsstempel": "2024-10-30T10:40:43.354227",
            *               "frist": null,
            *               "endretAv": "Z994573"
            *             }
@@ -66,14 +66,14 @@ export interface paths {
            *           "endringer": [
            *             {
            *               "status": "OPPRETTET",
-           *               "tidsstempel": "2024-10-30T09:01:09.725171",
+           *               "tidsstempel": "2024-10-30T10:42:43.354237",
            *               "frist": null,
            *               "endretAv": "Kelvin"
            *             }
            *           ]
            *         }
            *       ],
-           *       "hendelsesTidspunkt": "2024-10-30T09:04:09.725373",
+           *       "hendelsesTidspunkt": "2024-10-30T10:45:43.354459",
            *       "avsluttetBehandling": null,
            *       "identerForSak": []
            *     } */
@@ -111,7 +111,7 @@ export interface paths {
         header?: never;
         path: {
           /** @description typebehandling */
-          typeBehandling: 'Førstegangsbehandling' | 'Revurdering' | 'Tilbakekreving' | 'Klage';
+          typeBehandling: PathsBehandlingstidTypeBehandlingGetParametersPathTypeBehandling;
         };
         cookie?: never;
       };
@@ -477,25 +477,18 @@ export interface components {
       navn: string;
       /**
        * Format: date-time
-       * @example 2024-10-30T09:04:09.697561
+       * @example 2024-10-30T10:45:43.326271
        */
       'planlagtKj\u00F8retidspunkt': string;
       /** @enum {string} */
-      status: 'KLAR' | 'PLUKKET' | 'FERDIG' | 'FEILET' | 'AVBRUTT';
+      status: NoNavAapMotorApiJobbInfoDtoStatus;
       type: string;
     };
     'no.nav.aap.statistikk.api_kontrakt.AvklaringsbehovHendelse': {
       definisjon: components['schemas']['no.nav.aap.statistikk.api_kontrakt.Definisjon'];
       endringer: components['schemas']['no.nav.aap.statistikk.api_kontrakt.Endring'][];
       /** @enum {string} */
-      status:
-        | 'OPPRETTET'
-        | 'AVSLUTTET'
-        | 'TOTRINNS_VURDERT'
-        | 'SENDT_TILBAKE_FRA_BESLUTTER'
-        | 'KVALITETSSIKRET'
-        | 'SENDT_TILBAKE_FRA_KVALITETSSIKRER'
-        | 'AVBRUTT';
+      status: NoNavAapStatistikkApi_kontraktAvklaringsbehovHendelseStatus;
     };
     'no.nav.aap.statistikk.api_kontrakt.AvsluttetBehandlingDTO': {
       /** Format: uuid */
@@ -503,7 +496,7 @@ export interface components {
       beregningsGrunnlag?: components['schemas']['no.nav.aap.statistikk.api_kontrakt.BeregningsgrunnlagDTO'];
       /**
        * Format: date-time
-       * @example 2024-10-30T09:04:09.697561
+       * @example 2024-10-30T10:45:43.326271
        */
       hendelsesTidspunkt: string;
       saksnummer: string;
@@ -517,33 +510,9 @@ export interface components {
     };
     'no.nav.aap.statistikk.api_kontrakt.Definisjon': {
       /** @enum {string} */
-      behovType: 'MANUELT_PÅKREVD' | 'MANUELT_FRIVILLIG' | 'VENTEPUNKT';
+      behovType: NoNavAapStatistikkApi_kontraktDefinisjonBehovType;
       /** @enum {string} */
-      'l\u00F8sesISteg':
-        | 'START_BEHANDLING'
-        | 'VURDER_ALDER'
-        | 'VURDER_LOVVALG'
-        | 'VURDER_MEDLEMSKAP'
-        | 'AVKLAR_STUDENT'
-        | 'VURDER_BISTANDSBEHOV'
-        | 'VURDER_SYKEPENGEERSTATNING'
-        | 'FRITAK_MELDEPLIKT'
-        | 'KVALITETSSIKRING'
-        | 'BARNETILLEGG'
-        | 'AVKLAR_SYKDOM'
-        | 'FASTSETT_ARBEIDSEVNE'
-        | 'FASTSETT_BEREGNINGSTIDSPUNKT'
-        | 'FASTSETT_GRUNNLAG'
-        | 'VIS_GRUNNLAG'
-        | 'FASTSETT_UTTAK'
-        | 'SAMORDNING_GRADERING'
-        | 'DU_ER_ET_ANNET_STED'
-        | 'BEREGN_TILKJENT_YTELSE'
-        | 'SIMULERING'
-        | 'FORESLÅ_VEDTAK'
-        | 'FATTE_VEDTAK'
-        | 'BREV'
-        | 'IVERKSETT_VEDTAK';
+      'l\u00F8sesISteg': NoNavAapStatistikkApi_kontraktDefinisjonLSesISteg;
       type: string;
     };
     'no.nav.aap.statistikk.api_kontrakt.Endring': {
@@ -554,17 +523,10 @@ export interface components {
        */
       frist?: string | null;
       /** @enum {string} */
-      status:
-        | 'OPPRETTET'
-        | 'AVSLUTTET'
-        | 'TOTRINNS_VURDERT'
-        | 'SENDT_TILBAKE_FRA_BESLUTTER'
-        | 'KVALITETSSIKRET'
-        | 'SENDT_TILBAKE_FRA_KVALITETSSIKRER'
-        | 'AVBRUTT';
+      status: NoNavAapStatistikkApi_kontraktEndringStatus;
       /**
        * Format: date-time
-       * @example 2024-10-30T09:04:09.697561
+       * @example 2024-10-30T10:45:43.326271
        */
       tidsstempel: string;
     };
@@ -583,7 +545,7 @@ export interface components {
       grunnlagYtterligereNedsatt: components['schemas']['no.nav.aap.statistikk.api_kontrakt.Grunnlag11_19DTO'];
       grunnlaget: number;
       /** @enum {string} */
-      type: 'STANDARD' | 'YTTERLIGERE_NEDSATT';
+      type: NoNavAapStatistikkApi_kontraktGrunnlagUfReDTOType;
       /** @description Key type: kotlin.String */
       'uf\u00F8reInntekterFraForeg\u00E5ende\u00C5r': {
         [key: string]: number;
@@ -617,32 +579,32 @@ export interface components {
       avsluttetBehandling?: components['schemas']['no.nav.aap.statistikk.api_kontrakt.AvsluttetBehandlingDTO'];
       /**
        * Format: date-time
-       * @example 2024-10-30T09:04:09.697561
+       * @example 2024-10-30T10:45:43.326271
        */
       behandlingOpprettetTidspunkt: string;
       /** Format: uuid */
       behandlingReferanse: string;
       /** @enum {string} */
-      behandlingType: 'Førstegangsbehandling' | 'Revurdering' | 'Tilbakekreving' | 'Klage';
+      behandlingType: NoNavAapStatistikkApi_kontraktStoppetBehandlingBehandlingType;
       /**
        * Format: date-time
-       * @example 2024-10-30T09:04:09.697561
+       * @example 2024-10-30T10:45:43.326271
        */
       hendelsesTidspunkt: string;
       ident: string;
       identerForSak: string[];
       /**
        * Format: date-time
-       * @example 2024-10-30T09:04:09.697561
+       * @example 2024-10-30T10:45:43.326271
        */
       mottattTid: string;
       /** Format: uuid */
       relatertBehandling?: string | null;
       /** @enum {string} */
-      sakStatus: 'OPPRETTET' | 'UTREDES' | 'LØPENDE' | 'AVSLUTTET';
+      sakStatus: NoNavAapStatistikkApi_kontraktStoppetBehandlingSakStatus;
       saksnummer: string;
       /** @enum {string} */
-      status: 'OPPRETTET' | 'UTREDES' | 'IVERKSETTES' | 'AVSLUTTET';
+      status: NoNavAapStatistikkApi_kontraktStoppetBehandlingStatus;
       versjon: string;
     };
     'no.nav.aap.statistikk.api_kontrakt.TilkjentYtelseDTO': {
@@ -667,13 +629,7 @@ export interface components {
     'no.nav.aap.statistikk.api_kontrakt.Vilk\u00E5rDTO': {
       perioder: components['schemas']['no.nav.aap.statistikk.api_kontrakt.Vilk\u00E5rsPeriodeDTO'][];
       /** @enum {string} */
-      'vilk\u00E5rType':
-        | 'ALDERSVILKÅRET'
-        | 'SYKDOMSVILKÅRET'
-        | 'BISTANDSVILKÅRET'
-        | 'MEDLEMSKAP'
-        | 'GRUNNLAGET'
-        | 'SYKEPENGEERSTATNING';
+      'vilk\u00E5rType': NoNavAapStatistikkApi_kontraktVilkRDTOVilkRType;
     };
     'no.nav.aap.statistikk.api_kontrakt.Vilk\u00E5rsPeriodeDTO': {
       'avslags\u00E5rsak'?: string | null;
@@ -690,7 +646,7 @@ export interface components {
        */
       tilDato: string;
       /** @enum {string} */
-      utfall: 'IKKE_VURDERT' | 'IKKE_RELEVANT' | 'OPPFYLT' | 'IKKE_OPPFYLT';
+      utfall: NoNavAapStatistikkApi_kontraktVilkRsPeriodeDTOUtfall;
     };
     'no.nav.aap.statistikk.api_kontrakt.Vilk\u00E5rsResultatDTO': {
       typeBehandling: string;
@@ -724,4 +680,102 @@ export interface components {
   pathItems: never;
 }
 export type $defs = Record<string, never>;
+export enum PathsBehandlingstidTypeBehandlingGetParametersPathTypeBehandling {
+  F_rstegangsbehandling = 'F\u00F8rstegangsbehandling',
+  Revurdering = 'Revurdering',
+  Tilbakekreving = 'Tilbakekreving',
+  Klage = 'Klage',
+}
+export enum NoNavAapMotorApiJobbInfoDtoStatus {
+  KLAR = 'KLAR',
+  PLUKKET = 'PLUKKET',
+  FERDIG = 'FERDIG',
+  FEILET = 'FEILET',
+  AVBRUTT = 'AVBRUTT',
+}
+export enum NoNavAapStatistikkApi_kontraktAvklaringsbehovHendelseStatus {
+  OPPRETTET = 'OPPRETTET',
+  AVSLUTTET = 'AVSLUTTET',
+  TOTRINNS_VURDERT = 'TOTRINNS_VURDERT',
+  SENDT_TILBAKE_FRA_BESLUTTER = 'SENDT_TILBAKE_FRA_BESLUTTER',
+  KVALITETSSIKRET = 'KVALITETSSIKRET',
+  SENDT_TILBAKE_FRA_KVALITETSSIKRER = 'SENDT_TILBAKE_FRA_KVALITETSSIKRER',
+  AVBRUTT = 'AVBRUTT',
+}
+export enum NoNavAapStatistikkApi_kontraktDefinisjonBehovType {
+  MANUELT_P_KREVD = 'MANUELT_P\u00C5KREVD',
+  MANUELT_FRIVILLIG = 'MANUELT_FRIVILLIG',
+  VENTEPUNKT = 'VENTEPUNKT',
+}
+export enum NoNavAapStatistikkApi_kontraktDefinisjonLSesISteg {
+  START_BEHANDLING = 'START_BEHANDLING',
+  VURDER_ALDER = 'VURDER_ALDER',
+  VURDER_LOVVALG = 'VURDER_LOVVALG',
+  VURDER_MEDLEMSKAP = 'VURDER_MEDLEMSKAP',
+  AVKLAR_STUDENT = 'AVKLAR_STUDENT',
+  VURDER_BISTANDSBEHOV = 'VURDER_BISTANDSBEHOV',
+  VURDER_SYKEPENGEERSTATNING = 'VURDER_SYKEPENGEERSTATNING',
+  FRITAK_MELDEPLIKT = 'FRITAK_MELDEPLIKT',
+  KVALITETSSIKRING = 'KVALITETSSIKRING',
+  BARNETILLEGG = 'BARNETILLEGG',
+  AVKLAR_SYKDOM = 'AVKLAR_SYKDOM',
+  FASTSETT_ARBEIDSEVNE = 'FASTSETT_ARBEIDSEVNE',
+  FASTSETT_BEREGNINGSTIDSPUNKT = 'FASTSETT_BEREGNINGSTIDSPUNKT',
+  FASTSETT_GRUNNLAG = 'FASTSETT_GRUNNLAG',
+  VIS_GRUNNLAG = 'VIS_GRUNNLAG',
+  FASTSETT_UTTAK = 'FASTSETT_UTTAK',
+  SAMORDNING_GRADERING = 'SAMORDNING_GRADERING',
+  DU_ER_ET_ANNET_STED = 'DU_ER_ET_ANNET_STED',
+  BEREGN_TILKJENT_YTELSE = 'BEREGN_TILKJENT_YTELSE',
+  SIMULERING = 'SIMULERING',
+  FORESL__VEDTAK = 'FORESL\u00C5_VEDTAK',
+  FATTE_VEDTAK = 'FATTE_VEDTAK',
+  BREV = 'BREV',
+  IVERKSETT_VEDTAK = 'IVERKSETT_VEDTAK',
+}
+export enum NoNavAapStatistikkApi_kontraktEndringStatus {
+  OPPRETTET = 'OPPRETTET',
+  AVSLUTTET = 'AVSLUTTET',
+  TOTRINNS_VURDERT = 'TOTRINNS_VURDERT',
+  SENDT_TILBAKE_FRA_BESLUTTER = 'SENDT_TILBAKE_FRA_BESLUTTER',
+  KVALITETSSIKRET = 'KVALITETSSIKRET',
+  SENDT_TILBAKE_FRA_KVALITETSSIKRER = 'SENDT_TILBAKE_FRA_KVALITETSSIKRER',
+  AVBRUTT = 'AVBRUTT',
+}
+export enum NoNavAapStatistikkApi_kontraktGrunnlagUfReDTOType {
+  STANDARD = 'STANDARD',
+  YTTERLIGERE_NEDSATT = 'YTTERLIGERE_NEDSATT',
+}
+export enum NoNavAapStatistikkApi_kontraktStoppetBehandlingBehandlingType {
+  F_rstegangsbehandling = 'F\u00F8rstegangsbehandling',
+  Revurdering = 'Revurdering',
+  Tilbakekreving = 'Tilbakekreving',
+  Klage = 'Klage',
+}
+export enum NoNavAapStatistikkApi_kontraktStoppetBehandlingSakStatus {
+  OPPRETTET = 'OPPRETTET',
+  UTREDES = 'UTREDES',
+  L_PENDE = 'L\u00D8PENDE',
+  AVSLUTTET = 'AVSLUTTET',
+}
+export enum NoNavAapStatistikkApi_kontraktStoppetBehandlingStatus {
+  OPPRETTET = 'OPPRETTET',
+  UTREDES = 'UTREDES',
+  IVERKSETTES = 'IVERKSETTES',
+  AVSLUTTET = 'AVSLUTTET',
+}
+export enum NoNavAapStatistikkApi_kontraktVilkRDTOVilkRType {
+  ALDERSVILK_RET = 'ALDERSVILK\u00C5RET',
+  SYKDOMSVILK_RET = 'SYKDOMSVILK\u00C5RET',
+  BISTANDSVILK_RET = 'BISTANDSVILK\u00C5RET',
+  MEDLEMSKAP = 'MEDLEMSKAP',
+  GRUNNLAGET = 'GRUNNLAGET',
+  SYKEPENGEERSTATNING = 'SYKEPENGEERSTATNING',
+}
+export enum NoNavAapStatistikkApi_kontraktVilkRsPeriodeDTOUtfall {
+  IKKE_VURDERT = 'IKKE_VURDERT',
+  IKKE_RELEVANT = 'IKKE_RELEVANT',
+  OPPFYLT = 'OPPFYLT',
+  IKKE_OPPFYLT = 'IKKE_OPPFYLT',
+}
 export type operations = Record<string, never>;
