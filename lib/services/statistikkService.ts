@@ -1,21 +1,12 @@
 import { fetchProxy } from './fetchProxy';
+import { BehandlingPerAvklaringsbehov, BehandlingstidPerDagDTO } from 'lib/types/types';
 
 const statistikkApiBaseURL = process.env.STATISTIKK_API_BASE_URL;
 const statistikkApiScope = process.env.STATISTIKK_API_SCOPE ?? '';
 
-interface BehandlingtidPerDag {
-  dag: string;
-  snitt: number;
-}
-
-interface BehandlingPerAvklaringsbehov {
-  antall: number;
-  behov: string;
-}
-
 export const hentBehandlingsTidPerDag = async (behandlingType: string | null) => {
   const url = `${statistikkApiBaseURL}/behandlingstid/${behandlingType || '{typeBehandling}'}`;
-  return await fetchProxy<BehandlingtidPerDag[]>(url, statistikkApiScope, 'GET');
+  return await fetchProxy<BehandlingstidPerDagDTO[]>(url, statistikkApiScope, 'GET');
 };
 
 export const hentAntallÅoneBehandlinger = async () => {
