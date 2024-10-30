@@ -1,15 +1,17 @@
 import {
   hentAntallÅoneBehandlinger,
-  hentAntallÅpneBehandlingerPerAvklaringsbehov,
+  hentAntallÅpneBehandlingerPerAvklaringsbehov, hentBehandlingerUtvikling,
   hentBehandlingsTidPerDag,
 } from 'lib/services/statistikkService';
 import styles from './page.module.css';
 import { MyPlot } from './Plot';
+import { PlotBehandlingerUtvikling } from './PlotBehandlingerUtvikling';
 
 export default async function Home() {
   const res = await hentBehandlingsTidPerDag(null);
   const åpneBehandlinger = await hentAntallÅoneBehandlinger();
   const perAvklaringsbehov = await hentAntallÅpneBehandlingerPerAvklaringsbehov();
+  const behandlingerUtvikling = await hentBehandlingerUtvikling()
 
   console.log(res);
   return (
@@ -34,6 +36,9 @@ export default async function Home() {
         </div>
         <div>
           <MyPlot x={res.map((t) => new Date(t.dag))} y={res.map((t) => t.snitt / 3600)} />
+        </div>
+        <div>
+          <PlotBehandlingerUtvikling antallBehandlinger={behandlingerUtvikling} />
         </div>
       </div>
     </div>
