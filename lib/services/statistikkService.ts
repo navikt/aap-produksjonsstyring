@@ -28,3 +28,8 @@ export const hentBehandlingerUtvikling = async () => {
   const url = `${statistikkApiBaseURL}/behandlinger/utvikling`;
   return await fetchProxy<Record<string, AntallBehandlinger>>(url, statistikkApiScope, 'GET');
 };
+
+export const hentGjennomsnittligAlderLukkedeBehandlingerSisteDager = async (antallDager: number) => {
+  const url = `${statistikkApiBaseURL}/behandlingstid/lukkede-siste-dager/${antallDager}`;
+  return await fetchProxy<number>(url, statistikkApiScope, 'GET');
+};

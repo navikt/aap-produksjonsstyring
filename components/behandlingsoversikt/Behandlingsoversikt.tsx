@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 
 interface Props {
   behandlingerUtvikling: Record<string, AntallBehandlinger>;
+  alderLukkedeSisteSyvDager: number;
 }
 const initialOptions = [
   'car',
@@ -21,7 +22,7 @@ const initialOptions = [
   'van',
   'scooter',
 ];
-export const Behandlingsoversikt = ({ behandlingerUtvikling }: Props) => {
+export const Behandlingsoversikt = ({ behandlingerUtvikling, alderLukkedeSisteSyvDager }: Props) => {
   const sumNyeBehandlinger = useMemo(
     () => Object.values(behandlingerUtvikling).reduce((acc: number, curr: AntallBehandlinger) => acc + curr.nye, 0),
     [behandlingerUtvikling]
@@ -47,7 +48,7 @@ export const Behandlingsoversikt = ({ behandlingerUtvikling }: Props) => {
         </Heading>
         <HStack className={styles.behandlingerNåSituasjon} gap={'9'}>
           <div>
-            <BodyShort size={'large'}>{'kommer'}</BodyShort>
+            <BodyShort size={'large'}>{(alderLukkedeSisteSyvDager / (60 * 60 * 24)).toFixed(2)} dager</BodyShort>
             <Label size={'small'}>Snittalder ferdigstilte behandlinger</Label>
           </div>
           <div>
