@@ -657,11 +657,13 @@ export interface components {
       antall: number;
       behov: string;
     };
-    'no.nav.aap.statistikk.produksjonsstyring.api.AntallBehandlinger': {
+    'no.nav.aap.statistikk.produksjonsstyring.AntallBehandlinger': {
       /** Format: int32 */
       avsluttede: number;
       /** Format: int32 */
       nye: number;
+      /** Format: int32 */
+      totalt: number;
     };
     'no.nav.aap.statistikk.produksjonsstyring.api.Antall\u00C5pneOgGjennomsnitt': {
       /** Format: int32 */

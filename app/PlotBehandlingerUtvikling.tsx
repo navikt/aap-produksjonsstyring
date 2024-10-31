@@ -18,6 +18,13 @@ export function PlotBehandlingerUtvikling({ behandlingerUtvikling }: Props) {
         },
         {
           x: Object.keys(behandlingerUtvikling),
+          y: Object.values(behandlingerUtvikling).map((v) => v.totalt),
+          type: 'bar',
+          marker: { color: 'blue' },
+          name: 'Åpne',
+        },
+        {
+          x: Object.keys(behandlingerUtvikling),
           y: Object.values(behandlingerUtvikling).map((v) => v.avsluttede),
           type: 'bar',
           marker: { color: 'red' },
