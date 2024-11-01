@@ -42,6 +42,7 @@ spec:
   accessPolicy:
     outbound:
       rules:
+        - oppgave
         - application: statistikk
   ingresses:
   {{#each ingresses as |url|}}
