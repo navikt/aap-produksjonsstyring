@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@8348ea7f5d949b08c7f125a44b569c9626b05db3 # ratchet:dependabot/fetch-metadata@v1
+        uses: dependabot/fetch-metadata@dbb049abf0d677abbd7f7eee0375145b417fdd34 # ratchet:dependabot/fetch-metadata@v1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: merge
