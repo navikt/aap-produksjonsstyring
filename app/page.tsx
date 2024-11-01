@@ -12,7 +12,7 @@ export default async function Home() {
   const behandlingerUtvikling = await hentBehandlingerUtvikling();
   const behandlingstidPerDag = await hentBehandlingsTidPerDag(null);
   const gjennomSnittligAlderLukkede = await hentGjennomsnittligAlderLukkedeBehandlingerSisteDager(7);
-  const antallOppgaver = await hentAntallOppgaver();
+  const antallOppgaver = await hentAntallOppgaver('FØRSTEGANGSBEHANDLING');
 
   return (
     <div className={styles.page}>
