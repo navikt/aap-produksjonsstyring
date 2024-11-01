@@ -1,12 +1,14 @@
 import { BodyShort, Heading, HStack, Label, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { AntallBehandlinger } from 'lib/types/types';
+import { AntallBehandlinger, BehandlingstidPerDagDTO } from 'lib/types/types';
 import { PlotBehandlingerUtvikling } from 'app/PlotBehandlingerUtvikling';
 import styles from './Behandlingsoversikt.module.css';
 import { useMemo } from 'react';
+import { MyPlot } from 'app/Plot';
 
 interface Props {
   behandlingerUtvikling: Record<string, AntallBehandlinger>;
   alderLukkedeSisteSyvDager: number;
+  behandlingstidPerDag: BehandlingstidPerDagDTO[];
 }
 const initialOptions = [
   'car',
@@ -22,7 +24,11 @@ const initialOptions = [
   'van',
   'scooter',
 ];
-export const Behandlingsoversikt = ({ behandlingerUtvikling, alderLukkedeSisteSyvDager }: Props) => {
+export const Behandlingsoversikt = ({
+  behandlingerUtvikling,
+  alderLukkedeSisteSyvDager,
+  behandlingstidPerDag,
+}: Props) => {
   const sumNyeBehandlinger = useMemo(
     () => Object.values(behandlingerUtvikling).reduce((acc: number, curr: AntallBehandlinger) => acc + curr.nye, 0),
     [behandlingerUtvikling]
@@ -63,6 +69,12 @@ export const Behandlingsoversikt = ({ behandlingerUtvikling, alderLukkedeSisteSy
       </VStack>
       <div>
         <PlotBehandlingerUtvikling behandlingerUtvikling={behandlingerUtvikling} />
+      </div>
+      <div>
+        <MyPlot
+          x={behandlingstidPerDag.map((t) => new Date(t.dag))}
+          y={behandlingstidPerDag.map((t) => t.snitt / 3600)}
+        />
       </div>
     </VStack>
   );
