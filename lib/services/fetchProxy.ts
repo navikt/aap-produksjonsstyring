@@ -2,7 +2,7 @@
 
 import { isLocal } from 'lib/utils/environment';
 import { requestAzureOboToken, validateToken } from '@navikt/oasis';
-import { getAccessTokenOrRedirectToLogin, logError } from '@navikt/aap-felles-utils';
+import { getAccessTokenOrRedirectToLogin, logError, logInfo } from '@navikt/aap-felles-utils';
 import { headers } from 'next/headers';
 
 const NUMBER_OF_RETRIES = 3;
@@ -85,7 +85,12 @@ export const fetchWithRetry = async <ResponseBody>(
 
   if (!response.ok) {
     if (response.status === 500) {
-      const responseJson = await response.json();
+      let responseJson = { message: '' };
+      try {
+        responseJson = await response.json();
+      } catch (e) {
+        logInfo('jsonparsing av errorresponse feilet');
+      }
       logError(`klarte ikke å hente ${url}: ${responseJson.message}`);
       throw new Error(`Unable to fetch ${url}: ${responseJson.message}`);
     }
