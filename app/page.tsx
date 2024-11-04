@@ -1,4 +1,5 @@
 import {
+  hentAntallÅpneBehandlinger,
   hentBehandlingerUtvikling,
   hentBehandlingsTidPerDag,
   hentGjennomsnittligAlderLukkedeBehandlingerSisteDager,
@@ -14,6 +15,7 @@ export default async function Home() {
   const behandlingstidPerDag = await hentBehandlingsTidPerDag(null);
   const gjennomSnittligAlderLukkede = await hentGjennomsnittligAlderLukkedeBehandlingerSisteDager(7);
   const antallOppgaver = await hentAntallOppgaver('FØRSTEGANGSBEHANDLING');
+  const antallÅpneOppgaver = await hentAntallÅpneBehandlinger();
 
   return (
     <div className={styles.page}>
@@ -25,7 +27,7 @@ export default async function Home() {
             behandlingstidPerDag={behandlingstidPerDag}
           />
         }
-        oppgaver={<AntallOppgaver oppgaver={antallOppgaver} />}
+        oppgaver={<AntallOppgaver oppgaver={antallOppgaver} åpneOgGjennomsnitt={antallÅpneOppgaver} />}
       />
     </div>
   );
