@@ -1,6 +1,6 @@
 'use client';
 
-import { BodyShort, HGrid, Label } from '@navikt/ds-react';
+import { BodyShort, Heading, HGrid, Label } from '@navikt/ds-react';
 import { mapBehovskodeTilBehovstype } from 'lib/types/types';
 import styles from './AntallOppgaver.module.css';
 
@@ -10,6 +10,9 @@ interface Props {
 export const AntallOppgaver = ({ oppgaver }: Props) => {
   return (
     <div>
+      <Heading size={'small'} level={'2'}>
+        Oppgaver
+      </Heading>
       <HGrid columns={'1fr 1fr 1fr 1fr 1fr'} className={styles.antallOppgaverGrid}>
         {Object.entries(oppgaver).map(([behovKode, antall], index) => (
           <div key={`avklaringsbehovtype-${index}`}>
