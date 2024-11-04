@@ -20,16 +20,12 @@ const antallOppgaver = {
 };
 describe('AntallOppgaver', () => {
   test('Har en heading', () => {
-    render(
-      <AntallOppgaver oppgaver={antallOppgaver} åpneOgGjennomsnitt={{ gjennomsnittsalder: 24, antallÅpne: 97 }} />
-    );
+    render(<AntallOppgaver oppgaver={antallOppgaver} />);
     const heading = screen.getByRole('heading', { name: 'Oppgaver', level: 2 });
     expect(heading).toBeVisible();
   });
   test('viser riktig tekst og antall oppgaver for alle avklaringsbehovtyper', () => {
-    render(
-      <AntallOppgaver oppgaver={antallOppgaver} åpneOgGjennomsnitt={{ gjennomsnittsalder: 55, antallÅpne: 12 }} />
-    );
+    render(<AntallOppgaver oppgaver={antallOppgaver} />);
     const oppgaveBehovKoder = Object.keys(antallOppgaver);
     oppgaveBehovKoder.forEach((kode) => {
       const label = screen.getByText(mapBehovskodeTilBehovstype(kode));
