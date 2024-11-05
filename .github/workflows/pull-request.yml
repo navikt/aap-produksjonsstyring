@@ -1,4 +1,4 @@
-name: Pull request med automerge
+name: Bygg pull request
 
 on:
   workflow_dispatch:
