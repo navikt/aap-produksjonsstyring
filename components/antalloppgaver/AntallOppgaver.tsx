@@ -1,26 +1,85 @@
 'use client';
 
-import { BodyShort, Heading, HGrid, Label } from '@navikt/ds-react';
-import { mapBehovskodeTilBehovstype } from 'lib/types/types';
-import styles from './AntallOppgaver.module.css';
+import { Heading, HStack, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype } from 'lib/types/schema-oppgave';
+import { exhaustiveCheck } from 'lib/utils/typescript';
+import { useEffect, useState } from 'react';
+import { ComboboxOption } from '@navikt/ds-react/cjs/form/combobox/types';
+import { AntallOppgaverGrid } from 'components/antalloppgaver/AntallOppgaverGrid';
 
-interface Props {
-  oppgaver: Record<string, number>;
+const behandlingsTypeAlternativer = Object.keys(
+  NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype as unknown as keyof (typeof NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype)[]
+)
+  .map((key) => key as keyof typeof NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype)
+  .map((key) => {
+    switch (key) {
+      case 'F_RSTEGANGSBEHANDLING':
+        return {
+          label: 'Førstegangsbehandling',
+          value: 'FØRSTEGANGSBEHANDLING',
+        };
+      case 'TILBAKEKREVING':
+        return {
+          label: 'Tilbakekreving',
+          value: 'TILBAKEKREVING',
+        };
+      case 'REVURDERING':
+        return {
+          label: 'Revurdering',
+          value: 'REVURDERING',
+        };
+      case 'KLAGE':
+        return {
+          label: 'Klage',
+          value: 'KLAGE',
+        };
+      case 'DOKUMENT_H_NDTERING':
+        return {
+          label: 'Dokumenthåndtering',
+          value: 'DOKUMENTHÅNDTERING',
+        };
+    }
+    exhaustiveCheck(key);
+  });
+
+async function fetchAntallOppgaver(behandlingstype: string) {
+  return fetch('/api/oppgave/antall-oppgaver', {
+    method: 'POST',
+    body: JSON.stringify(behandlingstype),
+  }).then((res) => res.json());
 }
-export const AntallOppgaver = ({ oppgaver }: Props) => {
+
+export const AntallOppgaver = () => {
+  const [antallOppgaver, setAntallOppgaver] = useState<Record<string, number>>({});
+  const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
+
+  useEffect(() => {
+    fetchAntallOppgaver('FØRSTEGANGSBEHANDLING').then((data) => setAntallOppgaver(data));
+    const defaultOption = behandlingsTypeAlternativer.find((e) => e.value === 'FØRSTEGANGSBEHANDLING');
+    if (defaultOption) {
+      setSelectedOptions([defaultOption]);
+    }
+  }, []);
   return (
-    <div>
-      <Heading size={'small'} level={'2'}>
+    <VStack gap={'3'}>
+      <Heading size={'medium'} level={'2'}>
         Oppgaver
       </Heading>
-      <HGrid columns={'1fr 1fr 1fr 1fr 1fr'} className={styles.antallOppgaverGrid}>
-        {Object.entries(oppgaver).map(([behovKode, antall], index) => (
-          <div key={`avklaringsbehovtype-${index}`}>
-            <BodyShort size={'large'}>{`${antall}`}</BodyShort>
-            <Label size={'small'}>{mapBehovskodeTilBehovstype(behovKode)}</Label>
-          </div>
-        ))}
-      </HGrid>
-    </div>
+      <HStack>
+        <UNSAFE_Combobox
+          label={'Type behandling'}
+          options={behandlingsTypeAlternativer}
+          onToggleSelected={async (val) => {
+            const option = behandlingsTypeAlternativer.find((e) => e.value === val);
+            if (option) {
+              setSelectedOptions([option]);
+            }
+            setAntallOppgaver(await fetchAntallOppgaver(val));
+          }}
+          selectedOptions={selectedOptions}
+        />
+      </HStack>
+      <AntallOppgaverGrid oppgaver={antallOppgaver} />
+    </VStack>
   );
 };

@@ -4,7 +4,7 @@ import { isLocal } from 'lib/utils/environment';
 const oppgaveApiBaseURL = process.env.OPPGAVE_API_BASE_URL;
 const oppgaveApiScope = process.env.OPPGAVE_API_SCOPE ?? '';
 
-export async function hentAntallOppgaver(behandlingstype: string) {
+export async function hentAntallOppgaver(behandlingstype?: string) {
   if (isLocal())
     return {
       '5001': 6,
@@ -20,5 +20,10 @@ export async function hentAntallOppgaver(behandlingstype: string) {
       '5099': 5,
     };
   const url = `${oppgaveApiBaseURL}/produksjonsstyring/antall-oppgaver`;
-  return await fetchProxy<Record<string, number>>(url, oppgaveApiScope, 'POST', { behandlingstype });
+  return await fetchProxy<Record<string, number>>(
+    url,
+    oppgaveApiScope,
+    'POST',
+    behandlingstype ? { behandlingstype } : {}
+  );
 }

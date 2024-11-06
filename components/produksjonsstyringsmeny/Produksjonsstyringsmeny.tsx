@@ -10,7 +10,7 @@ interface Props {
 }
 export const Produksjonsstyringsmeny = ({ produktivitet, oppgaver }: Props) => {
   return (
-    <Tabs defaultValue="produktivitet" fill className={styles.produksjonsstyringsmeny}>
+    <Tabs defaultValue="nå" fill className={styles.produksjonsstyringsmeny}>
       <Tabs.List>
         <Tabs.Tab value="nå" label="Nåsituasjon" />
         <Tabs.Tab value="produktivitet" label="Produktivitet" />

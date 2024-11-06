@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
-import { AntallOppgaver } from 'components/antalloppgaver/AntallOppgaver';
 import { mapBehovskodeTilBehovstype } from 'lib/types/types';
+import { AntallOppgaverGrid } from 'components/antalloppgaver/AntallOppgaverGrid';
 const antallOppgaver = {
   '5001': 32,
   '5003': 25,
@@ -19,13 +19,8 @@ const antallOppgaver = {
   '9001': 9001,
 };
 describe('AntallOppgaver', () => {
-  test('Har en heading', () => {
-    render(<AntallOppgaver oppgaver={antallOppgaver} />);
-    const heading = screen.getByRole('heading', { name: 'Oppgaver', level: 2 });
-    expect(heading).toBeVisible();
-  });
   test('viser riktig tekst og antall oppgaver for alle avklaringsbehovtyper', () => {
-    render(<AntallOppgaver oppgaver={antallOppgaver} />);
+    render(<AntallOppgaverGrid oppgaver={antallOppgaver} />);
     const oppgaveBehovKoder = Object.keys(antallOppgaver);
     oppgaveBehovKoder.forEach((kode) => {
       const label = screen.getByText(mapBehovskodeTilBehovstype(kode));
