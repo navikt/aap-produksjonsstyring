@@ -45,7 +45,7 @@ const behandlingsTypeAlternativer = Object.keys(
 async function fetchAntallOppgaver(behandlingstype: string) {
   return fetch('/api/oppgave/antall-oppgaver', {
     method: 'POST',
-    body: JSON.stringify(behandlingstype),
+    body: JSON.stringify({ behandlingstype }),
   }).then((res) => res.json());
 }
 

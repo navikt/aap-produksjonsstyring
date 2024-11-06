@@ -3,10 +3,10 @@ import { logError } from '@navikt/aap-felles-utils';
 import { hentAntallOppgaver } from 'lib/services/oppgaveService';
 
 export async function POST(req: NextRequest) {
-  const behandlingsType = await req.json().then((data) => data.behandlingType);
+  const behandlingstype = await req.json().then((data) => data.behandlingstype);
 
   try {
-    const result = await hentAntallOppgaver(behandlingsType);
+    const result = await hentAntallOppgaver(behandlingstype);
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     logError(`/api/oppgave/antall-oppgaver`, error);
