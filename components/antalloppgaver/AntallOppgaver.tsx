@@ -61,7 +61,7 @@ export const AntallOppgaver = () => {
     }
   }, []);
   return (
-    <VStack gap={'3'}>
+    <VStack gap={'7'}>
       <Heading size={'medium'} level={'2'}>
         Oppgaver
       </Heading>
