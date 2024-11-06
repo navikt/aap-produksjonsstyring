@@ -20,10 +20,7 @@ export async function hentAntallOppgaver(behandlingstype?: string) {
       '5099': 5,
     };
   const url = `${oppgaveApiBaseURL}/produksjonsstyring/antall-oppgaver`;
-  return await fetchProxy<Record<string, number>>(
-    url,
-    oppgaveApiScope,
-    'POST',
-    behandlingstype ? { behandlingstype } : {}
-  );
+  return await fetchProxy<Record<string, number>>(url, oppgaveApiScope, 'POST', {
+    behandlingstype: behandlingstype || null,
+  });
 }
