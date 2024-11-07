@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { ComboboxOption } from '@navikt/ds-react/cjs/form/combobox/types';
 import { AntallOppgaverGrid } from 'components/antalloppgaver/AntallOppgaverGrid';
 
-const behandlingsTypeAlternativer = Object.keys(
+const behandlingsTypeAlternativerFraEnum = Object.keys(
   NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype as unknown as keyof (typeof NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype)[]
 )
   .map((key) => key as keyof typeof NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype)
@@ -41,8 +41,9 @@ const behandlingsTypeAlternativer = Object.keys(
     }
     exhaustiveCheck(key);
   });
+const behandlingsTypeAlternativer = [{ label: 'Alle', value: '' }, ...behandlingsTypeAlternativerFraEnum];
 
-async function fetchAntallOppgaver(behandlingstype: string) {
+async function fetchAntallOppgaver(behandlingstype?: string) {
   return fetch('/api/oppgave/antall-oppgaver', {
     method: 'POST',
     body: JSON.stringify({ behandlingstype }),
@@ -54,11 +55,8 @@ export const AntallOppgaver = () => {
   const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
 
   useEffect(() => {
-    fetchAntallOppgaver('FØRSTEGANGSBEHANDLING').then((data) => setAntallOppgaver(data));
-    const defaultOption = behandlingsTypeAlternativer.find((e) => e.value === 'FØRSTEGANGSBEHANDLING');
-    if (defaultOption) {
-      setSelectedOptions([defaultOption]);
-    }
+    fetchAntallOppgaver().then((data) => setAntallOppgaver(data));
+    setSelectedOptions([behandlingsTypeAlternativer[0]]);
   }, []);
   return (
     <VStack gap={'7'}>

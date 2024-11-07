@@ -1,18 +1,29 @@
-import { BodyShort, HGrid, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { mapBehovskodeTilBehovstype } from 'lib/types/types';
-import styles from './AntallOppgaverGrid.module.css';
+import { VenstreBorderBoks } from 'components/venstreborderboks/VenstreBorderBoks';
 interface Props {
   oppgaver: Record<string, number>;
 }
 export const AntallOppgaverGrid = ({ oppgaver }: Props) => {
+  const sumOppgaver = Object.entries(oppgaver).reduce((acc, keyAndValue) => acc + keyAndValue[1], 0);
   return (
-    <HGrid columns={'1fr 1fr 1fr 1fr 1fr'} gap={'5'} className={styles.antallOppgaverGrid}>
-      {Object.entries(oppgaver).map(([behovKode, antall], index) => (
-        <VStack key={`avklaringsbehovtype-${index}`} gap={'5'} justify={'space-around'}>
-          <BodyShort size={'small'}>{mapBehovskodeTilBehovstype(behovKode)}</BodyShort>
-          <BodyShort weight={'semibold'} size={'large'}>{`${antall}`}</BodyShort>
-        </VStack>
-      ))}
-    </HGrid>
+    <VStack gap={'9'}>
+      <VenstreBorderBoks>
+        <Heading size={'xlarge'} as={'p'}>
+          {`${sumOppgaver}`}
+        </Heading>
+        <BodyShort>Åpne oppgaver</BodyShort>
+      </VenstreBorderBoks>
+      <HGrid columns={'1fr 1fr 1fr 1fr 1fr'} gap={'5'}>
+        {Object.entries(oppgaver).map(([behovKode, antall], index) => (
+          <VenstreBorderBoks key={`avklaringsbehovtype-${index}`}>
+            <BodyShort size={'small'}>{mapBehovskodeTilBehovstype(behovKode)}</BodyShort>
+            <Heading size={'medium'} as={'p'}>
+              {`${antall}`}
+            </Heading>
+          </VenstreBorderBoks>
+        ))}
+      </HGrid>
+    </VStack>
   );
 };
