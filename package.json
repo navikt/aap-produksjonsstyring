@@ -13,7 +13,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@navikt/aap-felles-utils": "^2.0.14",
+    "@navikt/aap-felles-utils": "^2.0.16",
     "@navikt/ds-css": "^7.4.3",
     "@navikt/ds-react": "^7.4.3",
     "@opentelemetry/api": "^1.9.0",
@@ -31,7 +31,7 @@
     "react-plotly.js": "^2.6.0"
   },
   "devDependencies": {
-    "@navikt/aap-felles-prettier": "^2.0.14",
+    "@navikt/aap-felles-prettier": "^2.0.16",
     "@navikt/eslint-config-aap": "^1.9.7",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
