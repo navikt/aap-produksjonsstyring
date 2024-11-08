@@ -7,7 +7,7 @@ import {
 import styles from './page.module.css';
 import { Behandlingsoversikt } from 'components/behandlingsoversikt/Behandlingsoversikt';
 import { Produksjonsstyringsmeny } from 'components/produksjonsstyringsmeny/Produksjonsstyringsmeny';
-import { AntallOppgaver } from 'components/antalloppgaver/AntallOppgaver';
+import { PneOppgaver } from 'components/åpneoppgaver/ÅpneOppgaver';
 import { ÅpneBehandlinger } from 'components/åpnebehandlinger/ÅpneBehandlinger';
 import { VStack } from '@navikt/ds-react';
 
@@ -30,7 +30,7 @@ export default async function Home() {
         oppgaver={
           <VStack gap={'10'}>
             <ÅpneBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger} />
-            <AntallOppgaver />
+            <PneOppgaver />
           </VStack>
         }
       />

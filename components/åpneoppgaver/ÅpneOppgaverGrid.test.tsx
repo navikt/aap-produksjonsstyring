@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
-import { mapBehovskodeTilBehovstype } from 'lib/types/types';
-import { AntallOppgaverGrid } from 'components/antalloppgaver/AntallOppgaverGrid';
+import { AvklaringsbehovKode, mapBehovskodeTilBehovstype } from 'lib/types/types';
+import { ÅpneOppgaverGrid } from 'components/åpneoppgaver/ÅpneOppgaverGrid';
 const antallOppgaver = {
   '5001': 32,
   '5003': 25,
@@ -20,10 +20,10 @@ const antallOppgaver = {
 };
 describe('AntallOppgaver', () => {
   test('viser riktig tekst og antall oppgaver for alle avklaringsbehovtyper', () => {
-    render(<AntallOppgaverGrid oppgaver={antallOppgaver} />);
+    render(<ÅpneOppgaverGrid oppgaver={antallOppgaver} />);
     const oppgaveBehovKoder = Object.keys(antallOppgaver);
     oppgaveBehovKoder.forEach((kode) => {
-      const label = screen.getByText(mapBehovskodeTilBehovstype(kode));
+      const label = screen.getByText(mapBehovskodeTilBehovstype(kode as AvklaringsbehovKode));
       expect(label).toBeVisible();
       if (label.parentElement) {
         // @ts-ignore

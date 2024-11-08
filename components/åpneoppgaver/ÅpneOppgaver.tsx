@@ -5,7 +5,7 @@ import { NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype } fro
 import { exhaustiveCheck } from 'lib/utils/typescript';
 import { useEffect, useState } from 'react';
 import { ComboboxOption } from '@navikt/ds-react/cjs/form/combobox/types';
-import { AntallOppgaverGrid } from 'components/antalloppgaver/AntallOppgaverGrid';
+import { ÅpneOppgaverGrid } from 'components/åpneoppgaver/ÅpneOppgaverGrid';
 
 const behandlingsTypeAlternativerFraEnum = Object.keys(
   NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype as unknown as keyof (typeof NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype)[]
@@ -50,7 +50,7 @@ async function fetchAntallOppgaver(behandlingstype?: string) {
   }).then((res) => res.json());
 }
 
-export const AntallOppgaver = () => {
+export const PneOppgaver = () => {
   const [antallOppgaver, setAntallOppgaver] = useState<Record<string, number>>({});
   const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
 
@@ -77,7 +77,7 @@ export const AntallOppgaver = () => {
           selectedOptions={selectedOptions}
         />
       </HStack>
-      <AntallOppgaverGrid oppgaver={antallOppgaver} />
+      <ÅpneOppgaverGrid oppgaver={antallOppgaver} />
     </VStack>
   );
 };
