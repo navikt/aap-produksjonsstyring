@@ -36,7 +36,7 @@ const behandlingsTypeAlternativerFraEnum = Object.keys(
       case 'DOKUMENT_H_NDTERING':
         return {
           label: 'Dokumenthåndtering',
-          value: 'DOKUMENTHÅNDTERING',
+          value: 'DOKUMENT_HÅNDTERING',
         };
     }
     exhaustiveCheck(key);
