@@ -8,7 +8,7 @@ on:
 
 jobs:
   buildPullRequestDev:
-    uses: navikt/aap-workflows/.github/workflows/frontend-next-only-build.yml@main
+    uses: navikt/aap-workflows/.github/workflows/frontend-next-only-build.yml@node22
     permissions:
       contents: read
       id-token: write
