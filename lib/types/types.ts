@@ -1,5 +1,6 @@
 import { components as statistikk } from 'lib/types/schema-statistikk';
-import { components as behandlingsflyt } from 'lib/types/schema-behandlingsflyt';
+// import { components as behandlingsflyt } from 'lib/types/schema-behandlingsflyt';
+import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
 import { components as postmottak } from 'lib/types/schema-postmottak';
 import { exhaustiveCheck } from 'lib/utils/typescript';
 
@@ -46,12 +47,18 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
       return 'Manuelt satt på vent';
     case '9002':
       return 'Bestill brev';
+    case '9003':
+      return 'Bestill legeerklæring';
     case '5010':
       return 'Avklar soningsvurdering';
     case '5011':
       return 'Avklar helseinstitusjon';
     case '5012':
       return 'Avklar samordning gradering';
+    case '5013':
+      return 'Avklar yrkesskade';
+    case '5014':
+      return 'Fastsett yrkesskadebeløp';
     case '5050':
       return 'Skriv brev';
     // Postmottak
