@@ -44,8 +44,8 @@ spec:
       rules:
         - application: oppgave
         - application: statistikk
-    external:
-      - host: "cdn.nav.no"
+      external:
+        - host: "cdn.nav.no"
   ingresses:
   {{#each ingresses as |url|}}
      - {{url}}
