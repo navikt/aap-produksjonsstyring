@@ -1,29 +1,40 @@
-import { Heading, HStack, VStack } from '@navikt/ds-react';
+'use client';
+
+import { Heading, VStack } from '@navikt/ds-react';
 import { AntallÅpneOgGjennomsnitt } from 'lib/types/types';
-import { sekunderTilDager } from 'lib/utils/time';
+import Plot from 'react-plotly.js';
+import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
+import { smallPlotSize } from 'lib/utils/plotly';
+
 interface Props {
   åpneOgGjennomsnitt: AntallÅpneOgGjennomsnitt;
 }
-export const ÅpneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
+export const ApneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
+  const totaltAntallBehandlinger = åpneOgGjennomsnitt.antallÅpne;
   return (
-    <div>
-      <Heading size={'medium'} level={'2'}>
-        Behandlinger
-      </Heading>
-      <HStack gap={'5'}>
-        <VStack>
-          <Heading level={'3'} size="small">
-            Antall åpne behandlinger
-          </Heading>
-          <div>{åpneOgGjennomsnitt.antallÅpne}</div>
-        </VStack>
-        <VStack>
-          <Heading level={'3'} size="small">
-            Snittalder åpne behandlinger
-          </Heading>
-          <div>{`${sekunderTilDager(åpneOgGjennomsnitt.gjennomsnittsalder)} dager`}</div>
-        </VStack>
-      </HStack>
-    </div>
+    <PlotWrapper>
+      <VStack align={'center'}>
+        <Heading level={'3'} size={'small'}>
+          Status åpne behandlinger
+        </Heading>
+        <Heading size={'medium'} as={'p'}>
+          {`${totaltAntallBehandlinger}`}
+        </Heading>
+      </VStack>
+      <Plot
+        data={[
+          {
+            y: [åpneOgGjennomsnitt.antallÅpne, 0],
+            x: ['Åpne behandlinger', 'På vent(finnes ikke enda)'],
+            type: 'bar',
+          },
+        ]}
+        layout={{
+          title: 'Totalt antall åpne behandlinger',
+          yaxis: { title: 'Antall' },
+          ...smallPlotSize,
+        }}
+      />
+    </PlotWrapper>
   );
 };

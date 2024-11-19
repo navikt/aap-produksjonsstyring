@@ -50,7 +50,7 @@ async function fetchAntallOppgaver(behandlingstype?: string) {
   }).then((res) => res.json());
 }
 
-export const PneOppgaver = () => {
+export const ApneOppgaver = () => {
   const [antallOppgaver, setAntallOppgaver] = useState<Record<string, number>>({});
   const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
 

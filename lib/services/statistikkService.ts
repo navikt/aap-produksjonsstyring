@@ -24,8 +24,9 @@ export const hentAntallÅpneBehandlingerPerAvklaringsbehov = async () => {
   return await fetchProxy<BehandlingPerAvklaringsbehov[]>(url, statistikkApiScope, 'GET');
 };
 
-export const hentBehandlingerUtvikling = async () => {
-  const url = `${statistikkApiBaseURL}/behandlinger/utvikling?antallDager=7`;
+export const hentBehandlingerUtvikling = async (antallDager: number = 0) => {
+  const url = `${statistikkApiBaseURL}/behandlinger/utvikling?antallDager=${antallDager}`;
+
   return await fetchProxy<Record<string, AntallBehandlinger>>(url, statistikkApiScope, 'GET');
 };
 
