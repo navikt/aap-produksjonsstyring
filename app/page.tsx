@@ -25,7 +25,7 @@ export default async function Home() {
     <div className={styles.page}>
       <Produksjonsstyringsmeny
         totaloversikt={
-          <HStack gap={'10'}>
+          <HStack>
             <ApneBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger} />
             <BehandlingerInnUt data={behandlingerUtvikling[0]} />
             <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger} />

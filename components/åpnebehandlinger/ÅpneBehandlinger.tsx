@@ -1,10 +1,9 @@
 'use client';
 
 import { AntallÅpneOgGjennomsnitt } from 'lib/types/types';
-import Plot from 'react-plotly.js';
 import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
-import { smallPlotSize } from 'lib/utils/plotly';
 import { HeadingAndLargeText } from 'components/headingandlargetext/HeadingAndLargeText';
+import { ResponsivePlot } from 'components/responsiveplot/ResponsivePlot';
 
 interface Props {
   åpneOgGjennomsnitt: AntallÅpneOgGjennomsnitt;
@@ -14,7 +13,7 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
   return (
     <PlotWrapper>
       <HeadingAndLargeText heading={'Status åpne behandlinger'} text={`${totaltAntallBehandlinger}`} />
-      <Plot
+      <ResponsivePlot
         data={[
           {
             y: [åpneOgGjennomsnitt.antallÅpne, 0],
@@ -25,7 +24,6 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
         layout={{
           title: 'Totalt antall åpne behandlinger',
           yaxis: { title: 'Antall' },
-          ...smallPlotSize,
         }}
       />
     </PlotWrapper>

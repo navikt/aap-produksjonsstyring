@@ -1,10 +1,9 @@
 'use client';
 
-import Plot from 'react-plotly.js';
 import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
-import { smallPlotSize } from 'lib/utils/plotly';
 import { BehandlingEndringerPerDag } from 'lib/types/types';
 import { HeadingAndLargeText } from 'components/headingandlargetext/HeadingAndLargeText';
+import { ResponsivePlot } from 'components/responsiveplot/ResponsivePlot';
 
 interface Props {
   data: BehandlingEndringerPerDag;
@@ -17,7 +16,7 @@ export const BehandlingerInnUt = ({ data }: Props) => {
   return (
     <PlotWrapper>
       <HeadingAndLargeText heading={'Inngang / Utgang'} text={`${sumInnUt >= 0 ? '+ ' : '- '}${sumInnUt}`} />
-      <Plot
+      <ResponsivePlot
         data={[
           {
             x,
@@ -28,7 +27,6 @@ export const BehandlingerInnUt = ({ data }: Props) => {
         layout={{
           title: 'Endring i åpne behandlinger i perioden',
           yaxis: { title: 'Antall' },
-          ...smallPlotSize,
         }}
       />
     </PlotWrapper>
