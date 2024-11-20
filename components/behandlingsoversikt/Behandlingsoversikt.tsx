@@ -1,12 +1,12 @@
 import { Heading, HStack, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { AntallBehandlinger, BehandlingstidPerDagDTO } from 'lib/types/types';
+import { BehandlingEndringerPerDag, BehandlingstidPerDagDTO } from 'lib/types/types';
 import { PlotBehandlingerUtvikling } from 'app/PlotBehandlingerUtvikling';
 import styles from './Behandlingsoversikt.module.css';
 import { MyPlot } from 'app/Plot';
 import { SummertBehandlingerUtvikling } from 'components/behandlingsoversikt/summertbehandlingerutvikling/SummertBehandlingerUtvikling';
 
 interface Props {
-  behandlingerUtvikling: Record<string, AntallBehandlinger>;
+  behandlingerUtvikling: Array<BehandlingEndringerPerDag>;
   alderLukkedeSisteSyvDager: number;
   behandlingstidPerDag: BehandlingstidPerDagDTO[];
 }

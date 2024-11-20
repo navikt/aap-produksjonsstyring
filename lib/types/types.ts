@@ -1,5 +1,4 @@
 import { components as statistikk } from 'lib/types/schema-statistikk';
-// import { components as behandlingsflyt } from 'lib/types/schema-behandlingsflyt';
 import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
 import { components as postmottak } from 'lib/types/schema-postmottak';
 import { exhaustiveCheck } from 'lib/utils/typescript';
@@ -8,9 +7,12 @@ export type BehandlingstidPerDagDTO =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.BehandlingstidPerDagDTO'];
 export type BehandlingPerAvklaringsbehov =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.BehandlingPerAvklaringsbehov'];
-export type AntallBehandlinger = statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.AntallBehandlinger'];
+export type BehandlingEndringerPerDag =
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.BehandlinEndringerPerDag'];
 export type AntallÅpneOgGjennomsnitt =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.Antall\u00C5pneOgGjennomsnitt'];
+export type FordelingÅpneBehandlinger =
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.Fordeling\u00C5pneBehandlinger'];
 
 export type BehandlingsFlytAvklaringsbehovKode =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.avklaringsbehov.Definisjon']['kode'];

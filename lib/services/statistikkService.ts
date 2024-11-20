@@ -2,8 +2,9 @@ import { fetchProxy } from './fetchProxy';
 import {
   BehandlingPerAvklaringsbehov,
   BehandlingstidPerDagDTO,
-  AntallBehandlinger,
   AntallÅpneOgGjennomsnitt,
+  BehandlingEndringerPerDag,
+  FordelingÅpneBehandlinger,
 } from 'lib/types/types';
 
 const statistikkApiBaseURL = process.env.STATISTIKK_API_BASE_URL;
@@ -27,10 +28,15 @@ export const hentAntallÅpneBehandlingerPerAvklaringsbehov = async () => {
 export const hentBehandlingerUtvikling = async (antallDager: number = 0) => {
   const url = `${statistikkApiBaseURL}/behandlinger/utvikling?antallDager=${antallDager}`;
 
-  return await fetchProxy<Record<string, AntallBehandlinger>>(url, statistikkApiScope, 'GET');
+  return await fetchProxy<Array<BehandlingEndringerPerDag>>(url, statistikkApiScope, 'GET');
 };
 
 export const hentGjennomsnittligAlderLukkedeBehandlingerSisteDager = async (antallDager: number) => {
   const url = `${statistikkApiBaseURL}/behandlingstid/lukkede-siste-dager/${antallDager}`;
   return await fetchProxy<number>(url, statistikkApiScope, 'GET');
 };
+
+export async function hentFordelingÅpneBehandlinger() {
+  const url = `${statistikkApiBaseURL}/behandlinger/fordeling-åpne-behandlinger`;
+  return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
+}

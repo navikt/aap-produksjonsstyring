@@ -1,20 +1,19 @@
 import { BodyShort, HStack, Label } from '@navikt/ds-react';
 import styles from 'components/behandlingsoversikt/Behandlingsoversikt.module.css';
 import { useMemo } from 'react';
-import { AntallBehandlinger } from 'lib/types/types';
+import { BehandlingEndringerPerDag } from 'lib/types/types';
 import { sekunderTilDager } from 'lib/utils/time';
 interface Props {
-  behandlingerUtvikling: Record<string, AntallBehandlinger>;
+  behandlingerUtvikling: Array<BehandlingEndringerPerDag>;
   alderLukkedeSisteSyvDager: number;
 }
 export const SummertBehandlingerUtvikling = ({ behandlingerUtvikling, alderLukkedeSisteSyvDager }: Props) => {
   const sumNyeBehandlinger = useMemo(
-    () => Object.values(behandlingerUtvikling).reduce((acc: number, curr: AntallBehandlinger) => acc + curr.nye, 0),
+    () => behandlingerUtvikling.reduce((acc: number, curr: BehandlingEndringerPerDag) => acc + curr.nye, 0),
     [behandlingerUtvikling]
   );
   const sumAvsluttedeBehandlinger = useMemo(
-    () =>
-      Object.values(behandlingerUtvikling).reduce((acc: number, curr: AntallBehandlinger) => acc + curr.avsluttede, 0),
+    () => behandlingerUtvikling.reduce((acc: number, curr: BehandlingEndringerPerDag) => acc + curr.avsluttede, 0),
     [behandlingerUtvikling]
   );
   return (

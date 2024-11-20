@@ -1,31 +1,31 @@
 'use client';
 
 import Plot from 'react-plotly.js';
-import { AntallBehandlinger } from 'lib/types/types';
+import { BehandlingEndringerPerDag } from 'lib/types/types';
 interface Props {
-  behandlingerUtvikling: Record<string, AntallBehandlinger>;
+  behandlingerUtvikling: Array<BehandlingEndringerPerDag>;
 }
 export function PlotBehandlingerUtvikling({ behandlingerUtvikling }: Props) {
   return (
     <Plot
       data={[
         {
-          x: Object.keys(behandlingerUtvikling),
-          y: Object.values(behandlingerUtvikling).map((v) => v.nye),
+          x: behandlingerUtvikling.map((e) => e.dato),
+          y: behandlingerUtvikling.map((v) => v.nye),
           type: 'bar',
           marker: { color: 'green' },
           name: 'Nye',
         },
         {
-          x: Object.keys(behandlingerUtvikling),
-          y: Object.values(behandlingerUtvikling).map((v) => v.totalt),
+          x: behandlingerUtvikling.map((e) => e.dato),
+          y: behandlingerUtvikling.map((v) => v.totalt),
           type: 'bar',
           marker: { color: 'blue' },
           name: 'Åpne',
         },
         {
-          x: Object.keys(behandlingerUtvikling),
-          y: Object.values(behandlingerUtvikling).map((v) => v.avsluttede),
+          x: behandlingerUtvikling.map((e) => e.dato),
+          y: behandlingerUtvikling.map((v) => v.avsluttede),
           type: 'bar',
           marker: { color: 'red' },
           name: 'Avsluttede',
