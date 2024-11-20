@@ -1,10 +1,10 @@
 'use client';
 
 import Plot from 'react-plotly.js';
-import { Heading, VStack } from '@navikt/ds-react';
 import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
 import { smallPlotSize } from 'lib/utils/plotly';
 import { BehandlingEndringerPerDag } from 'lib/types/types';
+import { HeadingAndLargeText } from 'components/headingandlargetext/HeadingAndLargeText';
 
 interface Props {
   data: BehandlingEndringerPerDag;
@@ -16,15 +16,7 @@ export const BehandlingerInnUt = ({ data }: Props) => {
   const sumInnUt = dataUtenTotal.nye - dataUtenTotal.avsluttede;
   return (
     <PlotWrapper>
-      <VStack align={'center'}>
-        <Heading level={'3'} size={'small'}>
-          Inngang/Utgang
-        </Heading>
-        <Heading size={'medium'} as={'p'}>
-          {sumInnUt >= 0 ? '+ ' : '- '}
-          {`${sumInnUt}`}
-        </Heading>
-      </VStack>
+      <HeadingAndLargeText heading={'Inngang / Utgang'} text={`${sumInnUt >= 0 ? '+ ' : '- '}${sumInnUt}`} />
       <Plot
         data={[
           {
