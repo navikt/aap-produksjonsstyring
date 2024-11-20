@@ -36,7 +36,14 @@ export const hentGjennomsnittligAlderLukkedeBehandlingerSisteDager = async (anta
   return await fetchProxy<number>(url, statistikkApiScope, 'GET');
 };
 
-export async function hentFordelingÅpneBehandlinger() {
-  const url = `${statistikkApiBaseURL}/behandlinger/fordeling-åpne-behandlinger`;
+export async function hentFordelingÅpneBehandlinger(
+  enhet: 'DAYS' | 'WEEKS',
+  antallBøtter: number,
+  bøtteStørrelse: number
+) {
+  const antallBøtterString = encodeURIComponent(`antallBøtter=${antallBøtter}`);
+  const bøtteStørreleString = encodeURIComponent(`bøtteStørrelse=${bøtteStørrelse}`);
+  const url = `${statistikkApiBaseURL}/behandlinger/fordeling-åpne-behandlinger?${antallBøtterString}&${bøtteStørreleString}&enhet=${enhet}`;
+
   return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
 }

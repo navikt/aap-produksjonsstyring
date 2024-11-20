@@ -19,7 +19,7 @@ export default async function Home() {
   const behandlingstidPerDag = await hentBehandlingsTidPerDag(null);
   const gjennomSnittligAlderLukkede = await hentGjennomsnittligAlderLukkedeBehandlingerSisteDager(7);
   const antallÅpneBehandlinger = await hentAntallÅpneBehandlinger();
-  const fordelingÅpneBehandlinger = await hentFordelingÅpneBehandlinger();
+  const fordelingÅpneBehandlinger = await hentFordelingÅpneBehandlinger('DAYS', 7, 1);
 
   return (
     <div className={styles.page}>
