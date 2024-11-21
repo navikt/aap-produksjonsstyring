@@ -30,7 +30,6 @@ export const BehandlingerPerSteggruppe = ({ data }: Props) => {
           },
         ]}
         layout={{
-          title: 'Endring i åpne behandlinger i perioden',
           yaxis: { title: 'Antall' },
         }}
       />
