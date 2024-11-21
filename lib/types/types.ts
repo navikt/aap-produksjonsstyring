@@ -12,7 +12,9 @@ export type BehandlingEndringerPerDag =
 export type AntallÅpneOgGjennomsnitt =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.Antall\u00C5pneOgGjennomsnitt'];
 export type FordelingÅpneBehandlinger =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.Fordeling\u00C5pneBehandlinger'];
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.Fordeling\u00C5pneBehandlinger'];
+export type FordelingLukkedeBehandlinger =
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.FordelingLukkedeBehandlinger'];
 
 export type BehandlingsFlytAvklaringsbehovKode =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.avklaringsbehov.Definisjon']['kode'];
