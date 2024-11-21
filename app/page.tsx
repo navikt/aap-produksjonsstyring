@@ -1,4 +1,5 @@
 import {
+  hentAntallBehandlingerPerSteggruppe,
   hentAntallÅpneBehandlinger,
   hentBehandlingerUtvikling,
   hentBehandlingsTidPerDag,
@@ -17,6 +18,7 @@ import { BehandlingerInnUt } from 'components/behandlingerinnut/BehandlingerInnU
 import { FordelingÅpneBehandlingerPerDag } from 'components/fordelingåpnebehandlingerperdag/FordelingÅpneBehandlingerPerDag';
 import { FordelingLukkedeBehandlingerPerDag } from 'components/fordelinglukkedebehandlingerperdag/FordelingLukkedeBehandlingerPerDag';
 import { VenteÅrsaker } from 'components/venteårsaker/VenteÅrsaker';
+import { BehandlingerPerSteggruppe } from 'components/behandlingerpersteggruppe/BehandlingerPerSteggruppe';
 
 export default async function Home() {
   const behandlingerUtvikling = await hentBehandlingerUtvikling();
@@ -26,6 +28,7 @@ export default async function Home() {
   const fordelingÅpneBehandlinger = await hentFordelingÅpneBehandlinger('DAG', 7, 1);
   const fordelingLukkedeBehandlinger = await hentFordelingLukkedeBehandlinger('DAG', 7, 1);
   const venteÅrsaker = await hentVenteÅrsakerForBehandlingerPåVent();
+  const antallBehandlingerPerSteggruppe = await hentAntallBehandlingerPerSteggruppe();
 
   return (
     <div className={styles.page}>
@@ -37,6 +40,7 @@ export default async function Home() {
             <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger} />
             <FordelingLukkedeBehandlingerPerDag fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger} />
             <VenteÅrsaker venteÅrsaker={venteÅrsaker} />
+            <BehandlingerPerSteggruppe data={antallBehandlingerPerSteggruppe} />
           </HStack>
         }
         produktivitet={
