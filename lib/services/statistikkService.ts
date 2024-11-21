@@ -68,7 +68,7 @@ export async function hentVenteÅrsakerForBehandlingerPåVent() {
   return await fetchProxy<Array<VenteÅrsakOgGjennomsnitt>>(url, statistikkApiScope, 'GET');
 }
 export async function hentAntallBehandlingerPerSteggruppe() {
-  const url = `${statistikkApiBaseURL}/behandlinger-per-steggruppe}`;
+  const url = `${statistikkApiBaseURL}/behandling-per-steggruppe`;
 
   return await fetchProxy<Array<BehandlingPerSteggruppe>>(url, statistikkApiScope, 'GET');
 }

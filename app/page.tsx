@@ -5,6 +5,7 @@ import {
   hentFordelingLukkedeBehandlinger,
   hentFordelingÅpneBehandlinger,
   hentGjennomsnittligAlderLukkedeBehandlingerSisteDager,
+  hentVenteÅrsakerForBehandlingerPåVent,
 } from 'lib/services/statistikkService';
 import styles from './page.module.css';
 import { Behandlingsoversikt } from 'components/behandlingsoversikt/Behandlingsoversikt';
@@ -15,6 +16,7 @@ import { HStack } from '@navikt/ds-react';
 import { BehandlingerInnUt } from 'components/behandlingerinnut/BehandlingerInnUt';
 import { FordelingÅpneBehandlingerPerDag } from 'components/fordelingåpnebehandlingerperdag/FordelingÅpneBehandlingerPerDag';
 import { FordelingLukkedeBehandlingerPerDag } from 'components/fordelinglukkedebehandlingerperdag/FordelingLukkedeBehandlingerPerDag';
+import { VenteÅrsaker } from 'components/venteårsaker/VenteÅrsaker';
 
 export default async function Home() {
   const behandlingerUtvikling = await hentBehandlingerUtvikling();
@@ -23,6 +25,7 @@ export default async function Home() {
   const antallÅpneBehandlinger = await hentAntallÅpneBehandlinger();
   const fordelingÅpneBehandlinger = await hentFordelingÅpneBehandlinger('DAG', 7, 1);
   const fordelingLukkedeBehandlinger = await hentFordelingLukkedeBehandlinger('DAG', 7, 1);
+  const venteÅrsaker = await hentVenteÅrsakerForBehandlingerPåVent();
 
   return (
     <div className={styles.page}>
@@ -33,6 +36,7 @@ export default async function Home() {
             <BehandlingerInnUt data={behandlingerUtvikling[0]} />
             <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger} />
             <FordelingLukkedeBehandlingerPerDag fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger} />
+            <VenteÅrsaker venteÅrsaker={venteÅrsaker} />
           </HStack>
         }
         produktivitet={
