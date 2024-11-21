@@ -17,7 +17,7 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
         data={[
           {
             y: [åpneOgGjennomsnitt.antallÅpne, 0],
-            x: ['Åpne behandlinger', 'På vent(finnes ikke enda)'],
+            x: ['Åpne behandlinger', 'På vent (finnes ikke enda)'],
             type: 'bar',
           },
         ]}
