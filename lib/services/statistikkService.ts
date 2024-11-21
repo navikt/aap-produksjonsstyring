@@ -5,6 +5,8 @@ import {
   AntallÅpneOgGjennomsnitt,
   BehandlingEndringerPerDag,
   FordelingÅpneBehandlinger,
+  VenteÅrsakOgGjennomsnitt,
+  BehandlingPerSteggruppe,
 } from 'lib/types/types';
 
 const statistikkApiBaseURL = process.env.STATISTIKK_API_BASE_URL;
@@ -58,4 +60,15 @@ export async function hentFordelingLukkedeBehandlinger(
   const url = `${statistikkApiBaseURL}/behandlinger/fordeling-lukkede-behandlinger?${antallBøtterString}&${bøtteStørreleString}&enhet=${enhet}`;
 
   return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
+}
+
+export async function hentVenteÅrsakerForBehandlingerPåVent() {
+  const url = `${statistikkApiBaseURL}/behandlinger/${encodeURIComponent('på-vent')}`;
+
+  return await fetchProxy<Array<VenteÅrsakOgGjennomsnitt>>(url, statistikkApiScope, 'GET');
+}
+export async function hentAntallBehandlingerPerSteggruppe() {
+  const url = `${statistikkApiBaseURL}/behandlinger-per-steggruppe}`;
+
+  return await fetchProxy<Array<BehandlingPerSteggruppe>>(url, statistikkApiScope, 'GET');
 }

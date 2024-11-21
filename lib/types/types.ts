@@ -15,6 +15,10 @@ export type FordelingÅpneBehandlinger =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.Fordeling\u00C5pneBehandlinger'];
 export type FordelingLukkedeBehandlinger =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.FordelingLukkedeBehandlinger'];
+export type VenteÅrsakOgGjennomsnitt =
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.Vente\u00E5rsakOgGjennomsnitt'];
+export type BehandlingPerSteggruppe =
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.BehandlingPerSteggruppe'];
 
 export type BehandlingsFlytAvklaringsbehovKode =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.avklaringsbehov.Definisjon']['kode'];
