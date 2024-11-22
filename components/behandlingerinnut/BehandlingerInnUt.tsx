@@ -2,8 +2,8 @@
 
 import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
 import { BehandlingEndringerPerDag } from 'lib/types/types';
-import { HeadingAndLargeText } from 'components/headingandlargetext/HeadingAndLargeText';
 import { ResponsivePlot } from 'components/responsiveplot/ResponsivePlot';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 interface Props {
   data: BehandlingEndringerPerDag;
@@ -15,7 +15,18 @@ export const BehandlingerInnUt = ({ data }: Props) => {
   const sumInnUt = dataUtenTotal.nye - dataUtenTotal.avsluttede;
   return (
     <PlotWrapper>
-      <HeadingAndLargeText heading={'Inngang / Utgang'} text={`${sumInnUt >= 0 ? '+ ' : '- '}${sumInnUt}`} />
+      <VStack align={'center'} gap={'5'}>
+        <Heading level={'3'} size={'small'}>
+          {'Inngang / Utgang'}
+        </Heading>
+        <VStack align={'center'}>
+          <BodyShort size={'large'}>
+            {sumInnUt >= 0 ? '+ ' : '- '}
+            {sumInnUt}
+          </BodyShort>
+          <BodyShort size={'large'}>{'Endring i åpne behandlinger i perioden'}</BodyShort>
+        </VStack>
+      </VStack>
       <ResponsivePlot
         data={[
           {
@@ -25,7 +36,6 @@ export const BehandlingerInnUt = ({ data }: Props) => {
           },
         ]}
         layout={{
-          title: 'Endring i åpne behandlinger i perioden',
           yaxis: { title: 'Antall' },
         }}
       />

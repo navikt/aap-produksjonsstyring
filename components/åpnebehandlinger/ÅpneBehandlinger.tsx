@@ -2,8 +2,8 @@
 
 import { AntallÅpneOgGjennomsnitt } from 'lib/types/types';
 import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
-import { HeadingAndLargeText } from 'components/headingandlargetext/HeadingAndLargeText';
 import { ResponsivePlot } from 'components/responsiveplot/ResponsivePlot';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 interface Props {
   åpneOgGjennomsnitt: AntallÅpneOgGjennomsnitt;
@@ -12,7 +12,15 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
   const totaltAntallBehandlinger = åpneOgGjennomsnitt.antallÅpne;
   return (
     <PlotWrapper>
-      <HeadingAndLargeText heading={'Status åpne behandlinger'} text={`${totaltAntallBehandlinger}`} />
+      <VStack align={'center'} gap={'5'}>
+        <Heading level={'3'} size={'small'}>
+          {'Status åpne behandlinger'}
+        </Heading>
+        <VStack align={'center'}>
+          <BodyShort size={'large'}>{totaltAntallBehandlinger}</BodyShort>
+          <BodyShort size={'large'}>{'Totalt antall åpne behandlinger'}</BodyShort>
+        </VStack>
+      </VStack>
       <ResponsivePlot
         data={[
           {
@@ -22,7 +30,6 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
           },
         ]}
         layout={{
-          title: 'Totalt antall åpne behandlinger',
           yaxis: { title: 'Antall' },
         }}
       />

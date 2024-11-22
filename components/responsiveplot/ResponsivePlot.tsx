@@ -8,7 +8,7 @@ export const ResponsivePlot = ({ data, layout }: ResponsivePlotProps) => {
   return (
     <Plot
       data={data}
-      layout={{ ...layout, autosize: true, margin: { pad: 10 } }}
+      layout={{ ...layout, autosize: true, margin: { t: 40, pad: 10 } }}
       useResizeHandler={true}
       style={{ width: '100%', height: '100%' }}
     />

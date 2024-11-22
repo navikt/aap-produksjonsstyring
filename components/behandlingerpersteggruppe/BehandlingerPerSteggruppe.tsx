@@ -13,7 +13,7 @@ export const BehandlingerPerSteggruppe = ({ data }: Props) => {
   const x = data.map((e) => e.antall);
   return (
     <PlotWrapper>
-      <VStack align={'center'}>
+      <VStack align={'center'} gap={'5'}>
         <Heading level={'3'} size={'small'}>
           Stegfordeling
         </Heading>

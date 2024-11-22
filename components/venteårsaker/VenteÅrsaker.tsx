@@ -9,11 +9,11 @@ interface Props {
 export const VenteÅrsaker = ({ venteÅrsaker }: Props) => {
   return (
     <PlotWrapper>
-      <VStack align={'center'}>
+      <VStack align={'center'} gap={'5'}>
         <Heading level={'3'} size={'small'}>
-          Venteårsaker
+          {'Venteårsaker'}
         </Heading>
-        <BodyShort size={'large'}>Hvorfor er behandling på vent</BodyShort>
+        <BodyShort size={'large'}>{'Totalt antall åpne behandlinger'}</BodyShort>
       </VStack>
 
       <Table>

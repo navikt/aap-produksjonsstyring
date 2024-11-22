@@ -13,7 +13,7 @@ import { Behandlingsoversikt } from 'components/behandlingsoversikt/Behandlingso
 import { Produksjonsstyringsmeny } from 'components/produksjonsstyringsmeny/Produksjonsstyringsmeny';
 import { ApneOppgaver } from 'components/åpneoppgaver/ÅpneOppgaver';
 import { ApneBehandlinger } from 'components/åpnebehandlinger/ÅpneBehandlinger';
-import { HStack } from '@navikt/ds-react';
+import { Heading, HStack, VStack } from '@navikt/ds-react';
 import { BehandlingerInnUt } from 'components/behandlingerinnut/BehandlingerInnUt';
 import { FordelingÅpneBehandlingerPerDag } from 'components/fordelingåpnebehandlingerperdag/FordelingÅpneBehandlingerPerDag';
 import { FordelingLukkedeBehandlingerPerDag } from 'components/fordelinglukkedebehandlingerperdag/FordelingLukkedeBehandlingerPerDag';
@@ -34,14 +34,19 @@ export default async function Home() {
     <div className={styles.page}>
       <Produksjonsstyringsmeny
         totaloversikt={
-          <HStack>
-            <ApneBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger} />
-            <BehandlingerInnUt data={behandlingerUtvikling[0]} />
-            <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger} />
-            <FordelingLukkedeBehandlingerPerDag fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger} />
-            <VenteÅrsaker venteÅrsaker={venteÅrsaker} />
-            <BehandlingerPerSteggruppe data={antallBehandlingerPerSteggruppe} />
-          </HStack>
+          <VStack padding={'5'}>
+            <Heading spacing level={'2'} size={'large'}>
+              Førstegangsbehandling
+            </Heading>
+            <HStack gap={'4'}>
+              <ApneBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger} />
+              <BehandlingerInnUt data={behandlingerUtvikling[0]} />
+              <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger} />
+              <FordelingLukkedeBehandlingerPerDag fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger} />
+              <VenteÅrsaker venteÅrsaker={venteÅrsaker} />
+              <BehandlingerPerSteggruppe data={antallBehandlingerPerSteggruppe} />
+            </HStack>
+          </VStack>
         }
         produktivitet={
           <Behandlingsoversikt
