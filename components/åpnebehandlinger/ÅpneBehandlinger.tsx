@@ -7,8 +7,9 @@ import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 interface Props {
   åpneOgGjennomsnitt: AntallÅpneOgGjennomsnitt;
+  antallPåVent: number;
 }
-export const ApneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
+export const ApneBehandlinger = ({ åpneOgGjennomsnitt, antallPåVent }: Props) => {
   const totaltAntallBehandlinger = åpneOgGjennomsnitt.antallÅpne;
   return (
     <PlotWrapper>
@@ -24,8 +25,8 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt }: Props) => {
       <ResponsivePlot
         data={[
           {
-            y: [åpneOgGjennomsnitt.antallÅpne, 0],
-            x: ['Åpne behandlinger', 'På vent (finnes ikke enda)'],
+            y: [åpneOgGjennomsnitt.antallÅpne, antallPåVent],
+            x: ['Åpne behandlinger', 'På vent'],
             type: 'bar',
           },
         ]}

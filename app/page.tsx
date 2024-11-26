@@ -30,6 +30,8 @@ export default async function Home() {
   const venteÅrsaker = await hentVenteÅrsakerForBehandlingerPåVent();
   const antallBehandlingerPerSteggruppe = await hentAntallBehandlingerPerSteggruppe();
 
+  const antallPåVent = venteÅrsaker.map((årsak) => årsak.antall).reduce((acc, curr) => acc + curr);
+
   return (
     <div className={styles.page}>
       <Produksjonsstyringsmeny
@@ -39,7 +41,7 @@ export default async function Home() {
               Førstegangsbehandling
             </Heading>
             <HStack gap={'4'}>
-              <ApneBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger} />
+              <ApneBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger} antallPåVent={antallPåVent} />
               <BehandlingerInnUt data={behandlingerUtvikling[0]} />
               <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger} />
               <FordelingLukkedeBehandlingerPerDag fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger} />

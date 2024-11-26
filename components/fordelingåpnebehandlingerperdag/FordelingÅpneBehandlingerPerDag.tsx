@@ -26,7 +26,7 @@ export function FordelingÅpneBehandlingerPerDag({ fordelingÅpneBehandlingerPer
         ]}
         layout={{
           yaxis: { title: 'Antall' },
-          xaxis: { title: 'Alder(dager)' },
+          xaxis: { title: 'Alder (dager)' },
         }}
       />
     </PlotWrapper>

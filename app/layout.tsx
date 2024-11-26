@@ -4,7 +4,7 @@ import { BrukerInformasjon, hentBrukerInformasjon, logError, verifyUserLoggedIn 
 import { AppHeader } from 'components/appheader/AppHeader';
 
 export const metadata = {
-  title: 'Kelvin',
+  title: 'Kelvin - Produksjonsstyring',
   description: 'Saksbehandlingssystem for AAP',
 };
 

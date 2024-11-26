@@ -29,7 +29,7 @@ export const VenteÅrsaker = ({ venteÅrsaker }: Props) => {
             <Table.Row key={`rad-${i}`}>
               <Table.DataCell>{it.årsak}</Table.DataCell>
               <Table.DataCell>{it.antall}</Table.DataCell>
-              <Table.DataCell>{it.gjennomsnittligAlder} dager</Table.DataCell>
+              <Table.DataCell>{(it.gjennomsnittligAlder / (60 * 60 * 24)).toFixed(1)} dager</Table.DataCell>
             </Table.Row>
           ))}
         </Table.Body>

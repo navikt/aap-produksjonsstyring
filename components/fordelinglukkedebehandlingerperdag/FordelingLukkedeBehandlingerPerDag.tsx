@@ -27,7 +27,7 @@ export const FordelingLukkedeBehandlingerPerDag = ({ fordelingLukkedeBehandlinge
         ]}
         layout={{
           yaxis: { title: 'Antall' },
-          xaxis: { title: 'Alder(dager)' },
+          xaxis: { title: 'Alder (dager)' },
         }}
       />
     </PlotWrapper>
