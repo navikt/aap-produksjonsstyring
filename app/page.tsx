@@ -22,7 +22,7 @@ import { BehandlingerPerSteggruppe } from 'components/behandlingerpersteggruppe/
 
 export default async function Home() {
   const behandlingerUtvikling = await hentBehandlingerUtvikling();
-  const behandlingstidPerDag = await hentBehandlingsTidPerDag(null);
+  const behandlingstidPerDag = await hentBehandlingsTidPerDag();
   const gjennomSnittligAlderLukkede = await hentGjennomsnittligAlderLukkedeBehandlingerSisteDager(7);
   const antallÅpneBehandlinger = await hentAntallÅpneBehandlinger();
   const fordelingÅpneBehandlinger = await hentFordelingÅpneBehandlinger('DAG', 7, 1);

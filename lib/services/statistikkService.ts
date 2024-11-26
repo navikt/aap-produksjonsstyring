@@ -22,9 +22,8 @@ function appendBehandlingsTyper(url: string, behandlingstyper: string[] = [], is
   return isFirstQueryParam ? `${url}?${behandlingstyperString}` : `${url}&${behandlingstyperString}`;
 }
 
-export const hentBehandlingsTidPerDag = async (behandlingType: string | null) => {
-  const url = `${statistikkApiBaseURL}/behandlingstid/${behandlingType || '{typeBehandling}'}`;
-
+export const hentBehandlingsTidPerDag = async (behandlingTyper: Array<string> = []) => {
+  const url = appendBehandlingsTyper(`${statistikkApiBaseURL}/behandlingstid`, behandlingTyper);
   return await fetchProxy<BehandlingstidPerDagDTO[]>(url, statistikkApiScope, 'GET');
 };
 
