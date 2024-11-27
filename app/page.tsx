@@ -1,55 +1,24 @@
 import {
-  hentAntallBehandlingerPerSteggruppe,
-  hentAntallÅpneBehandlinger,
   hentBehandlingerUtvikling,
   hentBehandlingsTidPerDag,
-  hentFordelingLukkedeBehandlinger,
-  hentFordelingÅpneBehandlinger,
   hentGjennomsnittligAlderLukkedeBehandlingerSisteDager,
-  hentVenteÅrsakerForBehandlingerPåVent,
 } from 'lib/services/statistikkService';
 import styles from './page.module.css';
 import { Behandlingsoversikt } from 'components/behandlingsoversikt/Behandlingsoversikt';
 import { Produksjonsstyringsmeny } from 'components/produksjonsstyringsmeny/Produksjonsstyringsmeny';
 import { ApneOppgaver } from 'components/åpneoppgaver/ÅpneOppgaver';
-import { ApneBehandlinger } from 'components/åpnebehandlinger/ÅpneBehandlinger';
-import { Heading, HStack, VStack } from '@navikt/ds-react';
-import { BehandlingerInnUt } from 'components/behandlingerinnut/BehandlingerInnUt';
-import { FordelingÅpneBehandlingerPerDag } from 'components/fordelingåpnebehandlingerperdag/FordelingÅpneBehandlingerPerDag';
-import { FordelingLukkedeBehandlingerPerDag } from 'components/fordelinglukkedebehandlingerperdag/FordelingLukkedeBehandlingerPerDag';
-import { VenteÅrsaker } from 'components/venteårsaker/VenteÅrsaker';
-import { BehandlingerPerSteggruppe } from 'components/behandlingerpersteggruppe/BehandlingerPerSteggruppe';
+import { HStack } from '@navikt/ds-react';
+import { TotaloversiktBehandlinger } from 'components/totaloversiktbehandlinger/TotaloversiktBehandlinger';
 
 export default async function Home() {
   const behandlingerUtvikling = await hentBehandlingerUtvikling();
-  const behandlingstidPerDag = await hentBehandlingsTidPerDag();
+  const behandlingstidPerDag = await hentBehandlingsTidPerDag(['Førstegangsbehandling']);
   const gjennomSnittligAlderLukkede = await hentGjennomsnittligAlderLukkedeBehandlingerSisteDager(7);
-  const antallÅpneBehandlinger = await hentAntallÅpneBehandlinger();
-  const fordelingÅpneBehandlinger = await hentFordelingÅpneBehandlinger('DAG', 7, 1);
-  const fordelingLukkedeBehandlinger = await hentFordelingLukkedeBehandlinger('DAG', 7, 1);
-  const venteÅrsaker = await hentVenteÅrsakerForBehandlingerPåVent();
-  const antallBehandlingerPerSteggruppe = await hentAntallBehandlingerPerSteggruppe();
-
-  const antallPåVent = venteÅrsaker.map((årsak) => årsak.antall).reduce((acc, curr) => acc + curr);
 
   return (
     <div className={styles.page}>
       <Produksjonsstyringsmeny
-        totaloversikt={
-          <VStack padding={'5'}>
-            <Heading spacing level={'2'} size={'large'}>
-              Førstegangsbehandling
-            </Heading>
-            <HStack gap={'4'}>
-              <ApneBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger} antallPåVent={antallPåVent} />
-              <BehandlingerInnUt data={behandlingerUtvikling[0]} />
-              <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger} />
-              <FordelingLukkedeBehandlingerPerDag fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger} />
-              <VenteÅrsaker venteÅrsaker={venteÅrsaker} />
-              <BehandlingerPerSteggruppe data={antallBehandlingerPerSteggruppe} />
-            </HStack>
-          </VStack>
-        }
+        totaloversikt={<TotaloversiktBehandlinger />}
         produktivitet={
           <Behandlingsoversikt
             behandlingerUtvikling={behandlingerUtvikling}

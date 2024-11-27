@@ -1,12 +1,13 @@
 import { fetchProxy } from './fetchProxy';
 import {
   BehandlingPerAvklaringsbehov,
-  BehandlingstidPerDagDTO,
   AntallÅpneOgGjennomsnitt,
   BehandlingEndringerPerDag,
   FordelingÅpneBehandlinger,
   VenteÅrsakOgGjennomsnitt,
   BehandlingPerSteggruppe,
+  FilterTidsEnhet,
+  BehandlingstidPerDagDTO,
 } from 'lib/types/types';
 
 const statistikkApiBaseURL = process.env.STATISTIKK_API_BASE_URL;
@@ -29,7 +30,6 @@ export const hentBehandlingsTidPerDag = async (behandlingTyper: Array<string> = 
 
 export const hentAntallÅpneBehandlinger = async (behandlingstyper: Array<string> = []) => {
   const url = appendBehandlingsTyper(`${statistikkApiBaseURL}/åpne-behandlinger`, behandlingstyper);
-
   return await fetchProxy<AntallÅpneOgGjennomsnitt>(url, statistikkApiScope, 'GET');
 };
 
@@ -39,7 +39,10 @@ export const hentAntallÅpneBehandlingerPerAvklaringsbehov = async (behandlingst
   return await fetchProxy<BehandlingPerAvklaringsbehov[]>(url, statistikkApiScope, 'GET');
 };
 
-export const hentBehandlingerUtvikling = async (antallDager: number = 0, behandlingstyper: Array<string> = []) => {
+export const hentBehandlingerUtvikling = async (
+  antallDager: string | null = '0',
+  behandlingstyper: Array<string> = []
+) => {
   const url = appendBehandlingsTyper(
     `${statistikkApiBaseURL}/behandlinger/utvikling?antallDager=${antallDager}`,
     behandlingstyper,
@@ -62,32 +65,31 @@ export const hentGjennomsnittligAlderLukkedeBehandlingerSisteDager = async (
 };
 
 export async function hentFordelingÅpneBehandlinger(
-  enhet: 'DAG' | 'UKE' | 'MÅNED' | 'ÅR',
-  antallBøtter: number,
-  bøtteStørrelse: number,
+  enhet: FilterTidsEnhet,
+  antallBøtter: string | null,
+  bøtteStørrelse: string | null,
   behandlingstyper: Array<string> = []
 ) {
-  const antallBøtterString = encodeURIComponent(`antallBøtter=${antallBøtter}`);
-  const bøtteStørreleString = encodeURIComponent(`bøtteStørrelse=${bøtteStørrelse}`);
+  const antallBøtterString = encodeURIComponent(`antallBøtter=${antallBøtter || 7}`);
+  const bøtteStørreleString = encodeURIComponent(`bøtteStørrelse=${bøtteStørrelse || 1}`);
   const url = appendBehandlingsTyper(
-    `${statistikkApiBaseURL}/behandlinger/fordeling-åpne-behandlinger?${antallBøtterString}&${bøtteStørreleString}&enhet=${enhet}`,
+    `${statistikkApiBaseURL}/behandlinger/fordeling-åpne-behandlinger?${antallBøtterString}&${bøtteStørreleString}&enhet=${enhet || 'DAG'}`,
     behandlingstyper,
     false
   );
-
   return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
 }
 
 export async function hentFordelingLukkedeBehandlinger(
-  enhet: 'DAG' | 'UKE' | 'MÅNED' | 'ÅR',
-  antallBøtter: number,
-  bøtteStørrelse: number,
+  enhet: FilterTidsEnhet,
+  antallBøtter: string | null,
+  bøtteStørrelse: string | null,
   behandlingstyper: Array<string> = []
 ) {
-  const antallBøtterString = encodeURIComponent(`antallBøtter=${antallBøtter}`);
-  const bøtteStørreleString = encodeURIComponent(`bøtteStørrelse=${bøtteStørrelse}`);
+  const antallBøtterString = encodeURIComponent(`antallBøtter=${antallBøtter || 7}`);
+  const bøtteStørreleString = encodeURIComponent(`bøtteStørrelse=${bøtteStørrelse || 1}`);
   const url = appendBehandlingsTyper(
-    `${statistikkApiBaseURL}/behandlinger/fordeling-lukkede-behandlinger?${antallBøtterString}&${bøtteStørreleString}&enhet=${enhet}`,
+    `${statistikkApiBaseURL}/behandlinger/fordeling-lukkede-behandlinger?${antallBøtterString}&${bøtteStørreleString}&enhet=${enhet || 'DAG'}`,
     behandlingstyper,
     false
   );
@@ -100,12 +102,10 @@ export async function hentVenteÅrsakerForBehandlingerPåVent(behandlingstyper: 
     `${statistikkApiBaseURL}/behandlinger/${encodeURIComponent('på-vent')}`,
     behandlingstyper
   );
-
   return await fetchProxy<Array<VenteÅrsakOgGjennomsnitt>>(url, statistikkApiScope, 'GET');
 }
 
 export async function hentAntallBehandlingerPerSteggruppe(behandlingstyper: Array<string> = []) {
   const url = appendBehandlingsTyper(`${statistikkApiBaseURL}/behandling-per-steggruppe`, behandlingstyper);
-
   return await fetchProxy<Array<BehandlingPerSteggruppe>>(url, statistikkApiScope, 'GET');
 }

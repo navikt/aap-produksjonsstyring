@@ -6,9 +6,13 @@ import { ResponsivePlot } from 'components/responsiveplot/ResponsivePlot';
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 interface Props {
-  data: BehandlingEndringerPerDag;
+  behandlingerEndringer: Array<BehandlingEndringerPerDag>;
 }
-export const BehandlingerInnUt = ({ data }: Props) => {
+export const BehandlingerInnUt = ({ behandlingerEndringer }: Props) => {
+  const data = behandlingerEndringer[0];
+  if (!data) {
+    return null;
+  }
   const dataUtenTotal = { nye: data.nye, avsluttede: data.avsluttede };
   const x = Object.keys(dataUtenTotal);
   const y = Object.values(dataUtenTotal);

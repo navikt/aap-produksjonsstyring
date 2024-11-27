@@ -10,6 +10,9 @@ interface Props {
   antallPåVent: number;
 }
 export const ApneBehandlinger = ({ åpneOgGjennomsnitt, antallPåVent }: Props) => {
+  if (!åpneOgGjennomsnitt) {
+    return null;
+  }
   const totaltAntallBehandlinger = åpneOgGjennomsnitt.antallÅpne;
   return (
     <PlotWrapper>

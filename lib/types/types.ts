@@ -25,6 +25,7 @@ export type BehandlingsFlytAvklaringsbehovKode =
 export type PostmottakAvklaringsbehovKode =
   postmottak['schemas']['no.nav.aap.postmottak.kontrakt.avklaringsbehov.Definisjon']['kode'];
 export type AvklaringsbehovKode = BehandlingsFlytAvklaringsbehovKode | PostmottakAvklaringsbehovKode;
+export type FilterTidsEnhet = 'DAG' | 'UKE' | 'MÅNED' | 'ÅR';
 
 export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
   switch (kode) {

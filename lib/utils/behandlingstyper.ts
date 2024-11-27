@@ -1,36 +1,31 @@
-import { NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype } from 'lib/types/schema-oppgave';
+import { PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper } from 'lib/types/schema-statistikk';
 import { exhaustiveCheck } from 'lib/utils/typescript';
 
 const behandlingsTypeAlternativerFraEnum = Object.keys(
-  NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype as unknown as keyof (typeof NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype)[]
+  PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper as unknown as keyof (typeof PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper)[]
 )
-  .map((key) => key as keyof typeof NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype)
+  .map((key) => key as keyof typeof PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper)
   .map((key) => {
     switch (key) {
-      case 'F_RSTEGANGSBEHANDLING':
+      case 'F_rstegangsbehandling':
         return {
           label: 'Førstegangsbehandling',
-          value: 'FØRSTEGANGSBEHANDLING',
+          value: 'Førstegangsbehandling',
         };
-      case 'TILBAKEKREVING':
+      case 'Tilbakekreving':
         return {
           label: 'Tilbakekreving',
-          value: 'TILBAKEKREVING',
+          value: 'Tilbakekreving',
         };
-      case 'REVURDERING':
+      case 'Revurdering':
         return {
           label: 'Revurdering',
-          value: 'REVURDERING',
+          value: 'Revurdering',
         };
-      case 'KLAGE':
+      case 'Klage':
         return {
           label: 'Klage',
-          value: 'KLAGE',
-        };
-      case 'DOKUMENT_H_NDTERING':
-        return {
-          label: 'Dokumenthåndtering',
-          value: 'DOKUMENT_HÅNDTERING',
+          value: 'Klage',
         };
     }
     exhaustiveCheck(key);
