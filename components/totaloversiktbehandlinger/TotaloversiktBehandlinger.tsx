@@ -52,6 +52,7 @@ export const TotaloversiktBehandlinger = () => {
       selectedOptions.map((e) => e.value)
     )}`
   );
+  const antallPåVent = venteÅrsaker.data?.map((årsak) => årsak.antall).reduce((acc, curr) => acc + curr, 0);
   const behandlingerPerSteggruppe = useClientFetch<Array<BehandlingPerSteggruppe>>(
     `/api/statistikk/behandling-per-steggruppe?${queryParamsArray(
       'behandlingstyper',
@@ -80,7 +81,9 @@ export const TotaloversiktBehandlinger = () => {
         />
       </HStack>
       <HStack gap={'4'}>
-        {!antallÅpneBehandlinger.error && <ApneBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger.data} />}
+        {!antallÅpneBehandlinger.error && (
+          <ApneBehandlinger antallPåVent={antallPåVent} åpneOgGjennomsnitt={antallÅpneBehandlinger.data} />
+        )}
         {!behandlingerUtvikling.error && <BehandlingerInnUt behandlingerEndringer={behandlingerUtvikling.data || []} />}
         {!fordelingÅpneBehandlinger.error && (
           <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger.data || []} />

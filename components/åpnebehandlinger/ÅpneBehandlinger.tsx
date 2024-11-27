@@ -6,13 +6,14 @@ import { ResponsivePlot } from 'components/responsiveplot/ResponsivePlot';
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 
 interface Props {
-  åpneOgGjennomsnitt: AntallÅpneOgGjennomsnitt;
-  antallPåVent: number;
+  åpneOgGjennomsnitt?: AntallÅpneOgGjennomsnitt;
+  antallPåVent?: number;
 }
 export const ApneBehandlinger = ({ åpneOgGjennomsnitt, antallPåVent }: Props) => {
   if (!åpneOgGjennomsnitt) {
     return null;
   }
+  const visAntallPåVent = antallPåVent === undefined ? 0 : antallPåVent;
   const totaltAntallBehandlinger = åpneOgGjennomsnitt.antallÅpne;
   return (
     <PlotWrapper>
@@ -28,7 +29,7 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt, antallPåVent }: Props) 
       <ResponsivePlot
         data={[
           {
-            y: [åpneOgGjennomsnitt.antallÅpne, antallPåVent],
+            y: [åpneOgGjennomsnitt.antallÅpne, visAntallPåVent],
             x: ['Åpne behandlinger', 'På vent'],
             type: 'bar',
           },
