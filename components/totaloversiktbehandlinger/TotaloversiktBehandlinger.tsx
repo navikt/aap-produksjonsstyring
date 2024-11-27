@@ -64,7 +64,7 @@ export const TotaloversiktBehandlinger = () => {
   return (
     <VStack padding={'5'}>
       <Heading spacing level={'2'} size={'large'}>
-        Førstegangsbehandling
+        Behandlinger
       </Heading>
       <HStack>
         <UNSAFE_Combobox

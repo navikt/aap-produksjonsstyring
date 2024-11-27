@@ -19,6 +19,7 @@ export default async function Home() {
     <div className={styles.page}>
       <Produksjonsstyringsmeny
         totaloversikt={<TotaloversiktBehandlinger />}
+        minenhet={<></>}
         produktivitet={
           <Behandlingsoversikt
             behandlingerUtvikling={behandlingerUtvikling}
