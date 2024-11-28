@@ -1,7 +1,8 @@
 import { describe, expect, test } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
-import { AvklaringsbehovKode, mapBehovskodeTilBehovstype } from 'lib/types/types';
+import { AvklaringsbehovKode } from 'lib/types/types';
 import { ÅpneOppgaverGrid } from 'components/åpneoppgaver/ÅpneOppgaverGrid';
+import { mapBehovskodeTilBehovstype } from 'lib/utils/oversettelser';
 const antallOppgaver = {
   '5001': 32,
   '5003': 25,

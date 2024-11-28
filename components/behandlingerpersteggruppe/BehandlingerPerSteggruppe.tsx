@@ -4,13 +4,16 @@ import { BehandlingPerSteggruppe } from 'lib/types/types';
 import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
 import { ResponsivePlot } from 'components/responsiveplot/ResponsivePlot';
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { mapTilSteggruppeTekst } from 'lib/utils/oversettelser';
 
 interface Props {
   data: Array<BehandlingPerSteggruppe>;
 }
 export const BehandlingerPerSteggruppe = ({ data }: Props) => {
-  const y = data.map((e) => e.steggruppe);
-  const x = data.map((e) => e.antall);
+  const oversattData = data.map((gruppe) => ({
+    y: [mapTilSteggruppeTekst(gruppe.steggruppe)],
+    x: [gruppe.antall],
+  }));
   return (
     <PlotWrapper>
       <VStack align={'center'} gap={'5'}>
@@ -21,16 +24,14 @@ export const BehandlingerPerSteggruppe = ({ data }: Props) => {
       </VStack>
 
       <ResponsivePlot
-        data={[
-          {
-            x,
-            y,
-            type: 'bar',
-            orientation: 'h',
-          },
-        ]}
+        data={oversattData.map((xy) => ({
+          ...xy,
+          type: 'bar',
+          orientation: 'h',
+        }))}
         layout={{
-          yaxis: { title: 'Antall' },
+          xaxis: { title: 'Antall' },
+          showlegend: false,
         }}
       />
     </PlotWrapper>

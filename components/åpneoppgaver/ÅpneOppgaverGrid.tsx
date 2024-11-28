@@ -1,6 +1,7 @@
 import { BodyShort, Heading, HGrid, VStack } from '@navikt/ds-react';
-import { AvklaringsbehovKode, mapBehovskodeTilBehovstype } from 'lib/types/types';
+import { AvklaringsbehovKode } from 'lib/types/types';
 import { VenstreBorderBoks } from 'components/venstreborderboks/VenstreBorderBoks';
+import { mapBehovskodeTilBehovstype } from 'lib/utils/oversettelser';
 interface Props {
   oppgaver: Record<string, number>;
 }
