@@ -70,13 +70,16 @@ export async function hentFordelingÅpneBehandlinger(
   bøtteStørrelse: string | null,
   behandlingstyper: Array<string> = []
 ) {
-  const antallBøtterString = encodeURIComponent(`antallBøtter=${antallBøtter || 7}`);
-  const bøtteStørreleString = encodeURIComponent(`bøtteStørrelse=${bøtteStørrelse || 1}`);
+  const antallBøtterString = `antallBøtter=${antallBøtter || 20}`;
+  const bøtteStørreleString = `bøtteStørrelse=${bøtteStørrelse || 1}`;
+  const enhetString = `enhet=${enhet || 'UKE'}`;
+  const queryString = encodeURI(`${antallBøtterString}&${bøtteStørreleString}&${enhetString}`);
   const url = appendBehandlingsTyper(
-    `${statistikkApiBaseURL}/behandlinger/fordeling-åpne-behandlinger?${antallBøtterString}&${bøtteStørreleString}&enhet=${enhet || 'DAG'}`,
+    `${statistikkApiBaseURL}/behandlinger/fordeling-åpne-behandlinger?${queryString}`,
     behandlingstyper,
     false
   );
+  console.log('åpne', url);
   return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
 }
 
@@ -86,14 +89,17 @@ export async function hentFordelingLukkedeBehandlinger(
   bøtteStørrelse: string | null,
   behandlingstyper: Array<string> = []
 ) {
-  const antallBøtterString = encodeURIComponent(`antallBøtter=${antallBøtter || 7}`);
-  const bøtteStørreleString = encodeURIComponent(`bøtteStørrelse=${bøtteStørrelse || 1}`);
+  const antallBøtterString = `antallBøtter=${antallBøtter || 20}`;
+  const bøtteStørreleString = `bøtteStørrelse=${bøtteStørrelse || 1}`;
+  const enhetString = `enhet=${enhet || 'UKE'}`;
+  const queryString = encodeURI(`${antallBøtterString}&${bøtteStørreleString}&${enhetString}`);
   const url = appendBehandlingsTyper(
-    `${statistikkApiBaseURL}/behandlinger/fordeling-lukkede-behandlinger?${antallBøtterString}&${bøtteStørreleString}&enhet=${enhet || 'DAG'}`,
+    `${statistikkApiBaseURL}/behandlinger/fordeling-lukkede-behandlinger?${queryString}`,
     behandlingstyper,
     false
   );
 
+  console.log('lukkede', url);
   return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
 }
 
