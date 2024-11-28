@@ -63,8 +63,8 @@ export const TotaloversiktBehandlinger = () => {
     setSelectedOptions([behandlingsTyperOptions[0]]);
   }, []);
   return (
-    <VStack padding={'5'}>
-      <Heading spacing level={'2'} size={'large'}>
+    <VStack padding={'5'} gap={'5'}>
+      <Heading level={'2'} size={'large'}>
         Behandlinger
       </Heading>
       <HStack>
