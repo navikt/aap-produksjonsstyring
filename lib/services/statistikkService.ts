@@ -79,7 +79,6 @@ export async function hentFordelingÅpneBehandlinger(
     behandlingstyper,
     false
   );
-  console.log('åpne', url);
   return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
 }
 
@@ -98,8 +97,6 @@ export async function hentFordelingLukkedeBehandlinger(
     behandlingstyper,
     false
   );
-
-  console.log('lukkede', url);
   return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
 }
 
