@@ -9,14 +9,10 @@ interface Props {
   behandlingerEndringer: Array<BehandlingEndringerPerDag>;
 }
 export const BehandlingerInnUt = ({ behandlingerEndringer }: Props) => {
-  const data = behandlingerEndringer[0];
-  if (!data) {
-    return null;
-  }
-  const dataUtenTotal = { nye: data.nye, avsluttede: data.avsluttede };
-  const x = Object.keys(dataUtenTotal);
-  const y = Object.values(dataUtenTotal);
-  const sumInnUt = dataUtenTotal.nye - dataUtenTotal.avsluttede;
+  const nyeFørsteDag = behandlingerEndringer[0]?.nye;
+  const avsluttedeFørsteDag = behandlingerEndringer[0]?.avsluttede;
+  const sumInnUt =
+    nyeFørsteDag !== undefined && avsluttedeFørsteDag !== undefined ? nyeFørsteDag - avsluttedeFørsteDag : 0;
   return (
     <PlotWrapper>
       <VStack align={'center'} gap={'5'}>
@@ -28,19 +24,25 @@ export const BehandlingerInnUt = ({ behandlingerEndringer }: Props) => {
             {sumInnUt >= 0 ? '+ ' : '- '}
             {sumInnUt}
           </BodyShort>
-          <BodyShort size={'large'}>{'Endring i åpne behandlinger i perioden'}</BodyShort>
+          <BodyShort size={'large'}>{'Endring i åpne behandlinger i dag'}</BodyShort>
         </VStack>
       </VStack>
       <ResponsivePlot
         data={[
           {
-            x,
-            y,
+            x: ['Nye'],
+            y: [nyeFørsteDag],
+            type: 'bar',
+          },
+          {
+            x: ['Avsluttede'],
+            y: [avsluttedeFørsteDag],
             type: 'bar',
           },
         ]}
         layout={{
           yaxis: { title: 'Antall' },
+          showlegend: false,
         }}
       />
     </PlotWrapper>

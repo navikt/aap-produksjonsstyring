@@ -11,7 +11,7 @@ import { HStack } from '@navikt/ds-react';
 import { TotaloversiktBehandlinger } from 'components/totaloversiktbehandlinger/TotaloversiktBehandlinger';
 
 export default async function Home() {
-  const behandlingerUtvikling = await hentBehandlingerUtvikling();
+  const behandlingerUtvikling = await hentBehandlingerUtvikling('0');
   const behandlingstidPerDag = await hentBehandlingsTidPerDag(['Førstegangsbehandling']);
   const gjennomSnittligAlderLukkede = await hentGjennomsnittligAlderLukkedeBehandlingerSisteDager(7);
 

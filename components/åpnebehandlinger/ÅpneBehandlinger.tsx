@@ -13,7 +13,7 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt, antallPåVent }: Props) 
   if (!åpneOgGjennomsnitt) {
     return null;
   }
-  const visAntallPåVent = antallPåVent === undefined ? 0 : antallPåVent;
+  const antallPåVentEllerNull = antallPåVent === undefined ? 0 : antallPåVent;
   const totaltAntallBehandlinger = åpneOgGjennomsnitt.antallÅpne;
   return (
     <PlotWrapper>
@@ -29,13 +29,19 @@ export const ApneBehandlinger = ({ åpneOgGjennomsnitt, antallPåVent }: Props) 
       <ResponsivePlot
         data={[
           {
-            y: [åpneOgGjennomsnitt.antallÅpne, visAntallPåVent],
-            x: ['Åpne behandlinger', 'På vent'],
+            y: [åpneOgGjennomsnitt.antallÅpne],
+            x: ['Åpne behandlinger'],
+            type: 'bar',
+          },
+          {
+            y: [antallPåVentEllerNull],
+            x: ['På vent'],
             type: 'bar',
           },
         ]}
         layout={{
           yaxis: { title: 'Antall' },
+          showlegend: false,
         }}
       />
     </PlotWrapper>
