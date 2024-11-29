@@ -5,12 +5,25 @@ import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
 import { ResponsivePlot } from 'components/responsiveplot/ResponsivePlot';
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { mapTilSteggruppeTekst } from 'lib/utils/oversettelser';
+import { steggruppeRekkefølge } from 'lib/utils/steggruppe';
 
 interface Props {
   data: Array<BehandlingPerSteggruppe>;
 }
+
 export const BehandlingerPerSteggruppe = ({ data }: Props) => {
-  const oversattData = data.map((gruppe) => ({
+  const sorterteSteg: Array<BehandlingPerSteggruppe> = steggruppeRekkefølge.reduce(
+    (acc: Array<BehandlingPerSteggruppe>, steggruppe) => {
+      const steggruppeIData = data.find((e) => `${e.steggruppe}` === steggruppe);
+      if (steggruppeIData) {
+        return [...acc, steggruppeIData];
+      } else {
+        return acc;
+      }
+    },
+    []
+  );
+  const oversattData = sorterteSteg.map((gruppe) => ({
     y: [mapTilSteggruppeTekst(gruppe.steggruppe)],
     x: [gruppe.antall],
   }));
@@ -32,6 +45,7 @@ export const BehandlingerPerSteggruppe = ({ data }: Props) => {
         layout={{
           xaxis: { title: 'Antall' },
           showlegend: false,
+          margin: { l: 110 },
         }}
       />
     </PlotWrapper>
