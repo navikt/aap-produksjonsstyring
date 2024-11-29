@@ -22,7 +22,7 @@ import { useClientFetch } from 'lib/hooks/useClientFetch';
 import { queryParamsArray } from 'lib/utils/request';
 export const TotaloversiktBehandlinger = () => {
   const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
-  const antallÅpneBehandlinger = useClientFetch<AntallÅpneOgGjennomsnitt>(
+  const antallÅpneBehandlinger = useClientFetch<Array<AntallÅpneOgGjennomsnitt>>(
     `/api/statistikk/apne-behandlinger?${queryParamsArray(
       'behandlingstyper',
       selectedOptions.map((e) => e.value)
@@ -82,7 +82,7 @@ export const TotaloversiktBehandlinger = () => {
       </HStack>
       <HStack gap={'4'}>
         {!antallÅpneBehandlinger.error && (
-          <ApneBehandlinger antallPåVent={antallPåVent} åpneOgGjennomsnitt={antallÅpneBehandlinger.data} />
+          <ApneBehandlinger antallPåVent={antallPåVent} åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />
         )}
         {!behandlingerUtvikling.error && <BehandlingerInnUt behandlingerEndringer={behandlingerUtvikling.data || []} />}
         {!fordelingÅpneBehandlinger.error && (

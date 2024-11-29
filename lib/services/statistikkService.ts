@@ -28,9 +28,9 @@ export const hentBehandlingsTidPerDag = async (behandlingTyper: Array<string> = 
   return await fetchProxy<BehandlingstidPerDagDTO[]>(url, statistikkApiScope, 'GET');
 };
 
-export const hentAntallÅpneBehandlinger = async (behandlingstyper: Array<string> = []) => {
-  const url = appendBehandlingsTyper(`${statistikkApiBaseURL}/åpne-behandlinger`, behandlingstyper);
-  return await fetchProxy<AntallÅpneOgGjennomsnitt>(url, statistikkApiScope, 'GET');
+export const hentAntallÅpneBehandlingerPerBehandlingstype = async (behandlingstyper: Array<string> = []) => {
+  const url = appendBehandlingsTyper(`${statistikkApiBaseURL}/åpne-behandlinger-per-behandlingstype`, behandlingstyper);
+  return await fetchProxy<Array<AntallÅpneOgGjennomsnitt>>(url, statistikkApiScope, 'GET');
 };
 
 export const hentAntallÅpneBehandlingerPerAvklaringsbehov = async (behandlingstyper: Array<string> = []) => {
