@@ -22,6 +22,7 @@ export function FordelingÅpneBehandlingerPerDag({ fordelingÅpneBehandlingerPer
             x: sortertFordeling.map((e) => `${e.bøtte}`),
             y: sortertFordeling.map((v) => v.antall),
             type: 'bar',
+            hovertemplate: 'Antall i uke %{x}: %{y}',
           },
         ]}
         layout={{
