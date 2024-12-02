@@ -8,56 +8,50 @@ import { FordelingLukkedeBehandlingerPerDag } from 'components/fordelinglukkedeb
 import { VenteÅrsaker } from 'components/venteårsaker/VenteÅrsaker';
 import { BehandlingerPerSteggruppe } from 'components/behandlingerpersteggruppe/BehandlingerPerSteggruppe';
 import { behandlingsTyperOptions } from 'lib/utils/behandlingstyper';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ComboboxOption } from '@navikt/ds-react/cjs/form/combobox/types';
-import {
-  AntallÅpneOgGjennomsnitt,
-  BehandlingEndringerPerDag,
-  BehandlingPerSteggruppe,
-  FordelingLukkedeBehandlinger,
-  FordelingÅpneBehandlinger,
-  VenteÅrsakOgGjennomsnitt,
-} from 'lib/types/types';
-import { useClientFetch } from 'lib/hooks/useClientFetch';
 import { queryParamsArray } from 'lib/utils/request';
+import useSWR from 'swr';
+import {
+  antallÅpneBehandlingerPerBehandlingstypeClient,
+  behandlingerPerSteggruppeClient,
+  behandlingerUtviklingClient,
+  fordelingLukkedeBehandlingerClient,
+  fordelingÅpneBehandlingerClient,
+  venteÅrsakerClient,
+} from 'lib/services/client';
 export const TotaloversiktBehandlinger = () => {
   const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
-  const antallÅpneBehandlinger = useClientFetch<Array<AntallÅpneOgGjennomsnitt>>(
-    `/api/statistikk/apne-behandlinger?${queryParamsArray(
-      'behandlingstyper',
-      selectedOptions.map((e) => e.value)
-    )}`
+  const behandlingstyperQuery = useMemo(
+    () =>
+      queryParamsArray(
+        'behandlingstyper',
+        selectedOptions.map((e) => e.value)
+      ),
+    [selectedOptions]
   );
-  const behandlingerUtvikling = useClientFetch<Array<BehandlingEndringerPerDag>>(
-    `/api/statistikk/behandlinger/utvikling?antallDager=${0}&${queryParamsArray(
-      'behandlingstyper',
-      selectedOptions.map((e) => e.value)
-    )}`
+
+  const antallÅpneBehandlinger = useSWR(
+    `/api/statistikk/apne-behandlinger?${behandlingstyperQuery}`,
+    antallÅpneBehandlingerPerBehandlingstypeClient
   );
-  const fordelingÅpneBehandlinger = useClientFetch<Array<FordelingÅpneBehandlinger>>(
-    `/api/statistikk/behandlinger/fordeling-apne-behandlinger?${queryParamsArray(
-      'behandlingstyper',
-      selectedOptions.map((e) => e.value)
-    )}`
+  const behandlingerUtvikling = useSWR(
+    `/api/statistikk/behandlinger/utvikling?antallDager=${0}&${behandlingstyperQuery}`,
+    behandlingerUtviklingClient
   );
-  const fordelingLukkedeBehandlinger = useClientFetch<Array<FordelingLukkedeBehandlinger>>(
-    `/api/statistikk/behandlinger/fordeling-lukkede-behandlinger?${queryParamsArray(
-      'behandlingstyper',
-      selectedOptions.map((e) => e.value)
-    )}`
+  const fordelingÅpneBehandlinger = useSWR(
+    `/api/statistikk/behandlinger/fordeling-apne-behandlinger?${behandlingstyperQuery}`,
+    fordelingÅpneBehandlingerClient
   );
-  const venteÅrsaker = useClientFetch<Array<VenteÅrsakOgGjennomsnitt>>(
-    `/api/statistikk/behandlinger/pa-vent?${queryParamsArray(
-      'behandlingstyper',
-      selectedOptions.map((e) => e.value)
-    )}`
+  const fordelingLukkedeBehandlinger = useSWR(
+    `/api/statistikk/behandlinger/fordeling-lukkede-behandlinger?${behandlingstyperQuery}`,
+    fordelingLukkedeBehandlingerClient
   );
+  const venteÅrsaker = useSWR(`/api/statistikk/behandlinger/pa-vent?${behandlingstyperQuery}`, venteÅrsakerClient);
   const antallPåVent = venteÅrsaker.data?.map((årsak) => årsak.antall).reduce((acc, curr) => acc + curr, 0);
-  const behandlingerPerSteggruppe = useClientFetch<Array<BehandlingPerSteggruppe>>(
-    `/api/statistikk/behandling-per-steggruppe?${queryParamsArray(
-      'behandlingstyper',
-      selectedOptions.map((e) => e.value)
-    )}`
+  const behandlingerPerSteggruppe = useSWR(
+    `/api/statistikk/behandling-per-steggruppe?${behandlingstyperQuery}`,
+    behandlingerPerSteggruppeClient
   );
   useEffect(() => {
     setSelectedOptions([behandlingsTyperOptions[0]]);

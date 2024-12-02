@@ -9,6 +9,7 @@ import {
   FilterTidsEnhet,
   BehandlingstidPerDagDTO,
 } from 'lib/types/types';
+import { isLocal } from 'lib/utils/environment';
 
 const statistikkApiBaseURL = process.env.STATISTIKK_API_BASE_URL;
 const statistikkApiScope = process.env.STATISTIKK_API_SCOPE ?? '';
@@ -107,6 +108,16 @@ export async function hentVenteÅrsakerForBehandlingerPåVent(behandlingstyper: 
 }
 
 export async function hentAntallBehandlingerPerSteggruppe(behandlingstyper: Array<string> = []) {
+  if (isLocal()) {
+    return [
+      { steggruppe: 'ALDER', antall: 5 },
+      { steggruppe: 'SYKDOM', antall: 5 },
+      { steggruppe: 'MEDLEMSKAP', antall: 5 },
+      { steggruppe: 'VEDTAK', antall: 5 },
+      { steggruppe: 'BREV', antall: 5 },
+      { steggruppe: 'STUDENT', antall: 5 },
+    ];
+  }
   const url = appendBehandlingsTyper(`${statistikkApiBaseURL}/behandling-per-steggruppe`, behandlingstyper);
   return await fetchProxy<Array<BehandlingPerSteggruppe>>(url, statistikkApiScope, 'GET');
 }
