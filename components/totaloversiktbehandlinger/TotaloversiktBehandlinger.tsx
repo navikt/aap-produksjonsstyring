@@ -20,6 +20,7 @@ import {
   fordelingÅpneBehandlingerClient,
   venteÅrsakerClient,
 } from 'lib/services/client';
+import { TypeBehandlinger } from 'components/typebehandlinger/TypeBehandlinger';
 export const TotaloversiktBehandlinger = () => {
   const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
   const behandlingstyperQuery = useMemo(
@@ -75,10 +76,11 @@ export const TotaloversiktBehandlinger = () => {
         />
       </HStack>
       <HStack gap={'4'}>
+        {!behandlingerUtvikling.error && <BehandlingerInnUt behandlingerEndringer={behandlingerUtvikling.data || []} />}
         {!antallÅpneBehandlinger.error && (
           <ApneBehandlinger antallPåVent={antallPåVent} åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />
         )}
-        {!behandlingerUtvikling.error && <BehandlingerInnUt behandlingerEndringer={behandlingerUtvikling.data || []} />}
+        {!antallÅpneBehandlinger.error && <TypeBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />}
         {!fordelingÅpneBehandlinger.error && (
           <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger.data || []} />
         )}
