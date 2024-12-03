@@ -39,6 +39,11 @@ const behandlingsTypeAlternativerFraEnum = Object.keys(
           label: 'Dokumenthåndtering',
           value: 'DOKUMENT_HÅNDTERING',
         };
+      case 'JOURNALF_RING':
+        return {
+          label: 'Journalføring',
+          value: 'JOURNALFØRING',
+        };
     }
     exhaustiveCheck(key);
   });

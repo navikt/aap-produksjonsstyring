@@ -4,7 +4,9 @@ import {
 } from 'lib/types/schema-statistikk';
 import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
 import { components as postmottak } from 'lib/types/schema-postmottak';
+import { components as oppgave } from 'lib/types/schema-oppgave';
 
+// statistikk
 export type BehandlingstidPerDagDTO =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.BehandlingstidPerDagDTO'];
 export type BehandlingPerAvklaringsbehov =
@@ -22,6 +24,7 @@ export type VenteÅrsakOgGjennomsnitt =
 export type BehandlingPerSteggruppe =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.BehandlingPerSteggruppe'];
 
+// behandlingsflyt
 export type BehandlingsFlytAvklaringsbehovKode =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.avklaringsbehov.Definisjon']['kode'];
 export type PostmottakAvklaringsbehovKode =
@@ -30,6 +33,10 @@ export type AvklaringsbehovKode = BehandlingsFlytAvklaringsbehovKode | Postmotta
 export type FilterTidsEnhet = 'DAG' | 'UKE' | 'MÅNED' | 'ÅR';
 export type VenteÅrsak =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.SettP\u00E5VentRequest']['grunn'];
+
+// oppgave
+export type Kø = oppgave['schemas']['no.nav.aap.oppgave.filter.FilterDto'];
+export type Oppgave = oppgave['schemas']['no.nav.aap.oppgave.OppgaveDto'];
 
 // typer fra enums
 export type Steggruppe = `${NoNavAapStatistikkProduksjonsstyringBehandlingPerSteggruppeSteggruppe}`;

@@ -4,10 +4,11 @@ import {
   BehandlingPerSteggruppe,
   FordelingLukkedeBehandlinger,
   FordelingÅpneBehandlinger,
+  Oppgave,
   VenteÅrsakOgGjennomsnitt,
 } from 'lib/types/types';
 
-async function clientFetcher<ResponseBody>(
+export async function clientFetcher<ResponseBody>(
   url: string,
   method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
   body?: object
@@ -54,4 +55,9 @@ export async function venteÅrsakerClient(url: string) {
 
 export async function behandlingerPerSteggruppeClient(url: string) {
   return clientFetcher<Array<BehandlingPerSteggruppe>>(url, 'GET');
+}
+
+// oppgave
+export async function hentKøerClient(filterId: number) {
+  return clientFetcher<Oppgave[]>('/api/oppgave/hent-oppgaver', 'POST', { filterId });
 }
