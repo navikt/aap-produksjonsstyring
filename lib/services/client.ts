@@ -2,6 +2,7 @@ import {
   AntallÅpneOgGjennomsnitt,
   BehandlingEndringerPerDag,
   BehandlingPerSteggruppe,
+  BehandlingÅrsakAntallGjennomsnitt,
   FordelingLukkedeBehandlinger,
   FordelingÅpneBehandlinger,
   Oppgave,
@@ -55,6 +56,10 @@ export async function venteÅrsakerClient(url: string) {
 
 export async function behandlingerPerSteggruppeClient(url: string) {
   return clientFetcher<Array<BehandlingPerSteggruppe>>(url, 'GET');
+}
+
+export async function årsakTilBehandlingClient(url: string) {
+  return clientFetcher<Array<BehandlingÅrsakAntallGjennomsnitt>>(url, 'GET');
 }
 
 // oppgave

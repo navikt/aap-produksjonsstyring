@@ -25,15 +25,18 @@ export interface paths {
           /** @example {
            *       "saksnummer": "4LFL5CW",
            *       "sakStatus": "LØPENDE",
-           *       "behandlingReferanse": "57d06de5-12c6-478b-b87b-0c13f9d5d47a",
+           *       "behandlingReferanse": "b92d6610-7843-4345-8043-fec60307c770",
            *       "relatertBehandling": null,
-           *       "behandlingOpprettetTidspunkt": "2024-11-29T12:56:56.06889",
-           *       "mottattTid": "2024-11-28T12:56:56.068894",
+           *       "behandlingOpprettetTidspunkt": "2024-12-04T11:21:01.611099",
+           *       "mottattTid": "2024-12-03T11:21:01.611105",
            *       "behandlingStatus": "OPPRETTET",
            *       "behandlingType": "Førstegangsbehandling",
            *       "soknadsFormat": "DIGITAL",
            *       "ident": "1403199012345",
            *       "versjon": "b21e88bca4533d3e0ee3a15f51a87cbaa11a7e9c",
+           *       "årsakTilBehandling": [
+           *         "SØKNAD"
+           *       ],
            *       "avklaringsbehov": [
            *         {
            *           "definisjon": {
@@ -45,14 +48,14 @@ export interface paths {
            *           "endringer": [
            *             {
            *               "status": "OPPRETTET",
-           *               "tidsstempel": "2024-11-29T12:46:56.06866",
+           *               "tidsstempel": "2024-12-04T11:11:01.610842",
            *               "frist": null,
            *               "endretAv": "Kelvin",
            *               "årsakTilSattPåVent": null
            *             },
            *             {
            *               "status": "AVSLUTTET",
-           *               "tidsstempel": "2024-11-29T12:51:56.06868",
+           *               "tidsstempel": "2024-12-04T11:16:01.610864",
            *               "frist": null,
            *               "endretAv": "Z994573",
            *               "årsakTilSattPåVent": null
@@ -69,7 +72,7 @@ export interface paths {
            *           "endringer": [
            *             {
            *               "status": "OPPRETTET",
-           *               "tidsstempel": "2024-11-29T12:53:56.068691",
+           *               "tidsstempel": "2024-12-04T11:18:01.610877",
            *               "frist": null,
            *               "endretAv": "Kelvin",
            *               "årsakTilSattPåVent": null
@@ -77,7 +80,7 @@ export interface paths {
            *           ]
            *         }
            *       ],
-           *       "hendelsesTidspunkt": "2024-11-29T12:56:56.068959",
+           *       "hendelsesTidspunkt": "2024-12-04T11:21:01.61118",
            *       "avsluttetBehandling": null,
            *       "identerForSak": []
            *     } */
@@ -465,6 +468,44 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/behandlinger/\u00E5rsak-til-behandling': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: {
+      parameters: {
+        query?: {
+          /** @description For hvilke behandlingstyper. Tom liste betyr alle. */
+          behandlingstyper?: PathsBehandlingerRsakTilBehandlingGetParametersQueryBehandlingstyper[];
+        };
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['no.nav.aap.statistikk.produksjonsstyring.BehandlingAarsakAntallGjennomsnitt'][];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/drift/api/jobb/feilende': {
     parameters: {
       query?: never;
@@ -703,14 +744,14 @@ export interface components {
       endretAv: string;
       /**
        * Format: date
-       * @example 2024-11-29
+       * @example 2024-12-04
        */
       frist?: string | null;
       /** @enum {string} */
       status: NoNavAapBehandlingsflytKontraktHendelseEndringDTOStatus;
       /**
        * Format: date-time
-       * @example 2024-11-29T12:56:56.038972
+       * @example 2024-12-04T11:21:01.58055
        */
       tidsstempel: string;
       /** @enum {string|null} */
@@ -775,7 +816,7 @@ export interface components {
       avsluttetBehandling?: components['schemas']['no.nav.aap.behandlingsflyt.kontrakt.statistikk.AvsluttetBehandlingDTO'];
       /**
        * Format: date-time
-       * @example 2024-11-29T12:56:56.038972
+       * @example 2024-12-04T11:21:01.58055
        */
       behandlingOpprettetTidspunkt: string;
       /** Format: uuid */
@@ -786,14 +827,14 @@ export interface components {
       behandlingType: NoNavAapBehandlingsflytKontraktStatistikkStoppetBehandlingBehandlingType;
       /**
        * Format: date-time
-       * @example 2024-11-29T12:56:56.038972
+       * @example 2024-12-04T11:21:01.58055
        */
       hendelsesTidspunkt: string;
       ident: string;
       identerForSak: string[];
       /**
        * Format: date-time
-       * @example 2024-11-29T12:56:56.038972
+       * @example 2024-12-04T11:21:01.58055
        */
       mottattTid: string;
       /** Format: uuid */
@@ -804,6 +845,7 @@ export interface components {
       /** @enum {string} */
       soknadsFormat: NoNavAapBehandlingsflytKontraktStatistikkStoppetBehandlingSoknadsFormat;
       versjon: string;
+      '\u00E5rsakTilBehandling': NoNavAapBehandlingsflytKontraktStatistikkStoppetBehandlingRsakTilBehandling[];
     };
     'no.nav.aap.behandlingsflyt.kontrakt.statistikk.TilkjentYtelseDTO': {
       perioder: components['schemas']['no.nav.aap.behandlingsflyt.kontrakt.statistikk.TilkjentYtelsePeriodeDTO'][];
@@ -813,14 +855,14 @@ export interface components {
       dagsats: number;
       /**
        * Format: date
-       * @example 2024-11-29
+       * @example 2024-12-04
        */
       fraDato: string;
       /** Format: double */
       gradering: number;
       /**
        * Format: date
-       * @example 2024-11-29
+       * @example 2024-12-04
        */
       tilDato: string;
     };
@@ -833,14 +875,14 @@ export interface components {
       'avslags\u00E5rsak'?: string | null;
       /**
        * Format: date
-       * @example 2024-11-29
+       * @example 2024-12-04
        */
       fraDato: string;
       'innvilgelses\u00E5rsak'?: string | null;
       manuellVurdering: boolean;
       /**
        * Format: date
-       * @example 2024-11-29
+       * @example 2024-12-04
        */
       tilDato: string;
       /** @enum {string} */
@@ -865,12 +907,17 @@ export interface components {
       navn: string;
       /**
        * Format: date-time
-       * @example 2024-11-29T12:56:56.038972
+       * @example 2024-12-04T11:21:01.58055
        */
       'planlagtKj\u00F8retidspunkt': string;
       /** @enum {string} */
       status: NoNavAapMotorApiJobbInfoDtoStatus;
       type: string;
+    };
+    'no.nav.aap.statistikk.produksjonsstyring.BehandlingAarsakAntallGjennomsnitt': {
+      antall: string;
+      gjennomsnittligAlder: string;
+      '\u00E5rsak': string;
     };
     'no.nav.aap.statistikk.produksjonsstyring.BehandlingPerAvklaringsbehov': {
       /** Format: int32 */
@@ -903,7 +950,7 @@ export interface components {
       avsluttede: number;
       /**
        * Format: date
-       * @example 2024-11-29
+       * @example 2024-12-04
        */
       dato: string;
       /** Format: int32 */
@@ -914,7 +961,7 @@ export interface components {
     'no.nav.aap.statistikk.produksjonsstyring.api.BehandlingstidPerDagDTO': {
       /**
        * Format: date
-       * @example 2024-11-29
+       * @example 2024-12-04
        */
       dag: string;
       /** Format: double */
@@ -995,6 +1042,12 @@ export enum PathsBehandlingerUtviklingGetParametersQueryBehandlingstyper {
   Klage = 'Klage',
 }
 export enum PathsBehandlingerPVentGetParametersQueryBehandlingstyper {
+  F_rstegangsbehandling = 'F\u00F8rstegangsbehandling',
+  Revurdering = 'Revurdering',
+  Tilbakekreving = 'Tilbakekreving',
+  Klage = 'Klage',
+}
+export enum PathsBehandlingerRsakTilBehandlingGetParametersQueryBehandlingstyper {
   F_rstegangsbehandling = 'F\u00F8rstegangsbehandling',
   Revurdering = 'Revurdering',
   Tilbakekreving = 'Tilbakekreving',
@@ -1107,6 +1160,15 @@ export enum NoNavAapBehandlingsflytKontraktStatistikkStoppetBehandlingSakStatus 
 export enum NoNavAapBehandlingsflytKontraktStatistikkStoppetBehandlingSoknadsFormat {
   DIGITAL = 'DIGITAL',
   PAPIR = 'PAPIR',
+}
+export enum NoNavAapBehandlingsflytKontraktStatistikkStoppetBehandlingRsakTilBehandling {
+  S_KNAD = 'S\u00D8KNAD',
+  AKTIVITETSMELDING = 'AKTIVITETSMELDING',
+  MELDEKORT = 'MELDEKORT',
+  LEGEERKL_RING = 'LEGEERKL\u00C6RING',
+  AVVIST_LEGEERKL_RING = 'AVVIST_LEGEERKL\u00C6RING',
+  DIALOGMELDING = 'DIALOGMELDING',
+  G_REGULERING = 'G_REGULERING',
 }
 export enum NoNavAapBehandlingsflytKontraktStatistikkVilkRDTOVilkRType {
   ALDERSVILK_RET = 'ALDERSVILK\u00C5RET',

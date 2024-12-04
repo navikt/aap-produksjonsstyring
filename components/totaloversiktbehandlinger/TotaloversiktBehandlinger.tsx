@@ -19,8 +19,10 @@ import {
   fordelingLukkedeBehandlingerClient,
   fordelingÅpneBehandlingerClient,
   venteÅrsakerClient,
+  årsakTilBehandlingClient,
 } from 'lib/services/client';
 import { TypeBehandlinger } from 'components/typebehandlinger/TypeBehandlinger';
+import { ÅrsakTilBehandling } from 'components/årsaktilbehandling/ÅrsakTilBehandling';
 export const TotaloversiktBehandlinger = () => {
   const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
   const behandlingstyperQuery = useMemo(
@@ -53,6 +55,10 @@ export const TotaloversiktBehandlinger = () => {
   const behandlingerPerSteggruppe = useSWR(
     `/api/statistikk/behandling-per-steggruppe?${behandlingstyperQuery}`,
     behandlingerPerSteggruppeClient
+  );
+  const årsakerTilBehandling = useSWR(
+    `/api/statistikk/behandlinger/arsak-til-behandling?${behandlingstyperQuery}`,
+    årsakTilBehandlingClient
   );
   useEffect(() => {
     setSelectedOptions([behandlingsTyperOptions[0]]);
@@ -89,6 +95,7 @@ export const TotaloversiktBehandlinger = () => {
         )}
         {!venteÅrsaker.error && <VenteÅrsaker venteÅrsaker={venteÅrsaker.data || []} />}
         {!behandlingerPerSteggruppe.error && <BehandlingerPerSteggruppe data={behandlingerPerSteggruppe.data || []} />}
+        {!årsakerTilBehandling.error && <ÅrsakTilBehandling årsakTilBehandling={årsakerTilBehandling.data || []} />}
       </HStack>
     </VStack>
   );
