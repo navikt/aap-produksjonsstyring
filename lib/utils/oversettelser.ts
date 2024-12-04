@@ -1,5 +1,5 @@
 import { exhaustiveCheck } from 'lib/utils/typescript';
-import { AvklaringsbehovKode, Steggruppe, VenteÅrsak } from 'lib/types/types';
+import { AvklaringsbehovKode, OppgaveBehandlingstype, OppgaveStatus, Steggruppe, VenteÅrsak } from 'lib/types/types';
 
 export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
   switch (kode) {
@@ -117,4 +117,31 @@ export function mapTilSteggruppeTekst(steggruppe: Steggruppe) {
       return 'Udefinert';
   }
   exhaustiveCheck(steggruppe);
+}
+
+export function mapTilOppgaveBehandlingstypeTekst(behandlingsType: OppgaveBehandlingstype) {
+  switch (behandlingsType) {
+    case 'FØRSTEGANGSBEHANDLING':
+      return 'Førstegangsbehandling';
+    case 'JOURNALFØRING':
+      return 'Journalføring';
+    case 'KLAGE':
+      return 'Klage';
+    case 'DOKUMENT_HÅNDTERING':
+      return 'Dokumenthåndtering';
+    case 'REVURDERING':
+      return 'Revurdering';
+    case 'TILBAKEKREVING':
+      return 'Tilbakekreving';
+  }
+  exhaustiveCheck(behandlingsType);
+}
+
+export function mapTilOppgaveStatusTekst(status: OppgaveStatus) {
+  switch (status) {
+    case 'AVSLUTTET':
+      return 'Avsluttet';
+    case 'OPPRETTET':
+      return 'Opprettet';
+  }
 }
