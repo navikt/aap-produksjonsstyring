@@ -9,8 +9,7 @@ import { VenteÅrsaker } from 'components/venteårsaker/VenteÅrsaker';
 import { BehandlingerPerSteggruppe } from 'components/behandlingerpersteggruppe/BehandlingerPerSteggruppe';
 import { behandlingsTyperOptions } from 'lib/utils/behandlingstyper';
 import { useEffect, useMemo, useState } from 'react';
-import { ComboboxOption } from '@navikt/ds-react/cjs/form/combobox/types';
-import { queryParamsArray } from 'lib/utils/request';
+import { statistikkQueryparams } from 'lib/utils/request';
 import useSWR from 'swr';
 import {
   antallÅpneBehandlingerPerBehandlingstypeClient,
@@ -23,14 +22,12 @@ import {
 } from 'lib/services/client';
 import { TypeBehandlinger } from 'components/typebehandlinger/TypeBehandlinger';
 import { ÅrsakTilBehandling } from 'components/årsaktilbehandling/ÅrsakTilBehandling';
+import { BehandlingstyperRequestQuery } from 'lib/types/types';
+
 export const TotaloversiktBehandlinger = () => {
-  const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<BehandlingstyperRequestQuery[]>([]);
   const behandlingstyperQuery = useMemo(
-    () =>
-      queryParamsArray(
-        'behandlingstyper',
-        selectedOptions.map((e) => e.value)
-      ),
+    () => statistikkQueryparams({ behandlingstyper: selectedOptions }),
     [selectedOptions]
   );
 
@@ -73,7 +70,7 @@ export const TotaloversiktBehandlinger = () => {
           label={'Type behandling'}
           options={behandlingsTyperOptions}
           onToggleSelected={async (val) => {
-            const option = behandlingsTyperOptions.find((e) => e.value === val);
+            const option = behandlingsTyperOptions.find((e) => e === val);
             if (option) {
               setSelectedOptions([option]);
             }

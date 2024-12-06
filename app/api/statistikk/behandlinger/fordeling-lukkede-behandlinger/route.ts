@@ -2,13 +2,10 @@ import { NextRequest } from 'next/server';
 import { logError } from '@navikt/aap-felles-utils';
 import { hentFordelingLukkedeBehandlinger } from 'lib/services/statistikkService';
 import { FilterTidsEnhet } from 'lib/types/types';
+import { hentStatistikkQueryParams } from 'lib/utils/request';
 
 export async function GET(req: NextRequest) {
-  const params = req.nextUrl.searchParams;
-  const enhet = params.get('enhet');
-  const antallBøtter = params.get('antallBøtter');
-  const bøtteStørrelse = params.get('bøtteStørrelse');
-  const behandlingstyper = params.getAll('behandlingstyper').map((e) => e);
+  const { enhet, bøtteStørrelse, antallBøtter, behandlingstyper } = hentStatistikkQueryParams(req);
 
   try {
     const result = await hentFordelingLukkedeBehandlinger(

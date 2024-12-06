@@ -11,7 +11,7 @@ import { hentKøer } from 'lib/services/oppgaveService';
 import { KøOversikt } from 'components/køoversikt/KøOversikt';
 
 export default async function Home() {
-  const behandlingerUtvikling = await hentBehandlingerUtvikling('0');
+  const behandlingerUtvikling = await hentBehandlingerUtvikling(0);
   const behandlingstidPerDag = await hentBehandlingsTidPerDag(['Førstegangsbehandling']);
   const gjennomSnittligAlderLukkede = await hentGjennomsnittligAlderLukkedeBehandlingerSisteDager(7);
   const køer = await hentKøer();

@@ -1,10 +1,10 @@
 import { NextRequest } from 'next/server';
 import { logError } from '@navikt/aap-felles-utils';
 import { hentÅrsakTilBehandling } from 'lib/services/statistikkService';
+import { hentStatistikkQueryParams } from 'lib/utils/request';
 
 export async function GET(req: NextRequest) {
-  const params = req.nextUrl.searchParams;
-  const behandlingstyper = params.getAll('behandlingstyper').map((e) => e);
+  const { behandlingstyper } = hentStatistikkQueryParams(req);
 
   try {
     const result = await hentÅrsakTilBehandling(behandlingstyper);

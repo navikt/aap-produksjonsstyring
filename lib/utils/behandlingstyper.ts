@@ -1,5 +1,6 @@
 import { PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper } from 'lib/types/schema-statistikk';
 import { exhaustiveCheck } from 'lib/utils/typescript';
+import { BehandlingstyperRequestQuery } from 'lib/types/types';
 
 const behandlingsTypeAlternativerFraEnum = Object.keys(
   PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper as unknown as keyof (typeof PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper)[]
@@ -8,26 +9,14 @@ const behandlingsTypeAlternativerFraEnum = Object.keys(
   .map((key) => {
     switch (key) {
       case 'F_rstegangsbehandling':
-        return {
-          label: 'Førstegangsbehandling',
-          value: 'Førstegangsbehandling',
-        };
+        return 'Førstegangsbehandling';
       case 'Tilbakekreving':
-        return {
-          label: 'Tilbakekreving',
-          value: 'Tilbakekreving',
-        };
+        return 'Tilbakekreving';
       case 'Revurdering':
-        return {
-          label: 'Revurdering',
-          value: 'Revurdering',
-        };
+        return 'Revurdering';
       case 'Klage':
-        return {
-          label: 'Klage',
-          value: 'Klage',
-        };
+        return 'Klage';
     }
     exhaustiveCheck(key);
   });
-export const behandlingsTyperOptions = [{ label: 'Alle', value: '' }, ...behandlingsTypeAlternativerFraEnum];
+export const behandlingsTyperOptions: BehandlingstyperRequestQuery[] = behandlingsTypeAlternativerFraEnum;
