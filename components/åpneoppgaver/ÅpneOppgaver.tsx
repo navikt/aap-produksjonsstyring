@@ -1,6 +1,6 @@
 'use client';
 
-import { NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype } from 'lib/types/schema-oppgave';
+import { NoNavAapOppgaveProduksjonsstyringAntallOppgaverDtoBehandlingstype } from '@navikt/aap-oppgave-typescript-types';
 import { exhaustiveCheck } from 'lib/utils/typescript';
 
 import { Heading, HStack, UNSAFE_Combobox, VStack } from '@navikt/ds-react';

@@ -1035,6 +1035,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/aap-oppgave-typescript-types@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "@navikt/aap-oppgave-typescript-types@npm:0.0.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-oppgave-typescript-types%2F0.0.3%2F7a5dd99e7b2feae9f1aace3b31b9462d3b179562"
+  checksum: 10c0/6fdca44cebab46350cee21e4cb6fb6f839e0c3609ad217084cb306d073604fa4ae4d66fc71b965a936a94f9bb990ae0f17c9ff3a22c417649c6b39f918582bc4
+  languageName: node
+  linkType: hard
+
 "@navikt/aap-postmottak-backend-typescript-types@npm:^0.0.3":
   version: 0.0.3
   resolution: "@navikt/aap-postmottak-backend-typescript-types@npm:0.0.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-postmottak-backend-typescript-types%2F0.0.3%2Fd9be9d129573c71790b028a892cb3eb8698ec651"
@@ -2330,6 +2337,7 @@ __metadata:
     "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.102"
     "@navikt/aap-felles-prettier": "npm:^2.0.28"
     "@navikt/aap-felles-utils": "npm:^2.0.28"
+    "@navikt/aap-oppgave-typescript-types": "npm:^0.0.3"
     "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.3"
     "@navikt/ds-css": "npm:^7.6.0"
     "@navikt/ds-react": "npm:^7.6.0"

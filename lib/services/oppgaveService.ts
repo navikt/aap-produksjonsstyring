@@ -1,7 +1,10 @@
 import { fetchProxy } from './fetchProxy';
 import { isLocal } from 'lib/utils/environment';
 import { Kø, Oppgave } from 'lib/types/types';
-import { NoNavAapOppgaveOppgaveDtoBehandlingstype, NoNavAapOppgaveOppgaveDtoStatus } from 'lib/types/schema-oppgave';
+import {
+  NoNavAapOppgaveOppgaveDtoBehandlingstype,
+  NoNavAapOppgaveOppgaveDtoStatus,
+} from '@navikt/aap-oppgave-typescript-types';
 
 const oppgaveApiBaseURL = process.env.OPPGAVE_API_BASE_URL;
 const oppgaveApiScope = process.env.OPPGAVE_API_SCOPE ?? '';

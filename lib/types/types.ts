@@ -4,13 +4,12 @@ import {
   PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper,
 } from 'lib/types/schema-statistikk';
 import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
-// import { components as postmottak } from 'lib/types/schema-postmottak';
 import { components as postmottak } from '@navikt/aap-postmottak-backend-typescript-types';
 import {
   components as oppgave,
   NoNavAapOppgaveOppgaveDtoBehandlingstype,
   NoNavAapOppgaveOppgaveDtoStatus,
-} from 'lib/types/schema-oppgave';
+} from '@navikt/aap-oppgave-typescript-types';
 
 // statistikk
 export type BehandlingstidPerDagDTO =
