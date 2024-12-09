@@ -4,7 +4,8 @@ import {
   PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper,
 } from 'lib/types/schema-statistikk';
 import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
-import { components as postmottak } from 'lib/types/schema-postmottak';
+// import { components as postmottak } from 'lib/types/schema-postmottak';
+import { components as postmottak } from '@navikt/aap-postmottak-backend-typescript-types';
 import {
   components as oppgave,
   NoNavAapOppgaveOppgaveDtoBehandlingstype,
@@ -38,12 +39,12 @@ export type BehandlingstyperRequestQuery =
 // behandlingsflyt
 export type BehandlingsFlytAvklaringsbehovKode =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.avklaringsbehov.Definisjon']['kode'];
-export type PostmottakAvklaringsbehovKode =
-  postmottak['schemas']['no.nav.aap.postmottak.kontrakt.avklaringsbehov.Definisjon']['kode'];
-export type AvklaringsbehovKode = BehandlingsFlytAvklaringsbehovKode | PostmottakAvklaringsbehovKode;
-export type FilterTidsEnhet = 'DAG' | 'UKE' | 'MÅNED' | 'ÅR';
 export type VenteÅrsak =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.SettP\u00E5VentRequest']['grunn'];
+
+// postmottak
+export type PostmottakAvklaringsbehovKode =
+  postmottak['schemas']['no.nav.aap.postmottak.kontrakt.avklaringsbehov.Definisjon']['kode'];
 
 // oppgave
 export type Kø = oppgave['schemas']['no.nav.aap.oppgave.filter.FilterDto'];
@@ -51,3 +52,6 @@ export type Oppgave = oppgave['schemas']['no.nav.aap.oppgave.OppgaveDto'];
 // typer fra enums
 export type OppgaveBehandlingstype = `${NoNavAapOppgaveOppgaveDtoBehandlingstype}`;
 export type OppgaveStatus = `${NoNavAapOppgaveOppgaveDtoStatus}`;
+
+export type AvklaringsbehovKode = BehandlingsFlytAvklaringsbehovKode | PostmottakAvklaringsbehovKode;
+export type FilterTidsEnhet = 'DAG' | 'UKE' | 'MÅNED' | 'ÅR';
