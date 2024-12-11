@@ -13,7 +13,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@navikt/aap-felles-utils": "^2.0.28",
+    "@navikt/aap-felles-utils": "^4.0.1",
     "@navikt/ds-css": "^7.6.0",
     "@navikt/ds-react": "^7.6.0",
     "@opentelemetry/api": "^1.9.0",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.102",
-    "@navikt/aap-felles-prettier": "^2.0.28",
+    "@navikt/aap-felles-prettier": "^4.0.1",
     "@navikt/aap-oppgave-typescript-types": "^0.0.6",
     "@navikt/aap-postmottak-backend-typescript-types": "^0.0.3",
     "@navikt/eslint-config-aap": "^1.9.7",
