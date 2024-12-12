@@ -38,8 +38,7 @@ export type BehandlingstyperRequestQuery =
 // behandlingsflyt
 export type BehandlingsFlytAvklaringsbehovKode =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.avklaringsbehov.Definisjon']['kode'];
-export type VenteÅrsak =
-  behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.flyt.flate.SettP\u00E5VentRequest']['grunn'];
+export type VenteÅrsak = behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.flyt.SettP\u00E5VentRequest']['grunn'];
 
 // postmottak
 export type PostmottakAvklaringsbehovKode =
