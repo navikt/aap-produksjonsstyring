@@ -1,5 +1,6 @@
 import { BehandlingstyperRequestQuery, FilterTidsEnhet } from 'lib/types/types';
 import { NextRequest } from 'next/server';
+import { BehandlingsTyperOption } from 'lib/utils/behandlingstyper';
 
 function queryParamsArray(key: string, values: (string | number)[]) {
   const filtered = values.filter((value) => value !== undefined && value !== null && value !== '');
@@ -9,7 +10,7 @@ function queryParamsArray(key: string, values: (string | number)[]) {
   return values.map((e) => `${key}=${e}`).join('&');
 }
 type StatistikkQueryParams = {
-  behandlingstyper: Array<BehandlingstyperRequestQuery>;
+  behandlingstyper: Array<BehandlingsTyperOption>;
   antallDager?: number;
   antallBøtter?: number;
   bøtteStørrelse?: number;
@@ -22,7 +23,9 @@ export function statistikkQueryparams({
   bøtteStørrelse,
   enhet,
 }: StatistikkQueryParams) {
-  const behandlingstyperString = queryParamsArray('behandlingstyper', behandlingstyper);
+  const behandlingstyperString = behandlingstyper.includes('Alle')
+    ? ''
+    : queryParamsArray('behandlingstyper', behandlingstyper);
   const antallDagerString = !antallDager && antallDager !== 0 ? '' : `antallDager=${antallDager}`;
   const antallBøtterString = !antallBøtter && antallBøtter !== 0 ? '' : `antallBøtter=${antallBøtter}`;
   const bøtteStørrelseString = !bøtteStørrelse && bøtteStørrelse !== 0 ? '' : `bøtteStørrelse=${bøtteStørrelse}`;

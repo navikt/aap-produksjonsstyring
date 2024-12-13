@@ -9,28 +9,28 @@ import {
   FilterTidsEnhet,
   BehandlingstidPerDagDTO,
   BehandlingÅrsakAntallGjennomsnitt,
-  BehandlingstyperRequestQuery,
 } from 'lib/types/types';
 import { isLocal } from 'lib/utils/environment';
 import { statistikkQueryparams } from 'lib/utils/request';
+import { BehandlingsTyperOption } from 'lib/utils/behandlingstyper';
 
 const statistikkApiBaseURL = process.env.STATISTIKK_API_BASE_URL;
 const statistikkApiScope = process.env.STATISTIKK_API_SCOPE ?? '';
 
-export const hentBehandlingsTidPerDag = async (behandlingstyper: Array<BehandlingstyperRequestQuery> = []) => {
+export const hentBehandlingsTidPerDag = async (behandlingstyper: Array<BehandlingsTyperOption> = []) => {
   const url = `${statistikkApiBaseURL}/behandlingstid?${statistikkQueryparams({ behandlingstyper })}`;
   return await fetchProxy<BehandlingstidPerDagDTO[]>(url, statistikkApiScope, 'GET');
 };
 
 export const hentAntallÅpneBehandlingerPerBehandlingstype = async (
-  behandlingstyper: Array<BehandlingstyperRequestQuery> = []
+  behandlingstyper: Array<BehandlingsTyperOption> = []
 ) => {
   const url = `${statistikkApiBaseURL}/åpne-behandlinger-per-behandlingstype?${statistikkQueryparams({ behandlingstyper })}`;
   return await fetchProxy<Array<AntallÅpneOgGjennomsnitt>>(url, statistikkApiScope, 'GET');
 };
 
 export const hentAntallÅpneBehandlingerPerAvklaringsbehov = async (
-  behandlingstyper: Array<BehandlingstyperRequestQuery> = []
+  behandlingstyper: Array<BehandlingsTyperOption> = []
 ) => {
   const url = `${statistikkApiBaseURL}/behandling-per-avklaringsbehov?${statistikkQueryparams({ behandlingstyper })}`;
   return await fetchProxy<BehandlingPerAvklaringsbehov[]>(url, statistikkApiScope, 'GET');
@@ -38,7 +38,7 @@ export const hentAntallÅpneBehandlingerPerAvklaringsbehov = async (
 
 export const hentBehandlingerUtvikling = async (
   antallDager?: number,
-  behandlingstyper: Array<BehandlingstyperRequestQuery> = []
+  behandlingstyper: Array<BehandlingsTyperOption> = []
 ) => {
   const antallDagerEllerNull = antallDager || 0;
   const url = `${statistikkApiBaseURL}/behandlinger/utvikling?${statistikkQueryparams({ behandlingstyper, antallDager: antallDagerEllerNull })}`;
@@ -47,7 +47,7 @@ export const hentBehandlingerUtvikling = async (
 
 export const hentGjennomsnittligAlderLukkedeBehandlingerSisteDager = async (
   antallDager: number,
-  behandlingstyper: Array<BehandlingstyperRequestQuery> = []
+  behandlingstyper: Array<BehandlingsTyperOption> = []
 ) => {
   const url = `${statistikkApiBaseURL}/behandlingstid/lukkede-siste-dager/${antallDager}?${statistikkQueryparams({ behandlingstyper })}`;
   return await fetchProxy<number>(url, statistikkApiScope, 'GET');
@@ -57,7 +57,7 @@ export async function hentFordelingÅpneBehandlinger(
   enhet?: FilterTidsEnhet,
   antallBøtter?: number,
   bøtteStørrelse?: number,
-  behandlingstyper: Array<BehandlingstyperRequestQuery> = []
+  behandlingstyper: Array<BehandlingsTyperOption> = []
 ) {
   const antallBøtterEllerDefault = antallBøtter || 20;
   const bøtteStørreleEllerDefault = bøtteStørrelse || 1;
@@ -70,7 +70,7 @@ export async function hentFordelingLukkedeBehandlinger(
   enhet?: FilterTidsEnhet,
   antallBøtter?: number,
   bøtteStørrelse?: number,
-  behandlingstyper: Array<BehandlingstyperRequestQuery> = []
+  behandlingstyper: Array<BehandlingsTyperOption> = []
 ) {
   const antallBøtterEllerDefault = antallBøtter || 20;
   const bøtteStørreleEllerDefault = bøtteStørrelse || 1;
@@ -79,14 +79,12 @@ export async function hentFordelingLukkedeBehandlinger(
   return await fetchProxy<Array<FordelingÅpneBehandlinger>>(url, statistikkApiScope, 'GET');
 }
 
-export async function hentVenteÅrsakerForBehandlingerPåVent(
-  behandlingstyper: Array<BehandlingstyperRequestQuery> = []
-) {
+export async function hentVenteÅrsakerForBehandlingerPåVent(behandlingstyper: Array<BehandlingsTyperOption> = []) {
   const url = `${statistikkApiBaseURL}/behandlinger/${encodeURIComponent('på-vent')}?${statistikkQueryparams({ behandlingstyper })}`;
   return await fetchProxy<Array<VenteÅrsakOgGjennomsnitt>>(url, statistikkApiScope, 'GET');
 }
 
-export async function hentAntallBehandlingerPerSteggruppe(behandlingstyper: Array<BehandlingstyperRequestQuery> = []) {
+export async function hentAntallBehandlingerPerSteggruppe(behandlingstyper: Array<BehandlingsTyperOption> = []) {
   if (isLocal()) {
     return [
       { steggruppe: 'ALDER', antall: 5 },
@@ -101,7 +99,7 @@ export async function hentAntallBehandlingerPerSteggruppe(behandlingstyper: Arra
   return await fetchProxy<Array<BehandlingPerSteggruppe>>(url, statistikkApiScope, 'GET');
 }
 
-export const hentÅrsakTilBehandling = async (behandlingstyper: Array<BehandlingstyperRequestQuery> = []) => {
+export const hentÅrsakTilBehandling = async (behandlingstyper: Array<BehandlingsTyperOption> = []) => {
   const url = `${statistikkApiBaseURL}/behandlinger/årsak-til-behandling?${statistikkQueryparams({ behandlingstyper })}`;
   return await fetchProxy<BehandlingÅrsakAntallGjennomsnitt[]>(url, statistikkApiScope, 'GET');
 };

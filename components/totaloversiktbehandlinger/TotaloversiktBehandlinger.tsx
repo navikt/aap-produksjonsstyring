@@ -7,7 +7,7 @@ import { FordelingÅpneBehandlingerPerDag } from 'components/fordelingåpnebehan
 import { FordelingLukkedeBehandlingerPerDag } from 'components/fordelinglukkedebehandlingerperdag/FordelingLukkedeBehandlingerPerDag';
 import { VenteÅrsaker } from 'components/venteårsaker/VenteÅrsaker';
 import { BehandlingerPerSteggruppe } from 'components/behandlingerpersteggruppe/BehandlingerPerSteggruppe';
-import { behandlingsTyperOptions } from 'lib/utils/behandlingstyper';
+import { BehandlingsTyperOption, behandlingsTyperOptions } from 'lib/utils/behandlingstyper';
 import { useEffect, useMemo, useState } from 'react';
 import { statistikkQueryparams } from 'lib/utils/request';
 import useSWR from 'swr';
@@ -22,10 +22,9 @@ import {
 } from 'lib/services/client';
 import { TypeBehandlinger } from 'components/typebehandlinger/TypeBehandlinger';
 import { ÅrsakTilBehandling } from 'components/årsaktilbehandling/ÅrsakTilBehandling';
-import { BehandlingstyperRequestQuery } from 'lib/types/types';
 
 export const TotaloversiktBehandlinger = () => {
-  const [selectedOptions, setSelectedOptions] = useState<BehandlingstyperRequestQuery[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<BehandlingsTyperOption[]>([]);
   const behandlingstyperQuery = useMemo(
     () => statistikkQueryparams({ behandlingstyper: selectedOptions }),
     [selectedOptions]
