@@ -13,7 +13,7 @@ export function FordelingÅpneBehandlingerPerDag({ fordelingÅpneBehandlingerPer
     <PlotWrapper>
       <VStack align={'center'}>
         <Heading level={'3'} size={'small'}>
-          Levetid åpne behandlinger
+          Liggetid åpne behandlinger
         </Heading>
       </VStack>
       <ResponsivePlot
