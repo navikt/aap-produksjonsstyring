@@ -3,6 +3,7 @@
 import { BehandlingÅrsakAntallGjennomsnitt } from 'lib/types/types';
 import { PlotWrapper } from 'components/plotwrapper/PlotWrapper';
 import { Heading, Table, VStack } from '@navikt/ds-react';
+import { sekunderTilDager } from 'lib/utils/time';
 
 interface Props {
   årsakTilBehandling: Array<BehandlingÅrsakAntallGjennomsnitt>;
@@ -20,7 +21,7 @@ export const ÅrsakTilBehandling = ({ årsakTilBehandling }: Props) => {
           <Table.Row>
             <Table.HeaderCell>Årsak</Table.HeaderCell>
             <Table.HeaderCell>Antall</Table.HeaderCell>
-            <Table.HeaderCell>Gjennomsnittsalder</Table.HeaderCell>
+            <Table.HeaderCell>Snittalder (dager)</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -28,7 +29,7 @@ export const ÅrsakTilBehandling = ({ årsakTilBehandling }: Props) => {
             <Table.Row key={`rad-${i}`}>
               <Table.DataCell>{it.årsak}</Table.DataCell>
               <Table.DataCell>{it.antall}</Table.DataCell>
-              <Table.DataCell>{it.gjennomsnittligAlder}</Table.DataCell>
+              <Table.DataCell>{sekunderTilDager(it.gjennomsnittligAlder)}</Table.DataCell>
             </Table.Row>
           ))}
         </Table.Body>

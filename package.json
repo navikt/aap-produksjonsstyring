@@ -9,7 +9,6 @@
     "start": "next start",
     "lint": "next lint",
     "gentypesStatistikk": "openapi-typescript http://localhost:8080/openapi.json -o lib/types/schema-statistikk.ts --enum",
-    "gentypesOppgave": "openapi-typescript http://localhost:8080/openapi.json -o lib/types/schema-oppgave.ts --enum",
     "prepare": "husky"
   },
   "dependencies": {
