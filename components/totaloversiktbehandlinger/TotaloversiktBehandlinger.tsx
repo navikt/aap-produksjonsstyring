@@ -1,14 +1,13 @@
 'use client';
 
-import { Heading, HStack, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { Heading, HStack, VStack } from '@navikt/ds-react';
 import { ApneBehandlinger } from 'components/åpnebehandlinger/ÅpneBehandlinger';
 import { BehandlingerInnUt } from 'components/behandlingerinnut/BehandlingerInnUt';
 import { FordelingÅpneBehandlingerPerDag } from 'components/fordelingåpnebehandlingerperdag/FordelingÅpneBehandlingerPerDag';
 import { FordelingLukkedeBehandlingerPerDag } from 'components/fordelinglukkedebehandlingerperdag/FordelingLukkedeBehandlingerPerDag';
 import { VenteÅrsaker } from 'components/venteårsaker/VenteÅrsaker';
 import { BehandlingerPerSteggruppe } from 'components/behandlingerpersteggruppe/BehandlingerPerSteggruppe';
-import { BehandlingsTyperOption, behandlingsTyperOptions } from 'lib/utils/behandlingstyper';
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useMemo } from 'react';
 import { statistikkQueryparams } from 'lib/utils/request';
 import useSWR from 'swr';
 import {
@@ -22,12 +21,13 @@ import {
 } from 'lib/services/client';
 import { TypeBehandlinger } from 'components/typebehandlinger/TypeBehandlinger';
 import { ÅrsakTilBehandling } from 'components/årsaktilbehandling/ÅrsakTilBehandling';
+import { AlleFiltereContext } from 'components/allefiltereprovider/AlleFiltereProvider';
 
 export const TotaloversiktBehandlinger = () => {
-  const [selectedOptions, setSelectedOptions] = useState<BehandlingsTyperOption[]>([]);
+  const alleFiltere = useContext(AlleFiltereContext);
   const behandlingstyperQuery = useMemo(
-    () => statistikkQueryparams({ behandlingstyper: selectedOptions }),
-    [selectedOptions]
+    () => statistikkQueryparams({ behandlingstyper: alleFiltere.behandlingstyper }),
+    [alleFiltere]
   );
 
   const antallÅpneBehandlinger = useSWR(
@@ -56,27 +56,11 @@ export const TotaloversiktBehandlinger = () => {
     `/api/statistikk/behandlinger/arsak-til-behandling?${behandlingstyperQuery}`,
     årsakTilBehandlingClient
   );
-  useEffect(() => {
-    setSelectedOptions([behandlingsTyperOptions[0]]);
-  }, []);
   return (
     <VStack padding={'5'} gap={'5'}>
       <Heading level={'2'} size={'large'}>
         Behandlinger
       </Heading>
-      <HStack>
-        <UNSAFE_Combobox
-          label={'Type behandling'}
-          options={behandlingsTyperOptions}
-          onToggleSelected={async (val) => {
-            const option = behandlingsTyperOptions.find((e) => e === val);
-            if (option) {
-              setSelectedOptions([option]);
-            }
-          }}
-          selectedOptions={selectedOptions}
-        />
-      </HStack>
       <HStack gap={'4'}>
         {!behandlingerUtvikling.error && <BehandlingerInnUt behandlingerEndringer={behandlingerUtvikling.data || []} />}
         {!antallÅpneBehandlinger.error && (
