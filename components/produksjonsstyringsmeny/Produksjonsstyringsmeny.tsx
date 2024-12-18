@@ -5,18 +5,20 @@ import { ReactNode } from 'react';
 import styles from './Produksjonsstyringsmeny.module.css';
 import { FilterSamling } from 'components/filtersamling/FilterSamling';
 import { AlleFiltereProvider } from 'components/allefiltereprovider/AlleFiltereProvider';
+import { Enhet } from 'lib/types/types';
 
 interface Props {
   totaloversikt: ReactNode;
   minenhet: ReactNode;
   produktivitet: ReactNode;
   oppgaveOversikt: ReactNode;
+  enheter: Array<Enhet>;
 }
-export const Produksjonsstyringsmeny = ({ totaloversikt, minenhet, oppgaveOversikt }: Props) => {
+export const Produksjonsstyringsmeny = ({ totaloversikt, minenhet, oppgaveOversikt, enheter }: Props) => {
   return (
     <AlleFiltereProvider>
       <HGrid columns={'1fr 6fr'}>
-        <FilterSamling />
+        <FilterSamling enheter={enheter} />
         <Tabs defaultValue="total" fill className={styles.produksjonsstyringsmeny}>
           <Tabs.List>
             <Tabs.Tab value="total" label="Totaloversikt" />

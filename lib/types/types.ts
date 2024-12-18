@@ -47,6 +47,8 @@ export type PostmottakAvklaringsbehovKode =
 // oppgave
 export type Kø = oppgave['schemas']['no.nav.aap.oppgave.filter.FilterDto'];
 export type Oppgave = oppgave['schemas']['no.nav.aap.oppgave.OppgaveDto'];
+export type Enhet = oppgave['schemas']['no.nav.aap.oppgave.enhet.EnhetDto'];
+
 // typer fra enums
 export type OppgaveBehandlingstype = `${NoNavAapOppgaveOppgaveDtoBehandlingstype}`;
 export type OppgaveStatus = `${NoNavAapOppgaveOppgaveDtoStatus}`;

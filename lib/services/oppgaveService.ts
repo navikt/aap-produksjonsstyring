@@ -1,6 +1,6 @@
 import { fetchProxy } from './fetchProxy';
 import { isLocal } from 'lib/utils/environment';
-import { Kø, Oppgave } from 'lib/types/types';
+import { Enhet, Kø, Oppgave } from 'lib/types/types';
 import {
   NoNavAapOppgaveOppgaveDtoBehandlingstype,
   NoNavAapOppgaveOppgaveDtoStatus,
@@ -36,6 +36,7 @@ export const hentOppgaverForFilter = async (filterId: number): Promise<Oppgave[]
         saksnummer: `sak-fra-kø-${filterId}-1`,
         status: NoNavAapOppgaveOppgaveDtoStatus.OPPRETTET,
         versjon: 2,
+        enhet: 'HKLP',
       },
       {
         opprettetAv: 'tor',
@@ -49,6 +50,7 @@ export const hentOppgaverForFilter = async (filterId: number): Promise<Oppgave[]
         saksnummer: `sak-fra-kø-${filterId}-2`,
         status: NoNavAapOppgaveOppgaveDtoStatus.OPPRETTET,
         versjon: 2,
+        enhet: 'HFII',
       },
     ];
   }
@@ -74,4 +76,16 @@ export async function hentAntallOppgaver(behandlingstype?: string) {
   return await fetchProxy<Record<string, number>>(url, oppgaveApiScope, 'POST', {
     behandlingstype: behandlingstype || null,
   });
+}
+
+export async function hentEnheter() {
+  if (isLocal()) {
+    return [
+      { enhetNr: 'FKSH', navn: 'Enhet en' },
+      { enhetNr: 'AHFG', navn: 'Enhet to' },
+      { enhetNr: 'HDMM', navn: 'Enhet tre' },
+    ];
+  }
+  const url = `${oppgaveApiBaseURL}/enheter`;
+  return await fetchProxy<Array<Enhet>>(url, oppgaveApiScope, 'POST');
 }

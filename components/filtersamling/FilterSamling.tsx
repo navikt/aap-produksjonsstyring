@@ -1,15 +1,19 @@
 'use client';
 
-import { HStack, Label, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { HStack, Label, Select, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { BehandlingsTyperOption, behandlingsTyperOptions } from 'lib/utils/behandlingstyper';
 import { useContext, useEffect, useState } from 'react';
 import { AlleFiltereDispatchContext } from 'components/allefiltereprovider/AlleFiltereProvider';
+import { Enhet } from 'lib/types/types';
 
 export interface AlleFiltere {
   behandlingstyper: BehandlingsTyperOption[];
+  enhet: string;
 }
-
-export const FilterSamling = () => {
+interface Props {
+  enheter: Array<Enhet>;
+}
+export const FilterSamling = ({ enheter }: Props) => {
   const [selectedOptions, setSelectedOptions] = useState<BehandlingsTyperOption[]>([]);
   const filterDispatch = useContext(AlleFiltereDispatchContext);
   useEffect(() => {
@@ -33,6 +37,19 @@ export const FilterSamling = () => {
           selectedOptions={selectedOptions}
         />
       </HStack>
+      <Select
+        label={'Enhet'}
+        size={'small'}
+        onChange={async (event) => {
+          filterDispatch && filterDispatch({ type: 'SET_FILTERE', payload: { enhet: event.target.value } });
+        }}
+      >
+        {enheter?.map((enhet) => (
+          <option key={enhet.enhetNr} value={enhet.enhetNr}>
+            {enhet.navn}
+          </option>
+        ))}
+      </Select>
     </VStack>
   );
 };
