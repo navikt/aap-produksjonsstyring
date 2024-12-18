@@ -1,12 +1,13 @@
-import Plot from 'react-plotly.js';
 import { Data, Layout } from 'plotly.js';
+import dynamic from 'next/dynamic';
 interface ResponsivePlotProps {
   data: Data[];
   layout: Partial<Layout>;
 }
+const DynamicPlotly = dynamic(() => import('react-plotly.js'), { ssr: false });
 export const ResponsivePlot = ({ data, layout }: ResponsivePlotProps) => {
   return (
-    <Plot
+    <DynamicPlotly
       data={data}
       layout={{
         ...layout,
