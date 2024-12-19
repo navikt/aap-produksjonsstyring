@@ -87,5 +87,5 @@ export async function hentEnheter() {
     ];
   }
   const url = `${oppgaveApiBaseURL}/enheter`;
-  return await fetchProxy<Array<Enhet>>(url, oppgaveApiScope, 'POST');
+  return await fetchProxy<Array<Enhet>>(url, oppgaveApiScope, 'GET');
 }
