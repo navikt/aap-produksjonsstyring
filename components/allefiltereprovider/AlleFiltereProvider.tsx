@@ -3,7 +3,7 @@
 import { createContext, Dispatch, ReactNode, useReducer } from 'react';
 import { AlleFiltere } from 'components/filtersamling/FilterSamling';
 
-const initFilter: AlleFiltere = { behandlingstyper: ['Alle'], enhet: 'Enhet' };
+const initFilter: AlleFiltere = { behandlingstyper: [] };
 export const AlleFiltereContext = createContext<AlleFiltere>(initFilter);
 export const AlleFiltereDispatchContext = createContext<Dispatch<AlleFiltereAction> | null>(null);
 interface Props {

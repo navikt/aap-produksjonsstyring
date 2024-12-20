@@ -23,9 +23,7 @@ export function statistikkQueryparams({
   bøtteStørrelse,
   enhet,
 }: StatistikkQueryParams) {
-  const behandlingstyperString = behandlingstyper.includes('Alle')
-    ? ''
-    : queryParamsArray('behandlingstyper', behandlingstyper);
+  const behandlingstyperString = queryParamsArray('behandlingstyper', behandlingstyper);
   const antallDagerString = !antallDager && antallDager !== 0 ? '' : `antallDager=${antallDager}`;
   const antallBøtterString = !antallBøtter && antallBøtter !== 0 ? '' : `antallBøtter=${antallBøtter}`;
   const bøtteStørrelseString = !bøtteStørrelse && bøtteStørrelse !== 0 ? '' : `bøtteStørrelse=${bøtteStørrelse}`;

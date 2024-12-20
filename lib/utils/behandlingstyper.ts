@@ -19,5 +19,5 @@ const behandlingsTypeAlternativerFraEnum = Object.keys(
     }
     exhaustiveCheck(key);
   });
-export type BehandlingsTyperOption = BehandlingstyperRequestQuery | 'Alle';
-export const behandlingsTyperOptions: BehandlingsTyperOption[] = ['Alle', ...behandlingsTypeAlternativerFraEnum];
+export type BehandlingsTyperOption = BehandlingstyperRequestQuery;
+export const behandlingsTyperOptions: BehandlingsTyperOption[] = behandlingsTypeAlternativerFraEnum;
