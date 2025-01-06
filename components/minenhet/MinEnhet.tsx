@@ -31,8 +31,12 @@ export const MinEnhet = ({ enheter }: Props) => {
   const [valgteEnheter, setValgteEnheter] = useState<{ label: string; value: string }[]>([]);
   const alleFiltere = useContext(AlleFiltereContext);
   const behandlingstyperQuery = useMemo(
-    () => statistikkQueryparams({ behandlingstyper: alleFiltere.behandlingstyper }),
-    [alleFiltere]
+    () =>
+      statistikkQueryparams({
+        behandlingstyper: alleFiltere.behandlingstyper,
+        enheter: valgteEnheter.map((e) => e.value),
+      }),
+    [alleFiltere, valgteEnheter]
   );
   function onToggleSelected(option: string, isSelected: boolean) {
     const label = enheter.find((e) => e.enhetNr === option)?.navn;

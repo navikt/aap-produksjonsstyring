@@ -5,14 +5,15 @@ import { FilterTidsEnhet } from 'lib/types/types';
 import { hentStatistikkQueryParams } from 'lib/utils/request';
 
 export async function GET(req: NextRequest) {
-  const { enhet, bøtteStørrelse, antallBøtter, behandlingstyper } = hentStatistikkQueryParams(req);
+  const { enhet, bøtteStørrelse, antallBøtter, behandlingstyper, enheter } = hentStatistikkQueryParams(req);
 
   try {
     const result = await hentFordelingLukkedeBehandlinger(
+      behandlingstyper,
+      enheter,
       enhet as FilterTidsEnhet,
       antallBøtter,
-      bøtteStørrelse,
-      behandlingstyper
+      bøtteStørrelse
     );
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {

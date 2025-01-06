@@ -13,13 +13,13 @@ import {
 
 // statistikk
 export type BehandlingstidPerDagDTO =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.BehandlingstidPerDagDTO'];
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$BehandlingstidPerDagDTO`'];
 export type BehandlingPerAvklaringsbehov =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.BehandlingPerAvklaringsbehov'];
 export type BehandlingEndringerPerDag =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.BehandlinEndringerPerDag'];
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$BehandlinEndringerPerDag`'];
 export type AntallÅpneOgGjennomsnitt =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.Antall\u00C5pneOgTypeOgGjennomsnittsalder'];
+  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$Antall\u00C5pneOgTypeOgGjennomsnittsalder`'];
 export type FordelingÅpneBehandlinger =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.Fordeling\u00C5pneBehandlinger'];
 export type FordelingLukkedeBehandlinger =

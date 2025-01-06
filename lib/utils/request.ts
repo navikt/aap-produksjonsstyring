@@ -9,12 +9,13 @@ function queryParamsArray(key: string, values: (string | number)[]) {
   }
   return values.map((e) => `${key}=${e}`).join('&');
 }
-type StatistikkQueryParams = {
+export type StatistikkQueryParams = {
   behandlingstyper: Array<BehandlingsTyperOption>;
   antallDager?: number;
   antallBøtter?: number;
   bøtteStørrelse?: number;
   enhet?: FilterTidsEnhet;
+  enheter?: string[];
 };
 export function statistikkQueryparams({
   behandlingstyper,
@@ -22,28 +23,47 @@ export function statistikkQueryparams({
   antallBøtter,
   bøtteStørrelse,
   enhet,
+  enheter,
 }: StatistikkQueryParams) {
   const behandlingstyperString = queryParamsArray('behandlingstyper', behandlingstyper);
   const antallDagerString = !antallDager && antallDager !== 0 ? '' : `antallDager=${antallDager}`;
   const antallBøtterString = !antallBøtter && antallBøtter !== 0 ? '' : `antallBøtter=${antallBøtter}`;
   const bøtteStørrelseString = !bøtteStørrelse && bøtteStørrelse !== 0 ? '' : `bøtteStørrelse=${bøtteStørrelse}`;
   const enhetString = enhet ? `enhet=${enhet}` : '';
-  const string = [behandlingstyperString, antallDagerString, antallBøtterString, bøtteStørrelseString, enhetString]
+  const enheterString = enheter ? queryParamsArray('enheter', enheter) : '';
+  const string = [
+    behandlingstyperString,
+    antallDagerString,
+    antallBøtterString,
+    bøtteStørrelseString,
+    enhetString,
+    enheterString,
+  ]
     .filter((value) => value)
     .join('&');
   return encodeURI(string);
 }
 
-export function hentStatistikkQueryParams(req: NextRequest): StatistikkQueryParams {
+export type StatistikkQueryParamsOutput = {
+  behandlingstyper: Array<BehandlingsTyperOption>;
+  antallDager?: number;
+  antallBøtter?: number;
+  bøtteStørrelse?: number;
+  enhet?: FilterTidsEnhet;
+  enheter: string[];
+};
+export function hentStatistikkQueryParams(req: NextRequest): StatistikkQueryParamsOutput {
   const params = req.nextUrl.searchParams;
   const enhet = params.get('enhet') as FilterTidsEnhet;
   const antallBøtter = params.get('antallBøtter');
   const bøtteStørrelse = params.get('bøtteStørrelse');
   const behandlingstyper = params.getAll('behandlingstyper').map((e) => e as BehandlingstyperRequestQuery);
+  const enheter = params.getAll('enheter');
   return {
     ...(enhet ? { enhet } : {}),
     ...(antallBøtter ? { antallBøtter: parseInt(antallBøtter) } : {}),
     ...(bøtteStørrelse ? { bøtteStørrelse: parseInt(bøtteStørrelse) } : {}),
     behandlingstyper,
+    enheter,
   };
 }

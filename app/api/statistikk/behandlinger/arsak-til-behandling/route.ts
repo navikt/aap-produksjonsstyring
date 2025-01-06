@@ -4,10 +4,10 @@ import { hentÅrsakTilBehandling } from 'lib/services/statistikkService';
 import { hentStatistikkQueryParams } from 'lib/utils/request';
 
 export async function GET(req: NextRequest) {
-  const { behandlingstyper } = hentStatistikkQueryParams(req);
+  const { behandlingstyper, enheter } = hentStatistikkQueryParams(req);
 
   try {
-    const result = await hentÅrsakTilBehandling(behandlingstyper);
+    const result = await hentÅrsakTilBehandling(behandlingstyper, enheter);
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     logError(`/api/behandlinger/årsak-til-behandling`, error);
