@@ -2,6 +2,9 @@ import '@navikt/ds-css';
 import styles from './layout.module.css';
 import { BrukerInformasjon, hentBrukerInformasjon, logError, verifyUserLoggedIn } from '@navikt/aap-felles-utils';
 import { AppHeader } from 'components/appheader/AppHeader';
+import { ValgteEnheterProvider } from 'components/valgteenheterprovider/ValgteEnheterProvider';
+import { ProduksjonsstyringsHeader } from 'components/produksjonsstyringsheader/ProduksjonsstyringsHeader';
+import { hentEnheter } from 'lib/services/oppgaveService';
 
 export const metadata = {
   title: 'Kelvin - Produksjonsstyring',
@@ -9,6 +12,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const enheter = await hentEnheter();
   let brukerInformasjon: BrukerInformasjon;
   try {
     await verifyUserLoggedIn();
@@ -22,7 +26,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="nb">
       <body className={styles.body}>
         <AppHeader brukerInformasjon={brukerInformasjon} />
-        {children}
+        <ValgteEnheterProvider>
+          <ProduksjonsstyringsHeader enheter={enheter} />
+          {children}
+        </ValgteEnheterProvider>
       </body>
     </html>
   );
