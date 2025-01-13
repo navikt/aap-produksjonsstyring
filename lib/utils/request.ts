@@ -1,4 +1,4 @@
-import { BehandlingstyperRequestQuery, FilterTidsEnhet } from 'lib/types/types';
+import { AvklaringsbehovReferanse, BehandlingstyperRequestQuery, FilterTidsEnhet, Oppgave } from 'lib/types/types';
 import { NextRequest } from 'next/server';
 import { BehandlingsTyperOption } from 'lib/utils/behandlingstyper';
 
@@ -66,4 +66,8 @@ export function hentStatistikkQueryParams(req: NextRequest): StatistikkQueryPara
     behandlingstyper,
     enheter,
   };
+}
+export function buildSaksbehandlingsURL(oppgave: Oppgave | AvklaringsbehovReferanse): string {
+  // @ts-ignore
+  return `${process.env.NEXT_PUBLIC_SAKSBEHANDLING_URL}/sak/${oppgave.saksnummer}/${oppgave?.behandlingRef ?? oppgave?.referanse}`;
 }

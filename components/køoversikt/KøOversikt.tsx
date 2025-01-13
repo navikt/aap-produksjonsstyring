@@ -3,7 +3,7 @@
 import { Kø } from 'lib/types/types';
 import { useMemo, useState } from 'react';
 import { BodyShort, Heading, HStack, Label, Select, VStack } from '@navikt/ds-react';
-import { hentKøerClient } from 'lib/services/client';
+import { hentOppgaverClient } from 'lib/services/client';
 import useSWR from 'swr';
 import { OppgaveTabell } from 'components/oppgavetabell/OppgaveTabell';
 
@@ -13,7 +13,7 @@ interface Props {
 export const KøOversikt = ({ køer }: Props) => {
   const [aktivKø, setAktivKø] = useState<number>(køer[0]?.id ?? 0);
   const aktivKøBeskrivelse = useMemo(() => køer.find((e) => e.id === aktivKø)?.beskrivelse, [aktivKø, køer]);
-  const oppgaverValgtKø = useSWR(`api/oppgave/hent-oppgaver/${aktivKø}`, () => hentKøerClient(aktivKø));
+  const oppgaverValgtKø = useSWR(`api/oppgave/hent-oppgaver/${aktivKø}`, () => hentOppgaverClient(aktivKø));
   return (
     <VStack gap={'6'}>
       <Heading level="2" size="medium">

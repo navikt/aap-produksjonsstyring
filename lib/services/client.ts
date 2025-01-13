@@ -1,11 +1,13 @@
 import {
   AntallÅpneOgGjennomsnitt,
+  AvklaringsbehovKode,
   BehandlingEndringerPerDag,
   BehandlingPerSteggruppe,
   BehandlingÅrsakAntallGjennomsnitt,
   FordelingLukkedeBehandlinger,
   FordelingÅpneBehandlinger,
   Oppgave,
+  OppgaveBehandlingstype,
   VenteÅrsakOgGjennomsnitt,
 } from 'lib/types/types';
 
@@ -65,4 +67,16 @@ export async function årsakTilBehandlingClient(url: string) {
 // oppgave
 export async function hentOppgaverClient(filterId: number) {
   return clientFetcher<Oppgave[]>('/api/oppgave/oppgaveliste', 'POST', { filterId });
+}
+
+export async function oppgavesokClient(
+  avklaringsbehovKoder: AvklaringsbehovKode[],
+  behandlingstyper: OppgaveBehandlingstype[],
+  enheter: string[]
+) {
+  return clientFetcher<Oppgave[]>('/api/oppgave/oppgavesok', 'POST', {
+    avklaringsbehovKoder,
+    behandlingstyper,
+    enheter,
+  });
 }

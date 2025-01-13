@@ -42,6 +42,12 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
       return 'Avklar yrkesskade';
     case '5014':
       return 'Fastsett yrkesskadebeløp';
+    case '5015':
+      return 'Effektuer 11-17';
+    case '5016':
+      return 'Forhåndsvarsel aktivitetsplikt';
+    case '5017':
+      return 'Avklar lovvalg for medlemskap';
     case '5050':
       return 'Skriv brev';
     // Postmottak

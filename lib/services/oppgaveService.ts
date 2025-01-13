@@ -105,6 +105,7 @@ export async function oppgaveSøk(
         journalpostId: 123,
         status: 'OPPRETTET',
         versjon: 0,
+        opprettetTidspunkt: '09-12-2024',
       },
       {
         avklaringsbehovKode: '5001',
@@ -115,6 +116,7 @@ export async function oppgaveSøk(
         journalpostId: 234,
         status: 'OPPRETTET',
         versjon: 0,
+        opprettetTidspunkt: '09-01-2025',
       },
     ];
   }
