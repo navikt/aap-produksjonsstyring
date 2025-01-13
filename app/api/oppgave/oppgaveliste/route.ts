@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     const result = await hentOppgaverForFilter(filterId);
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
-    logError(`/api/oppgave/hent-oppgaver`, error);
+    logError(`/api/oppgave/oppgaveliste`, error);
     return new Response(JSON.stringify({ message: JSON.stringify(error), status: 500 }), { status: 500 });
   }
 }

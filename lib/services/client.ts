@@ -63,6 +63,6 @@ export async function årsakTilBehandlingClient(url: string) {
 }
 
 // oppgave
-export async function hentKøerClient(filterId: number) {
-  return clientFetcher<Oppgave[]>('/api/oppgave/hent-oppgaver', 'POST', { filterId });
+export async function hentOppgaverClient(filterId: number) {
+  return clientFetcher<Oppgave[]>('/api/oppgave/oppgaveliste', 'POST', { filterId });
 }
