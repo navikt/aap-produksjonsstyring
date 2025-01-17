@@ -31,10 +31,10 @@
     "swr": "^2.3.0"
   },
   "devDependencies": {
-    "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.197",
+    "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.309",
     "@navikt/aap-felles-prettier": "^2.0.28",
-    "@navikt/aap-oppgave-typescript-types": "^0.0.22",
-    "@navikt/aap-postmottak-backend-typescript-types": "^0.0.23",
+    "@navikt/aap-oppgave-typescript-types": "^0.0.58",
+    "@navikt/aap-postmottak-backend-typescript-types": "^0.0.57",
     "@navikt/eslint-config-aap": "^1.9.7",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
