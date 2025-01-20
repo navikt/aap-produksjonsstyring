@@ -1,10 +1,12 @@
 import '@navikt/ds-css';
 import styles from './layout.module.css';
+import '@navikt/aap-felles-css';
+
 import { BrukerInformasjon, hentBrukerInformasjon, logError, verifyUserLoggedIn } from '@navikt/aap-felles-utils';
-import { AppHeader } from 'components/appheader/AppHeader';
 import { ValgteEnheterProvider } from 'components/valgteenheterprovider/ValgteEnheterProvider';
 import { ProduksjonsstyringsHeader } from 'components/produksjonsstyringsheader/ProduksjonsstyringsHeader';
 import { hentEnheter } from 'lib/services/oppgaveService';
+import { KelvinAppHeader } from '@navikt/aap-felles-react/cjs/KelvinAppHeader/KelvinAppHeader';
 
 export const metadata = {
   title: 'Kelvin - Produksjonsstyring',
@@ -25,7 +27,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="nb">
       <body className={styles.body}>
-        <AppHeader brukerInformasjon={brukerInformasjon} />
+        <KelvinAppHeader brukerInformasjon={brukerInformasjon} />
         <ValgteEnheterProvider>
           <ProduksjonsstyringsHeader enheter={enheter} />
           {children}

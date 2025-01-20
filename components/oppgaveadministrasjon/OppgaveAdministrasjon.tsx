@@ -9,10 +9,15 @@ import useSWR from 'swr';
 import { oppgavesokClient } from 'lib/services/client';
 import { ValgteEnheterContext } from 'components/valgteenheterprovider/ValgteEnheterProvider';
 import { AvklaringsbehovKode, OppgaveBehandlingstype } from 'lib/types/types';
+import { useSearchParams } from 'next/navigation';
 
 export const OppgaveAdministrasjon = () => {
-  const [selectedBehandlingstype, setSelectedBehandlingstype] = useState<OppgaveBehandlingstype[]>([]);
-  const [selectedAvklaringsbehov, setSelectedAvklaringsbehov] = useState<AvklaringsbehovKode[]>([]);
+  const searchParams = useSearchParams();
+  const behandlingstyperFraUrl = searchParams.getAll('behandlingstype').map((e) => e as OppgaveBehandlingstype);
+  const avklaringsbehovFraUrl = searchParams.getAll('avklaringsbehov').map((e) => e as AvklaringsbehovKode);
+  const [selectedBehandlingstype, setSelectedBehandlingstype] =
+    useState<OppgaveBehandlingstype[]>(behandlingstyperFraUrl);
+  const [selectedAvklaringsbehov, setSelectedAvklaringsbehov] = useState<AvklaringsbehovKode[]>(avklaringsbehovFraUrl);
   const valgteEnheter = useContext(ValgteEnheterContext);
 
   const oppgavesok = useSWR(`api/oppgave/oppgavesok`, () =>
