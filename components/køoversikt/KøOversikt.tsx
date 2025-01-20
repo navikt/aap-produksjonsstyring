@@ -13,7 +13,7 @@ interface Props {
 export const KøOversikt = ({ køer }: Props) => {
   const [aktivKø, setAktivKø] = useState<number>(køer[0]?.id ?? 0);
   const aktivKøBeskrivelse = useMemo(() => køer.find((e) => e.id === aktivKø)?.beskrivelse, [aktivKø, køer]);
-  const oppgaverValgtKø = useSWR(`api/oppgave/hent-oppgaver/${aktivKø}`, () => hentOppgaverClient(aktivKø));
+  const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}`, () => hentOppgaverClient(aktivKø));
   return (
     <VStack gap={'6'}>
       <Heading level="2" size="medium">

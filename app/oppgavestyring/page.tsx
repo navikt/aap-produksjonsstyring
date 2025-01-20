@@ -1,7 +1,5 @@
-import { OppgaveAdministrasjon } from 'components/oppgaveadministrasjon/OppgaveAdministrasjon';
+import { redirect } from 'next/navigation';
 
-const Page = async () => {
-  return <OppgaveAdministrasjon />;
-};
-
-export default Page;
+export default function Page() {
+  redirect('/oppgavestyring/ny');
+}
