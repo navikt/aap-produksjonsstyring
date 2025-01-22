@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react';
 import { BodyShort, Heading, HStack, Label, Select, VStack } from '@navikt/ds-react';
 import { hentOppgaverClient } from 'lib/services/client';
 import useSWR from 'swr';
-import { OppgaveTabell } from 'components/oppgavetabell/OppgaveTabell';
+import { OppgaveTabell } from 'components/oppgave/oppgavetabell/OppgaveTabell';
 
 interface Props {
   køer: Array<Kø>;
@@ -13,7 +13,7 @@ interface Props {
 export const KøOversikt = ({ køer }: Props) => {
   const [aktivKø, setAktivKø] = useState<number>(køer[0]?.id ?? 0);
   const aktivKøBeskrivelse = useMemo(() => køer.find((e) => e.id === aktivKø)?.beskrivelse, [aktivKø, køer]);
-  const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}`, () => hentOppgaverClient(aktivKø));
+  const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}`, () => hentOppgaverClient(aktivKø, []));
   return (
     <VStack gap={'6'}>
       <Heading level="2" size="medium">
@@ -46,7 +46,7 @@ export const KøOversikt = ({ køer }: Props) => {
           <BodyShort>{aktivKøBeskrivelse}</BodyShort>
         </VStack>
       </HStack>
-      <OppgaveTabell oppgaver={oppgaverValgtKø.data || []} />
+      <OppgaveTabell oppgaver={oppgaverValgtKø.data || []} showSortAndFilters={false} />
     </VStack>
   );
 };

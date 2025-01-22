@@ -1,46 +1,29 @@
 import { PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper } from 'lib/types/schema-statistikk';
 import { exhaustiveCheck } from 'lib/utils/typescript';
-import { BehandlingstyperRequestQuery, OppgaveBehandlingstype } from 'lib/types/types';
+import { BehandlingstyperRequestQuery } from 'lib/types/types';
 import { NoNavAapOppgaveOppgaveDtoBehandlingstype } from '@navikt/aap-oppgave-typescript-types';
 
-const oppgaveBehandlingsTypeAlternativerFraEnum = Object.keys(
+export const oppgaveBehandlingstyper = Object.keys(
   NoNavAapOppgaveOppgaveDtoBehandlingstype as unknown as keyof (typeof NoNavAapOppgaveOppgaveDtoBehandlingstype)[]
 )
   .map((key) => key as keyof typeof NoNavAapOppgaveOppgaveDtoBehandlingstype)
   .map((key) => {
     switch (key) {
       case 'F_RSTEGANGSBEHANDLING':
-        return 'Førstegangsbehandling';
+        return { label: 'Førstegangsbehandling', value: 'FØRSTEGANGSBEHANDLING' };
       case 'TILBAKEKREVING':
-        return 'Tilbakekreving';
+        return { label: 'Tilbakekreving', value: 'TILBAKEKREVING' };
       case 'REVURDERING':
-        return 'Revurdering';
+        return { label: 'Revurdering', value: 'REVURDERING' };
       case 'KLAGE':
-        return 'Klage';
+        return { label: 'Klage', value: 'KLAGE' };
       case 'DOKUMENT_H_NDTERING':
-        return 'Dokumenthåndtering';
+        return { label: 'Dokumenthåndtering', value: 'DOKUMENTHÅNDTERING' };
       case 'JOURNALF_RING':
-        return 'Journalføring';
+        return { label: 'Journalføring', value: 'JOURNALFØRING' };
     }
     exhaustiveCheck(key);
   });
-export type OppgaveBehandlingstypeOptionLabel = (typeof oppgaveBehandlingsTypeAlternativerFraEnum)[number];
-export const oppgaveBehandlingstyper: OppgaveBehandlingstype[] = [
-  'FØRSTEGANGSBEHANDLING',
-  'TILBAKEKREVING',
-  'REVURDERING',
-  'KLAGE',
-  'DOKUMENT_HÅNDTERING',
-  'JOURNALFØRING',
-];
-export const oppgaveBehandlingstypeOgLabel = [
-  { value: 'F_RSTEGANGSBEHANDLING', label: 'Førstegangsbehandling' },
-  { value: 'TILBAKEKREVING', label: 'Tilbakekreving' },
-  { value: 'REVURDERING', label: 'Revurdering' },
-  { value: 'KLAGE', label: 'Klage' },
-  { value: 'DOKUMENT_H_NDTERING', label: 'Dokumenthåndtering' },
-  { value: 'JOURNALF_RING', label: 'Journalføring' },
-];
 
 const behandlingsTypeAlternativerFraEnum = Object.keys(
   PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper as unknown as keyof (typeof PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper)[]

@@ -45,10 +45,11 @@ export const fetchProxy = async <ResponseBody>(
   url: string,
   scope: string,
   method: 'GET' | 'POST' | 'PATCH' | 'DELETE' = 'GET',
-  requestBody?: object
+  requestBody?: object,
+  nextTag?: string
 ): Promise<ResponseBody> => {
   const oboToken = isLocal() ? await hentLocalToken() : await getOnBefalfOfToken(scope, url);
-  return await fetchWithRetry<ResponseBody>(url, method, oboToken, NUMBER_OF_RETRIES, requestBody);
+  return await fetchWithRetry<ResponseBody>(url, method, oboToken, NUMBER_OF_RETRIES, requestBody, nextTag);
 };
 
 export const fetchWithRetry = async <ResponseBody>(
@@ -56,11 +57,16 @@ export const fetchWithRetry = async <ResponseBody>(
   method: string,
   oboToken: string,
   retries: number,
-  requestBody?: object
+  requestBody?: object,
+  nextTag?: string
 ): Promise<ResponseBody> => {
   if (retries === 0) {
     throw new Error(`Unable to fetch ${url}: ${retries} retries left`);
   }
+  const next = {
+    revalidate: 0,
+    ...(nextTag ? { tags: [nextTag] } : {}),
+  };
 
   const response = await fetch(url, {
     method,
@@ -70,7 +76,7 @@ export const fetchWithRetry = async <ResponseBody>(
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    next: { revalidate: 0 },
+    next,
   });
 
   // Mulige statuskoder:

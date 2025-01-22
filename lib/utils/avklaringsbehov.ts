@@ -54,7 +54,7 @@ export const avklaringsbehovKoder: AvklaringsbehovKode[] = [
   '1340',
   '1341',
 ];
-export const avklaringsbehovKodeOgLabel = [
+export const oppgaveAvklaringsbehov = [
   { value: '5001', label: 'Avklar student (§ 11-14)' },
   { value: '5003', label: 'Avklar sykdom (§ 11-5)' },
   { value: '5004', label: 'Vurdering av etablert og uutnyttet arbeidsevne (§ 11-23)' },
@@ -81,4 +81,3 @@ export const avklaringsbehovKodeOgLabel = [
   { value: '1340', label: 'Avklar saksnummer' },
   { value: '1341', label: 'Endre tema' },
 ];
-export type AvklaringsbehovLabel = (typeof avklaringsbehovOptions)[number];

@@ -1,11 +1,14 @@
 import {
   AntallÅpneOgGjennomsnitt,
   AvklaringsbehovKode,
+  AvklaringsbehovReferanse,
   BehandlingEndringerPerDag,
   BehandlingPerSteggruppe,
   BehandlingÅrsakAntallGjennomsnitt,
   FordelingLukkedeBehandlinger,
   FordelingÅpneBehandlinger,
+  NesteOppgaveRequestBody,
+  NesteOppgaveResponse,
   Oppgave,
   OppgaveBehandlingstype,
   VenteÅrsakOgGjennomsnitt,
@@ -65,8 +68,17 @@ export async function årsakTilBehandlingClient(url: string) {
 }
 
 // oppgave
-export async function hentOppgaverClient(filterId: number) {
-  return clientFetcher<Oppgave[]>('/api/oppgave/oppgaveliste', 'POST', { filterId });
+export async function hentOppgaverClient(filterId: number, enheter: string[]) {
+  return clientFetcher<Oppgave[]>('/api/oppgave/oppgaveliste', 'POST', { filterId, enheter });
+}
+export async function avreserverOppgaveClient(oppgave: Oppgave) {
+  const body: AvklaringsbehovReferanse = {
+    avklaringsbehovKode: oppgave.avklaringsbehovKode,
+    journalpostId: oppgave.journalpostId,
+    saksnummer: oppgave.saksnummer,
+    referanse: oppgave.behandlingRef,
+  };
+  return clientFetcher('/api/oppgave/avreserver', 'POST', body);
 }
 
 export async function oppgavesokClient(
@@ -79,4 +91,26 @@ export async function oppgavesokClient(
     behandlingstyper,
     enheter,
   });
+}
+
+// export async function lagOppgaveFilterClient(
+//   avklaringsbehovKoder: AvklaringsbehovKode[],
+//   behandlingstyper: OppgaveBehandlingstype[],
+//   enheter: string[],
+//   navn: string,
+//   beskrivelse: string
+// ) {
+//   const payload: Kø = {
+//     avklaringsbehovKoder,
+//     behandlingstyper,
+//     enheter,
+//     navn,
+//     beskrivelse,
+//   };
+//   return clientFetcher('/api/oppgave/filter', 'POST', { avklaringsbehovKoder });
+// }
+
+export async function plukkNesteOppgaveClient(filterId: number, aktivEnhet: string) {
+  const payload: NesteOppgaveRequestBody = { filterId, enheter: [aktivEnhet || ''] };
+  return await clientFetcher<NesteOppgaveResponse>('/api/oppgave/neste', 'POST', payload);
 }

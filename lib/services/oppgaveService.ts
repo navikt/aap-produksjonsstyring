@@ -1,6 +1,15 @@
 import { fetchProxy } from './fetchProxy';
 import { isLocal } from 'lib/utils/environment';
-import { AvklaringsbehovKode, Enhet, Kø, Oppgave, OppgaveBehandlingstype } from 'lib/types/types';
+import {
+  AvklaringsbehovKode,
+  AvklaringsbehovReferanse,
+  Enhet,
+  Kø,
+  NesteOppgaveRequestBody,
+  NesteOppgaveResponse,
+  Oppgave,
+  OppgaveBehandlingstype,
+} from 'lib/types/types';
 import {
   NoNavAapOppgaveOppgaveDtoBehandlingstype,
   NoNavAapOppgaveOppgaveDtoStatus,
@@ -8,6 +17,60 @@ import {
 
 const oppgaveApiBaseURL = process.env.OPPGAVE_API_BASE_URL;
 const oppgaveApiScope = process.env.OPPGAVE_API_SCOPE ?? '';
+const oppgaveMock: Oppgave[] = [
+  {
+    avklaringsbehovKode: '9003',
+    behandlingOpprettet: '2025-01-06T12:36:44.716229',
+    behandlingRef: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    behandlingstype: NoNavAapOppgaveOppgaveDtoBehandlingstype.KLAGE,
+    id: 0,
+    journalpostId: 123,
+    status: NoNavAapOppgaveOppgaveDtoStatus.OPPRETTET,
+    versjon: 0,
+    opprettetTidspunkt: '09-12-2024',
+    enhet: 'NNDD',
+    opprettetAv: 'ola',
+  },
+  {
+    avklaringsbehovKode: '9003',
+    behandlingOpprettet: '2025-01-06T12:36:44.716229',
+    behandlingRef: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    behandlingstype: NoNavAapOppgaveOppgaveDtoBehandlingstype.REVURDERING,
+    id: 0,
+    journalpostId: 123,
+    status: NoNavAapOppgaveOppgaveDtoStatus.OPPRETTET,
+    versjon: 0,
+    opprettetTidspunkt: '09-12-2024',
+    enhet: 'NNDD',
+    opprettetAv: 'ola',
+  },
+  {
+    avklaringsbehovKode: '9003',
+    behandlingOpprettet: '2025-01-06T12:36:44.716229',
+    behandlingRef: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    behandlingstype: NoNavAapOppgaveOppgaveDtoBehandlingstype.F_RSTEGANGSBEHANDLING,
+    id: 0,
+    journalpostId: 123,
+    status: NoNavAapOppgaveOppgaveDtoStatus.OPPRETTET,
+    versjon: 0,
+    opprettetTidspunkt: '09-12-2024',
+    enhet: 'NNDD',
+    opprettetAv: 'ola',
+  },
+  {
+    avklaringsbehovKode: '5001',
+    behandlingOpprettet: '2025-01-06T12:36:44.716229',
+    behandlingRef: '34fdsff-5717-4562-b3fc-2c963f66afa6',
+    behandlingstype: NoNavAapOppgaveOppgaveDtoBehandlingstype.F_RSTEGANGSBEHANDLING,
+    id: 1,
+    journalpostId: 234,
+    status: NoNavAapOppgaveOppgaveDtoStatus.OPPRETTET,
+    versjon: 0,
+    opprettetTidspunkt: '09-01-2025',
+    enhet: 'HGDI',
+    opprettetAv: 'kari',
+  },
+];
 
 export const hentKøer = async (): Promise<Kø[]> => {
   if (isLocal()) {
@@ -23,36 +86,7 @@ export const hentKøer = async (): Promise<Kø[]> => {
 };
 export const hentOppgaverForFilter = async (filterId: number): Promise<Oppgave[]> => {
   if (isLocal()) {
-    return [
-      {
-        opprettetAv: 'tor',
-        avklaringsbehovKode: '5003',
-        behandlingOpprettet: '09-12-2024',
-        behandlingRef: `behandlingref-12`,
-        behandlingstype: NoNavAapOppgaveOppgaveDtoBehandlingstype.F_RSTEGANGSBEHANDLING,
-        endretTidspunkt: '10-12-2024',
-        id: 0,
-        opprettetTidspunkt: '09-12-2024',
-        saksnummer: `sak-fra-kø-${filterId}-1`,
-        status: NoNavAapOppgaveOppgaveDtoStatus.OPPRETTET,
-        versjon: 2,
-        enhet: 'HKLP',
-      },
-      {
-        opprettetAv: 'tor',
-        avklaringsbehovKode: '5003',
-        behandlingOpprettet: '09-12-2024',
-        behandlingRef: 'behandlingref-12',
-        behandlingstype: NoNavAapOppgaveOppgaveDtoBehandlingstype.KLAGE,
-        endretTidspunkt: '10-12-2024',
-        id: 0,
-        opprettetTidspunkt: '09-12-2024',
-        saksnummer: `sak-fra-kø-${filterId}-2`,
-        status: NoNavAapOppgaveOppgaveDtoStatus.OPPRETTET,
-        versjon: 2,
-        enhet: 'HFII',
-      },
-    ];
+    return oppgaveMock;
   }
   const url = `${oppgaveApiBaseURL}/oppgaveliste`;
   return await fetchProxy<Oppgave[]>(url, oppgaveApiScope, 'POST', { filterId });
@@ -78,6 +112,14 @@ export async function hentAntallOppgaver(behandlingstype?: string) {
   });
 }
 
+export const hentMineOppgaver = async (): Promise<Oppgave[]> => {
+  if (isLocal()) {
+    return oppgaveMock;
+  }
+  const url = `${oppgaveApiBaseURL}/mine-oppgaver`;
+  return await fetchProxy<Oppgave[]>(url, oppgaveApiScope, 'GET', undefined, 'oppgaveservice/mine-oppgaver');
+};
+
 export async function hentEnheter() {
   if (isLocal()) {
     return [
@@ -95,30 +137,7 @@ export async function oppgaveSøk(
   enheter: string[]
 ) {
   if (isLocal()) {
-    return [
-      {
-        avklaringsbehovKode: '9003',
-        behandlingOpprettet: '2025-01-06T12:36:44.716229',
-        behandlingRef: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        behandlingstype: 'FØRSTEGANGSBEHANDLING',
-        id: 0,
-        journalpostId: 123,
-        status: 'OPPRETTET',
-        versjon: 0,
-        opprettetTidspunkt: '09-12-2024',
-      },
-      {
-        avklaringsbehovKode: '5001',
-        behandlingOpprettet: '2025-01-06T12:36:44.716229',
-        behandlingRef: '34fdsff-5717-4562-b3fc-2c963f66afa6',
-        behandlingstype: 'FØRSTEGANGSBEHANDLING',
-        id: 1,
-        journalpostId: 234,
-        status: 'OPPRETTET',
-        versjon: 0,
-        opprettetTidspunkt: '09-01-2025',
-      },
-    ];
+    return oppgaveMock;
   }
   const url = `${oppgaveApiBaseURL}/oppgavesok`;
   return await fetchProxy<Array<Oppgave>>(url, oppgaveApiScope, 'POST', {
@@ -126,4 +145,12 @@ export async function oppgaveSøk(
     behandlingstyper,
     enheter,
   });
+}
+export async function avreserverOppgave(avklaringsbehovReferanse: AvklaringsbehovReferanse): Promise<unknown> {
+  const url = `${oppgaveApiBaseURL}/avreserver-oppgave`;
+  return await fetchProxy<unknown>(url, oppgaveApiScope, 'POST', avklaringsbehovReferanse);
+}
+export async function velgNesteOppgave({ filterId, enheter }: NesteOppgaveRequestBody): Promise<NesteOppgaveResponse> {
+  const url = `${oppgaveApiBaseURL}/neste-oppgave`;
+  return await fetchProxy<NesteOppgaveResponse>(url, oppgaveApiScope, 'POST', { filterId, enheter });
 }
