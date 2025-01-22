@@ -1145,10 +1145,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.276":
-  version: 0.0.276
-  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.276::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.276%2F47036fc53b9c675c8ab6791b25c5e6236702e930"
-  checksum: 10c0/784073b320cd0be7cd59f623c9bf9fcb71476a16d20309cd0ce5497e97b5eea436cbf4114a455e2e4022ac78347d00bb06eeae5cd8399b1a553e2a6ce4512d1f
+"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.349":
+  version: 0.0.349
+  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.349::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.349%2F1ebc40b4e0799e9977b251f9f04832280421d837"
+  checksum: 10c0/c1eb70ec4d3f9c2d3e37158f626d362df62b1343b84d4e686c6fa6f5b0c59084878c270c0716aefe379044a225d8a0cd296ac23288c32b4e0c96e6953b792425
   languageName: node
   linkType: hard
 
@@ -1201,10 +1201,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-oppgave-typescript-types@npm:^0.0.65":
-  version: 0.0.65
-  resolution: "@navikt/aap-oppgave-typescript-types@npm:0.0.65::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-oppgave-typescript-types%2F0.0.65%2F540c0dbb787a180c072bce557c3ee7c3ee8f7d6c"
-  checksum: 10c0/c124e1545269b27a4ec4655d0c845d5a539af54127cc2b03fd307260c3bb19a45b94180d621be8ce5fd3746c2ce150a266e8966578cf9b54dcd03c79c9a68ac2
+"@navikt/aap-oppgave-typescript-types@npm:^0.0.66":
+  version: 0.0.66
+  resolution: "@navikt/aap-oppgave-typescript-types@npm:0.0.66::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-oppgave-typescript-types%2F0.0.66%2Fb3c212f6397f378fed091e6b9fe9af202a8e444f"
+  checksum: 10c0/acbff2497b225ee936512b15da758bddbf4b3f9af1b188e54050cffcc79d235f4060e6610d8f4a356d1a2524b6aff2fe8fe23092bd32b218eae8767cec0dd3d3
   languageName: node
   linkType: hard
 
@@ -2563,12 +2563,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aap-produksjonsstyring@workspace:."
   dependencies:
-    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.276"
+    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.349"
     "@navikt/aap-felles-css": "npm:^4.2.6"
     "@navikt/aap-felles-prettier": "npm:^2.0.28"
     "@navikt/aap-felles-react": "npm:^4.2.6"
     "@navikt/aap-felles-utils": "npm:^2.0.28"
-    "@navikt/aap-oppgave-typescript-types": "npm:^0.0.65"
+    "@navikt/aap-oppgave-typescript-types": "npm:^0.0.66"
     "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.69"
     "@navikt/ds-css": "npm:^7.9.1"
     "@navikt/ds-react": "npm:^7.9.1"

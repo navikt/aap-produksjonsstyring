@@ -50,6 +50,8 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
       return 'Avklar lovvalg for medlemskap';
     case '5050':
       return 'Skriv brev';
+    case '5018':
+      return 'Venter på uttalelse fra bruker på forhåndsvarsel';
     // Postmottak
     case '1337':
       return 'Kategoriser dokument';
