@@ -1201,17 +1201,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-oppgave-typescript-types@npm:^0.0.53":
-  version: 0.0.53
-  resolution: "@navikt/aap-oppgave-typescript-types@npm:0.0.53::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-oppgave-typescript-types%2F0.0.53%2F6cf72f2f5af90244de40a1aa1fc6d11a90370067"
-  checksum: 10c0/b76ff61fba7401870501b27b24a0758410b8a46648ec2655b5140799002833d6459eae0e90240c638d7cd361f26429c4223144cc965a099fc1b97887a9344ff5
+"@navikt/aap-oppgave-typescript-types@npm:^0.0.65":
+  version: 0.0.65
+  resolution: "@navikt/aap-oppgave-typescript-types@npm:0.0.65::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-oppgave-typescript-types%2F0.0.65%2F540c0dbb787a180c072bce557c3ee7c3ee8f7d6c"
+  checksum: 10c0/c124e1545269b27a4ec4655d0c845d5a539af54127cc2b03fd307260c3bb19a45b94180d621be8ce5fd3746c2ce150a266e8966578cf9b54dcd03c79c9a68ac2
   languageName: node
   linkType: hard
 
-"@navikt/aap-postmottak-backend-typescript-types@npm:^0.0.46":
-  version: 0.0.46
-  resolution: "@navikt/aap-postmottak-backend-typescript-types@npm:0.0.46::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-postmottak-backend-typescript-types%2F0.0.46%2F3c76e71fd986ee66c5f6875e872ebbad98afe76e"
-  checksum: 10c0/cf0e2213198e0b205a051b15294ec31cf371c22355e3fbb195998904d2c8289250d0d33c981f8318e8c49c00c267aada88dc778223dd4d7c797be44003d33659
+"@navikt/aap-postmottak-backend-typescript-types@npm:^0.0.69":
+  version: 0.0.69
+  resolution: "@navikt/aap-postmottak-backend-typescript-types@npm:0.0.69::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-postmottak-backend-typescript-types%2F0.0.69%2F92f9b3513a105d90b31698a88f42da01b1c9bb2b"
+  checksum: 10c0/b28ea29540474d9185d1fba331077e1319453675efb06130d2efaf87304cefbb17e6b2c3a1c14665fe36a67b893613eac8cf50512d2fb81d89b25e70191fc324
   languageName: node
   linkType: hard
 
@@ -2568,8 +2568,8 @@ __metadata:
     "@navikt/aap-felles-prettier": "npm:^2.0.28"
     "@navikt/aap-felles-react": "npm:^4.2.6"
     "@navikt/aap-felles-utils": "npm:^2.0.28"
-    "@navikt/aap-oppgave-typescript-types": "npm:^0.0.53"
-    "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.46"
+    "@navikt/aap-oppgave-typescript-types": "npm:^0.0.65"
+    "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.69"
     "@navikt/ds-css": "npm:^7.9.1"
     "@navikt/ds-react": "npm:^7.9.1"
     "@navikt/eslint-config-aap": "npm:^1.9.7"
