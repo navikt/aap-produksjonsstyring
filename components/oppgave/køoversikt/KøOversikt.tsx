@@ -1,52 +1,41 @@
 'use client';
 
 import { Kø } from 'lib/types/types';
-import { useMemo, useState } from 'react';
-import { BodyShort, Heading, HStack, Label, Select, VStack } from '@navikt/ds-react';
+import { useContext, useMemo, useState } from 'react';
+import { BodyShort, Heading, HStack, Label, VStack } from '@navikt/ds-react';
 import { hentOppgaverClient } from 'lib/services/client';
 import useSWR from 'swr';
 import { OppgaveTabell } from 'components/oppgave/oppgavetabell/OppgaveTabell';
+import { KøSelect } from 'components/oppgave/køselect/KøSelect';
+import { ValgteEnheterContext } from 'components/valgteenheterprovider/ValgteEnheterProvider';
 
 interface Props {
   køer: Array<Kø>;
 }
 export const KøOversikt = ({ køer }: Props) => {
   const [aktivKø, setAktivKø] = useState<number>(køer[0]?.id ?? 0);
+  const valgteEnheter = useContext(ValgteEnheterContext);
   const aktivKøBeskrivelse = useMemo(() => køer.find((e) => e.id === aktivKø)?.beskrivelse, [aktivKø, køer]);
-  const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}`, () => hentOppgaverClient(aktivKø, []));
+  const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}?${valgteEnheter.join('&')}`, () =>
+    hentOppgaverClient(aktivKø, valgteEnheter)
+  );
   return (
     <VStack gap={'6'}>
       <Heading level="2" size="medium">
         Oppgavekø
       </Heading>
       <HStack gap={'5'}>
-        <Select
-          label="Velg oppgavekø"
-          size="small"
-          value={aktivKø}
-          onChange={(event) => {
-            const køId = parseInt(event.target.value);
-            setAktivKø(køId);
-          }}
-        >
-          {køer.map((kø) => {
-            if (kø) {
-              return (
-                <option key={kø.id} value={`${kø.id}`}>
-                  {kø.navn}
-                </option>
-              );
-            }
-          })}
-        </Select>
-        <VStack justify={'space-between'}>
-          <Label size={'small'} spacing>
+        <HStack>
+          <KøSelect køer={køer} valgtKøListener={setAktivKø} />
+        </HStack>
+        <VStack>
+          <Label as="p" size={'small'} spacing>
             Beskrivelse av køen
           </Label>
-          <BodyShort>{aktivKøBeskrivelse}</BodyShort>
+          <BodyShort spacing>{aktivKøBeskrivelse}</BodyShort>
         </VStack>
       </HStack>
-      <OppgaveTabell oppgaver={oppgaverValgtKø.data || []} showSortAndFilters={false} />
+      <OppgaveTabell oppgaver={oppgaverValgtKø.data || []} showSortAndFilters />
     </VStack>
   );
 };
