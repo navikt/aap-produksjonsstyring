@@ -35,7 +35,7 @@ export const OppgaveTabell = ({
   const [loadingID, setLoadingID] = useState<number | null>(null);
   const [selectedBehandlingstyper, setSelectedBehandlingstyper] = useState<ComboboxOption[]>([]);
   const [selectedAvklaringsbehov, setSelectedAvklaringsbehov] = useState<ComboboxOption[]>([]);
-  const sortedOppgaver = oppgaver.slice().sort((a, b) => {
+  const sortedOppgaver = (oppgaver || []).slice().sort((a, b) => {
     if (sort) {
       return sort.direction === 'ascending' ? comparator(b, a, sort.orderBy) : comparator(a, b, sort.orderBy);
     }
