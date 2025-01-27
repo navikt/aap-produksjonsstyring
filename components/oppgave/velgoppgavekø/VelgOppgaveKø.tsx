@@ -1,11 +1,12 @@
 'use client';
-import { BodyShort, Button, Heading, HStack, Label, Select, VStack } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, HStack, Label, VStack } from '@navikt/ds-react';
 
-import styles from './VelgOppgaveKø.module.css';
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 import { Enhet, Kø } from 'lib/types/types';
 import { plukkNesteOppgaveClient } from 'lib/services/client';
 import { buildSaksbehandlingsURL } from 'lib/utils/request';
+import { EnhetSelect } from 'components/oppgave/enhetselect/EnhetSelect';
+import { KøSelect } from 'components/oppgave/køselect/KøSelect';
 
 interface Props {
   køer: Kø[];
@@ -32,67 +33,41 @@ export const VelgOppgaveKø = ({ køer, valgtKøListener, enheter, valgtEnhetLis
       <Heading level="2" size="medium">
         Oppgavekø
       </Heading>
-      <HStack>
-        <Select
-          label="Velg enhet"
-          size="small"
-          value={aktivEnhet}
-          onChange={(event) => {
-            const enhet = event.target.value;
-            if (enhet) {
+      <HStack gap={'6'}>
+        <VStack>
+          <EnhetSelect
+            enheter={enheter}
+            valgtEnhetListener={(enhet) => {
               setAktivEnhet(enhet);
-              valgtEnhetListener && valgtEnhetListener(enhet);
-            }
-          }}
-        >
-          {enheter.map((enhet) => {
-            if (enhet) {
-              return (
-                <option key={enhet.enhetNr} value={enhet.enhetNr}>
-                  {enhet.navn}
-                </option>
-              );
-            }
-          })}
-        </Select>
-      </HStack>
-      <div className={styles.container}>
-        <div className={styles.column}>
-          <Select
-            label="Velg oppgavekø"
-            size="small"
-            description="Du jobber på følgende kø"
-            value={aktivKø}
-            onChange={(event) => {
-              const køId = parseInt(event.target.value);
-              setAktivKø(køId);
-              valgtKøListener && valgtKøListener(køId);
-            }}
-          >
-            {køer.map((kø) => {
-              if (kø) {
-                return (
-                  <option key={kø.id} value={`${kø.id}`}>
-                    {kø.navn}
-                  </option>
-                );
+              if (valgtEnhetListener) {
+                valgtEnhetListener(enhet);
               }
-            })}
-          </Select>
-
-          <div>
-            <Button size="small" onClick={() => plukkOgGåTilOppgave()}>
-              Behandle neste oppgave
-            </Button>
-          </div>
-        </div>
-        <div className={styles.column}>
-          <Label as="p" spacing>
+            }}
+          />
+        </VStack>
+        <VStack>
+          <KøSelect
+            køer={køer}
+            valgtKøListener={(kø) => {
+              setAktivKø(kø);
+              if (valgtKøListener) {
+                valgtKøListener(kø);
+              }
+            }}
+          />
+        </VStack>
+        <VStack>
+          <Label as="p" size={'small'} spacing>
             Beskrivelse av køen
           </Label>
           <BodyShort spacing>{aktivKøBeskrivelse}</BodyShort>
-        </div>
-      </div>
+        </VStack>
+      </HStack>
+      <HStack>
+        <Button size="small" onClick={() => plukkOgGåTilOppgave()}>
+          Behandle neste oppgave
+        </Button>
+      </HStack>
     </VStack>
   );
 };

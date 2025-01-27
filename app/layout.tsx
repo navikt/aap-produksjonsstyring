@@ -3,9 +3,6 @@ import styles from './layout.module.css';
 import '@navikt/aap-felles-css';
 
 import { BrukerInformasjon, hentBrukerInformasjon, logError, verifyUserLoggedIn } from '@navikt/aap-felles-utils';
-import { ValgteEnheterProvider } from 'components/valgteenheterprovider/ValgteEnheterProvider';
-import { ProduksjonsstyringsHeader } from 'components/produksjonsstyringsheader/ProduksjonsstyringsHeader';
-import { hentEnheter } from 'lib/services/oppgaveService';
 import { KelvinAppHeader } from '@navikt/aap-felles-react/cjs/KelvinAppHeader/KelvinAppHeader';
 
 export const metadata = {
@@ -14,7 +11,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const enheter = await hentEnheter();
   let brukerInformasjon: BrukerInformasjon;
   try {
     await verifyUserLoggedIn();
@@ -28,10 +24,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="nb">
       <body className={styles.body}>
         <KelvinAppHeader brukerInformasjon={brukerInformasjon} />
-        <ValgteEnheterProvider>
-          <ProduksjonsstyringsHeader enheter={enheter} />
-          {children}
-        </ValgteEnheterProvider>
+        {children}
       </body>
     </html>
   );

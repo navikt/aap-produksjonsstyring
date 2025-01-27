@@ -11,6 +11,7 @@ import {
   NesteOppgaveResponse,
   Oppgave,
   OppgaveBehandlingstype,
+  PlukkOppgaveDto,
   VenteÅrsakOgGjennomsnitt,
 } from 'lib/types/types';
 
@@ -113,4 +114,8 @@ export async function oppgavesokClient(
 export async function plukkNesteOppgaveClient(filterId: number, aktivEnhet: string) {
   const payload: NesteOppgaveRequestBody = { filterId, enheter: [aktivEnhet || ''] };
   return await clientFetcher<NesteOppgaveResponse>('/api/oppgave/neste', 'POST', payload);
+}
+export async function plukkOppgaveClient(oppgaveId: number, versjon: number) {
+  const payload: PlukkOppgaveDto = { oppgaveId, versjon };
+  return await clientFetcher<NesteOppgaveResponse>('/api/oppgave/plukk-oppgave', 'POST', payload);
 }

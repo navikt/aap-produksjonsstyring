@@ -151,6 +151,22 @@ export async function avreserverOppgave(avklaringsbehovReferanse: Avklaringsbeho
   return await fetchProxy<unknown>(url, oppgaveApiScope, 'POST', avklaringsbehovReferanse);
 }
 export async function velgNesteOppgave({ filterId, enheter }: NesteOppgaveRequestBody): Promise<NesteOppgaveResponse> {
+  if (isLocal()) {
+    return {
+      oppgaveId: 34534534,
+      oppgaveVersjon: 3,
+      avklaringsbehovReferanse: {
+        avklaringsbehovKode: 'dfgdfgdfg',
+        journalpostId: 1245,
+        referanse: 'gasdgsdg',
+        saksnummer: 'sdfa',
+      },
+    };
+  }
   const url = `${oppgaveApiBaseURL}/neste-oppgave`;
   return await fetchProxy<NesteOppgaveResponse>(url, oppgaveApiScope, 'POST', { filterId, enheter });
+}
+export async function plukkOppgave(oppgaveId: number, versjon: number): Promise<Oppgave> {
+  const url = `${oppgaveApiBaseURL}/plukk-oppgave`;
+  return await fetchProxy<Oppgave>(url, oppgaveApiScope, 'POST', { oppgaveId, versjon });
 }

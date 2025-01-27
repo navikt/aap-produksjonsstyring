@@ -11,7 +11,7 @@ import { oppgaveBehandlingstyper } from 'lib/utils/behandlingstyper';
 import { oppgaveAvklaringsbehov } from 'lib/utils/avklaringsbehov';
 import { ChevronDownIcon } from '@navikt/aksel-icons';
 import { revalidateMineOppgaver } from 'lib/actions/actions';
-import { avreserverOppgaveClient } from 'lib/services/client';
+import { avreserverOppgaveClient, plukkOppgaveClient } from 'lib/services/client';
 import { ComboboxOption } from '@navikt/ds-react/cjs/form/combobox/types';
 
 interface Props {
@@ -84,12 +84,17 @@ export const OppgaveTabell = ({
     }
     return 0;
   }
-
-  function redirectTilOppgave(oppgave: Oppgave) {
-    if (oppgave) {
-      window.location.assign(buildSaksbehandlingsURL(oppgave));
+  async function plukkOgGåTilOppgave(oppgave: Oppgave) {
+    console.log(oppgave);
+    if (oppgave.id !== undefined && oppgave.id !== null && oppgave.versjon >= 0) {
+      const nesteOppgave = await plukkOppgaveClient(oppgave.id, oppgave.versjon);
+      if (nesteOppgave) {
+        console.log('plukket oppgave:', nesteOppgave);
+        window.location.assign(buildSaksbehandlingsURL(nesteOppgave.avklaringsbehovReferanse));
+      }
     }
   }
+
   return (
     <div>
       {heading && (
@@ -107,6 +112,9 @@ export const OppgaveTabell = ({
           <Table.Row>
             <Table.ColumnHeader sortKey={'saksnummer'} sortable={showSortAndFilters}>
               SaksID
+            </Table.ColumnHeader>
+            <Table.ColumnHeader sortKey={'journalpostId'} sortable={showSortAndFilters}>
+              JournalpostID
             </Table.ColumnHeader>
             <Table.ColumnHeader sortKey={'personNavn'} sortable={showSortAndFilters}>
               Navn
@@ -143,6 +151,7 @@ export const OppgaveTabell = ({
           {filtrerteOppgaver.map((oppgave, i) => (
             <Table.Row key={`oppgave-${i}`}>
               <Table.DataCell>{`${oppgave.saksnummer}`}</Table.DataCell>
+              <Table.DataCell>{`${oppgave.journalpostId}`}</Table.DataCell>
               <Table.DataCell>{`${oppgave.personNavn}`}</Table.DataCell>
               <Table.DataCell>{oppgave.behandlingstype}</Table.DataCell>
               <Table.DataCell>
@@ -152,7 +161,7 @@ export const OppgaveTabell = ({
               <Table.DataCell>
                 <HStack gap={'1'}>
                   {showBehandleKnapp && (
-                    <Button type={'button'} size={'small'} onClick={() => redirectTilOppgave(oppgave)}>
+                    <Button type={'button'} size={'small'} onClick={() => plukkOgGåTilOppgave(oppgave)}>
                       Behandle
                     </Button>
                   )}

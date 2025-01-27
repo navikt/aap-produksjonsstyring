@@ -26,7 +26,7 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
       <VStack gap={'5'}>
         <VelgOppgaveKø køer={køer} valgtKøListener={setAktivKø} enheter={enheter} valgtEnhetListener={setAktivEnhet} />
         {!oppgaverValgtKø.data?.length && <BodyShort>Ingen oppgaver i valgt kø for valgt enhet</BodyShort>}
-        <OppgaveTabell oppgaver={oppgaverValgtKø.data || []} showBehandleKnapp showDropdownActions showSortAndFilters />
+        <OppgaveTabell oppgaver={oppgaverValgtKø.data || []} showBehandleKnapp showSortAndFilters />
       </VStack>
     </Kort>
   );

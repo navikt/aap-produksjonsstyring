@@ -52,6 +52,7 @@ export type AvklaringsbehovReferanse = oppgave['schemas']['no.nav.aap.oppgave.Av
 export type OppgavelisteRequestBody = oppgave['schemas']['no.nav.aap.oppgave.filter.OppgaveS\u00F8kDto'];
 export type NesteOppgaveResponse = oppgave['schemas']['no.nav.aap.oppgave.plukk.NesteOppgaveDto'];
 export type NesteOppgaveRequestBody = oppgave['schemas']['no.nav.aap.oppgave.plukk.FinnNesteOppgaveDto'];
+export type PlukkOppgaveDto = oppgave['schemas']['no.nav.aap.oppgave.plukk.PlukkOppgaveDto'];
 export type OppgavesøkRequestBody = oppgave['schemas']['no.nav.aap.oppgave.filter.TransientFilterDto'];
 
 // typer fra enums
