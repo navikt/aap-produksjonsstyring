@@ -1715,7 +1715,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redocly/openapi-core@npm:^1.27.0":
+"@redocly/openapi-core@npm:^1.27.2":
   version: 1.27.2
   resolution: "@redocly/openapi-core@npm:1.27.2"
   dependencies:
@@ -2602,7 +2602,7 @@ __metadata:
     jsdom: "npm:^25.0.1"
     lint-staged: "npm:^15.4.2"
     next: "npm:15.1.6"
-    openapi-typescript: "npm:7.5.2"
+    openapi-typescript: "npm:7.6.0"
     plotly.js: "npm:^2.35.3"
     prettier: "npm:^3.3.3"
     react: "npm:19.0.0"
@@ -7454,11 +7454,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openapi-typescript@npm:7.5.2":
-  version: 7.5.2
-  resolution: "openapi-typescript@npm:7.5.2"
+"openapi-typescript@npm:7.6.0":
+  version: 7.6.0
+  resolution: "openapi-typescript@npm:7.6.0"
   dependencies:
-    "@redocly/openapi-core": "npm:^1.27.0"
+    "@redocly/openapi-core": "npm:^1.27.2"
     ansi-colors: "npm:^4.1.3"
     change-case: "npm:^5.4.4"
     parse-json: "npm:^8.1.0"
@@ -7468,7 +7468,7 @@ __metadata:
     typescript: ^5.x
   bin:
     openapi-typescript: bin/cli.js
-  checksum: 10c0/12309a2f3832e084c228b0d4ee7667a5a4665dee25573580ec0ff4343b32622d4b75aca9ded7308db128a6189cf76834ad5b993e06e93d6ba5ea7afc47d97562
+  checksum: 10c0/2b1788f3ccf4f7dca3039c1beac2b1234816251759b28f5bae9bd791c9232fe0e9b947d32211da921567ff7a62ed2b1497cb906659b01ce3f03625e80708639c
   languageName: node
   linkType: hard
 
