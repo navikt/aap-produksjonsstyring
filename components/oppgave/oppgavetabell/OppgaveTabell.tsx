@@ -3,7 +3,7 @@
 import { AvklaringsbehovKode, Oppgave } from 'lib/types/types';
 import { Button, Dropdown, Heading, HStack, Loader, SortState, Table } from '@navikt/ds-react';
 import { formaterDato } from 'lib/utils/date';
-import { mapBehovskodeTilBehovstype } from 'lib/utils/oversettelser';
+import { mapBehovskodeTilBehovstype, mapTilOppgaveBehandlingstypeTekst } from 'lib/utils/oversettelser';
 import { buildSaksbehandlingsURL } from 'lib/utils/request';
 import { useMemo, useState } from 'react';
 import { ComboboxControlled } from 'components/comboboxcontrolled/ComboboxControlled';
@@ -153,7 +153,7 @@ export const OppgaveTabell = ({
               <Table.DataCell>{`${oppgave.saksnummer}`}</Table.DataCell>
               <Table.DataCell>{`${oppgave.journalpostId}`}</Table.DataCell>
               <Table.DataCell>{`${oppgave.personNavn}`}</Table.DataCell>
-              <Table.DataCell>{oppgave.behandlingstype}</Table.DataCell>
+              <Table.DataCell>{mapTilOppgaveBehandlingstypeTekst(oppgave.behandlingstype)}</Table.DataCell>
               <Table.DataCell>
                 {mapBehovskodeTilBehovstype(oppgave.avklaringsbehovKode as AvklaringsbehovKode)}
               </Table.DataCell>
