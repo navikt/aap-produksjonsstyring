@@ -87,10 +87,10 @@ export const OppgaveTabell = ({
   async function plukkOgGåTilOppgave(oppgave: Oppgave) {
     console.log(oppgave);
     if (oppgave.id !== undefined && oppgave.id !== null && oppgave.versjon >= 0) {
-      const nesteOppgave = await plukkOppgaveClient(oppgave.id, oppgave.versjon);
-      if (nesteOppgave) {
-        console.log('plukket oppgave:', nesteOppgave);
-        window.location.assign(buildSaksbehandlingsURL(nesteOppgave.avklaringsbehovReferanse));
+      const plukketOppgave = await plukkOppgaveClient(oppgave.id, oppgave.versjon);
+      if (plukketOppgave) {
+        console.log('plukket oppgave:', plukketOppgave);
+        window.location.assign(buildSaksbehandlingsURL(plukketOppgave));
       }
     }
   }

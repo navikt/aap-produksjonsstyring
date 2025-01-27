@@ -117,5 +117,5 @@ export async function plukkNesteOppgaveClient(filterId: number, aktivEnhet: stri
 }
 export async function plukkOppgaveClient(oppgaveId: number, versjon: number) {
   const payload: PlukkOppgaveDto = { oppgaveId, versjon };
-  return await clientFetcher<NesteOppgaveResponse>('/api/oppgave/plukk-oppgave', 'POST', payload);
+  return await clientFetcher<Oppgave>('/api/oppgave/plukk-oppgave', 'POST', payload);
 }
