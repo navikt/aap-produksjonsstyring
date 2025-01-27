@@ -30,6 +30,7 @@ const oppgaveMock: Oppgave[] = [
     opprettetTidspunkt: '09-12-2024',
     enhet: 'NNDD',
     opprettetAv: 'ola',
+    reservertAv: 'egil',
   },
   {
     avklaringsbehovKode: '9003',
@@ -43,6 +44,7 @@ const oppgaveMock: Oppgave[] = [
     opprettetTidspunkt: '09-12-2024',
     enhet: 'NNDD',
     opprettetAv: 'ola',
+    reservertAv: 'trine',
   },
   {
     avklaringsbehovKode: '9003',
@@ -56,6 +58,7 @@ const oppgaveMock: Oppgave[] = [
     opprettetTidspunkt: '09-12-2024',
     enhet: 'NNDD',
     opprettetAv: 'ola',
+    reservertAv: 'tom',
   },
   {
     avklaringsbehovKode: '5001',
@@ -69,6 +72,7 @@ const oppgaveMock: Oppgave[] = [
     opprettetTidspunkt: '09-01-2025',
     enhet: 'HGDI',
     opprettetAv: 'kari',
+    reservertAv: 'jon',
   },
 ];
 

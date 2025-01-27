@@ -110,14 +110,17 @@ export const OppgaveTabell = ({
       >
         <Table.Header>
           <Table.Row>
+            <Table.ColumnHeader sortKey={'personNavn'} sortable={showSortAndFilters}>
+              Navn
+            </Table.ColumnHeader>
+            <Table.ColumnHeader sortKey={'personIdent'} sortable={showSortAndFilters}>
+              Fnr
+            </Table.ColumnHeader>
             <Table.ColumnHeader sortKey={'saksnummer'} sortable={showSortAndFilters}>
               SaksID
             </Table.ColumnHeader>
             <Table.ColumnHeader sortKey={'journalpostId'} sortable={showSortAndFilters}>
               JournalpostID
-            </Table.ColumnHeader>
-            <Table.ColumnHeader sortKey={'personNavn'} sortable={showSortAndFilters}>
-              Navn
             </Table.ColumnHeader>
             <Table.HeaderCell>
               {showSortAndFilters ? (
@@ -142,7 +145,13 @@ export const OppgaveTabell = ({
               )}
             </Table.HeaderCell>
             <Table.ColumnHeader sortKey={'opprettetTidspunkt'} sortable={showSortAndFilters}>
-              Dato opprettet
+              Oppgave opprettet
+            </Table.ColumnHeader>
+            <Table.ColumnHeader sortKey={'behandlingOpprettet'} sortable={showSortAndFilters}>
+              Behandling opprettet
+            </Table.ColumnHeader>
+            <Table.ColumnHeader sortKey={'reservertAv'} sortable={showSortAndFilters}>
+              Reservert av
             </Table.ColumnHeader>
             <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
@@ -150,14 +159,17 @@ export const OppgaveTabell = ({
         <Table.Body>
           {filtrerteOppgaver.map((oppgave, i) => (
             <Table.Row key={`oppgave-${i}`}>
+              <Table.DataCell>{`${oppgave.personNavn}`}</Table.DataCell>
+              <Table.DataCell>{`${oppgave.personIdent}`}</Table.DataCell>
               <Table.DataCell>{`${oppgave.saksnummer}`}</Table.DataCell>
               <Table.DataCell>{`${oppgave.journalpostId}`}</Table.DataCell>
-              <Table.DataCell>{`${oppgave.personNavn}`}</Table.DataCell>
               <Table.DataCell>{mapTilOppgaveBehandlingstypeTekst(oppgave.behandlingstype)}</Table.DataCell>
               <Table.DataCell>
                 {mapBehovskodeTilBehovstype(oppgave.avklaringsbehovKode as AvklaringsbehovKode)}
               </Table.DataCell>
               <Table.DataCell>{formaterDato(oppgave.opprettetTidspunkt)}</Table.DataCell>
+              <Table.DataCell>{formaterDato(oppgave.behandlingOpprettet)}</Table.DataCell>
+              <Table.DataCell>{oppgave.reservertAv || ''}</Table.DataCell>
               <Table.DataCell>
                 <HStack gap={'1'}>
                   {showBehandleKnapp && (
