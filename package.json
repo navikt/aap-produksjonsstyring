@@ -12,8 +12,8 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@navikt/aap-felles-css": "^4.2.7",
-    "@navikt/aap-felles-react": "^4.2.7",
+    "@navikt/aap-felles-css": "^4.2.8",
+    "@navikt/aap-felles-react": "^4.2.8",
     "@navikt/aap-felles-utils": "^2.0.28",
     "@navikt/ds-css": "^7.10.0",
     "@navikt/ds-react": "^7.10.0",
