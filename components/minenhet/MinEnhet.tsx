@@ -1,6 +1,6 @@
 'use client';
 
-import { HStack, VStack } from '@navikt/ds-react';
+import { HGrid, HStack, VStack } from '@navikt/ds-react';
 import { ApneBehandlinger } from 'components/åpnebehandlinger/ÅpneBehandlinger';
 import { BehandlingerInnUt } from 'components/behandlingerinnut/BehandlingerInnUt';
 import { FordelingÅpneBehandlingerPerDag } from 'components/fordelingåpnebehandlingerperdag/FordelingÅpneBehandlingerPerDag';
@@ -23,6 +23,7 @@ import { TypeBehandlinger } from 'components/typebehandlinger/TypeBehandlinger';
 import { ÅrsakTilBehandling } from 'components/årsaktilbehandling/ÅrsakTilBehandling';
 import { AlleFiltereContext } from 'components/allefiltereprovider/AlleFiltereProvider';
 import { ValgteEnheterContext } from 'components/valgteenheterprovider/ValgteEnheterProvider';
+import { FilterSamling } from 'components/filtersamling/FilterSamling';
 
 export const MinEnhet = () => {
   const valgteEnheter = useContext(ValgteEnheterContext);
@@ -63,23 +64,32 @@ export const MinEnhet = () => {
     årsakTilBehandlingClient
   );
   return (
-    <VStack padding={'5'} gap={'5'}>
-      <HStack gap={'4'}>
-        {!behandlingerUtvikling.error && <BehandlingerInnUt behandlingerEndringer={behandlingerUtvikling.data || []} />}
-        {!antallÅpneBehandlinger.error && (
-          <ApneBehandlinger antallPåVent={antallPåVent} åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />
-        )}
-        {!antallÅpneBehandlinger.error && <TypeBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />}
-        {!fordelingÅpneBehandlinger.error && (
-          <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger.data || []} />
-        )}
-        {!fordelingLukkedeBehandlinger.error && (
-          <FordelingLukkedeBehandlingerPerDag fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger.data || []} />
-        )}
-        {!venteÅrsaker.error && <VenteÅrsaker venteÅrsaker={venteÅrsaker.data || []} />}
-        {!behandlingerPerSteggruppe.error && <BehandlingerPerSteggruppe data={behandlingerPerSteggruppe.data || []} />}
-        {!årsakerTilBehandling.error && <ÅrsakTilBehandling årsakTilBehandling={årsakerTilBehandling.data || []} />}
-      </HStack>
-    </VStack>
+    <HGrid columns={'1fr 6fr'}>
+      <FilterSamling />
+      <VStack padding={'5'} gap={'5'}>
+        <HStack gap={'4'}>
+          {!behandlingerUtvikling.error && (
+            <BehandlingerInnUt behandlingerEndringer={behandlingerUtvikling.data || []} />
+          )}
+          {!antallÅpneBehandlinger.error && (
+            <ApneBehandlinger antallPåVent={antallPåVent} åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />
+          )}
+          {!antallÅpneBehandlinger.error && <TypeBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />}
+          {!fordelingÅpneBehandlinger.error && (
+            <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger.data || []} />
+          )}
+          {!fordelingLukkedeBehandlinger.error && (
+            <FordelingLukkedeBehandlingerPerDag
+              fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger.data || []}
+            />
+          )}
+          {!venteÅrsaker.error && <VenteÅrsaker venteÅrsaker={venteÅrsaker.data || []} />}
+          {!behandlingerPerSteggruppe.error && (
+            <BehandlingerPerSteggruppe data={behandlingerPerSteggruppe.data || []} />
+          )}
+          {!årsakerTilBehandling.error && <ÅrsakTilBehandling årsakTilBehandling={årsakerTilBehandling.data || []} />}
+        </HStack>
+      </VStack>
+    </HGrid>
   );
 };
