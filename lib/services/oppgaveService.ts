@@ -80,17 +80,54 @@ export const hentKøer = async (): Promise<Kø[]> => {
   if (isLocal()) {
     return [
       {
-        navn: 'Kø en',
-        id: 0,
-        beskrivelse: 'Beskrivelse for kø en',
-        avklaringsbehovKoder: ['5001', '5012'],
-        // @ts-ignore
-        behandlingstyper: ['KLAGE', 'REVURDERING'],
+        id: 1,
+        navn: 'Alle oppgaver',
+        beskrivelse: 'Alle oppgaver',
+        avklaringsbehovKoder: [],
+        behandlingstyper: [],
+        enheter: [],
+        opprettetAv: 'dsfaslkjf',
+        opprettetTidspunkt: '2024-10-21T09:16:08',
+        endretAv: null,
+        endretTidspunkt: null,
       },
-      // @ts-ignore
-      { navn: 'Kø to', id: 1, beskrivelse: 'Beskrivelse for kø to', behandlingstyper: [], avklaringsbehovKoder: [] },
-      // @ts-ignore
-      { navn: 'Kø tre', id: 3, beskrivelse: 'Beskrivelse for kø tre' },
+      {
+        id: 2,
+        navn: 'Alle oppgaver førstegangsbehandling',
+        beskrivelse: 'Alle oppgaver førstegangsbehandling',
+        avklaringsbehovKoder: [],
+        // @ts-ignore
+        behandlingstyper: ['FØRSTEGANGSBEHANDLING'],
+        enheter: [],
+        opprettetAv: 'fkslfjg',
+        opprettetTidspunkt: '2024-10-21T09:23:53',
+        endretAv: null,
+        endretTidspunkt: null,
+      },
+      {
+        id: 4,
+        navn: 'Kvalitetssikringsoppgaver',
+        beskrivelse: 'Kvalitetssikringsoppgaver',
+        avklaringsbehovKoder: ['5097'],
+        behandlingstyper: [],
+        enheter: [],
+        opprettetAv: 'yyiidd99',
+        opprettetTidspunkt: '2024-12-02T12:31:46.444',
+        endretAv: null,
+        endretTidspunkt: null,
+      },
+      {
+        id: 3,
+        navn: 'Fatte vedtak-steget',
+        beskrivelse: 'Fatte vedtak-steget',
+        avklaringsbehovKoder: ['5097'],
+        behandlingstyper: [],
+        enheter: [],
+        opprettetAv: 'klhsgd',
+        opprettetTidspunkt: '2024-12-02T12:17:37.515',
+        endretAv: 'kflsag',
+        endretTidspunkt: '2024-12-02T12:32:22.442',
+      },
     ];
   }
   const url = `${oppgaveApiBaseURL}/filter`;

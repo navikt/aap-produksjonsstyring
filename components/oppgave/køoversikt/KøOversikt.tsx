@@ -1,7 +1,7 @@
 'use client';
 
 import { AvklaringsbehovKode, Kø, OppgaveBehandlingstype } from 'lib/types/types';
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { Heading, HStack, VStack } from '@navikt/ds-react';
 import { oppgavesokClient } from 'lib/services/client';
 import useSWR from 'swr';
@@ -19,9 +19,6 @@ interface Props {
 export const KøOversikt = ({ køer }: Props) => {
   const [aktivKøId, setAktivKøId] = useState<number>(køer[0]?.id ?? 0);
   const valgtKø = useMemo(() => køer.find((kø) => kø.id === aktivKøId), [køer, aktivKøId]);
-  useMemo(() => {
-    console.log('valgtkø', valgtKø);
-  }, [valgtKø]);
   const behandlingstyperFraValgtKø = (valgtKø?.behandlingstyper || [])
     .map((val: string) => oppgaveBehandlingstyper.find((e) => e.value === val))
     .filter((e) => e !== undefined);
@@ -51,6 +48,16 @@ export const KøOversikt = ({ køer }: Props) => {
     },
     oppgavesokFetcher
   );
+  useEffect(() => {
+    const behandlingstyperOptions = (valgtKø?.behandlingstyper || [])
+      .map((behandlingstype: string) => oppgaveBehandlingstyper.find((e) => e.value === behandlingstype))
+      .filter((e) => e !== undefined);
+    const avklaringsbehovOptions = (valgtKø?.avklaringsbehovKoder || [])
+      .map((avklaringsKode: string) => oppgaveAvklaringsbehov.find((e) => e.value === avklaringsKode))
+      .filter((e) => e !== undefined);
+    setSelectedBehandlingstyper(behandlingstyperOptions);
+    setSelectedAvklaringsbehov(avklaringsbehovOptions);
+  }, [valgtKø]);
   return (
     <VStack gap={'5'}>
       <Heading size={'large'} level={'1'}>
