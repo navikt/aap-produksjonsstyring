@@ -1152,10 +1152,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-css@npm:^4.2.7":
-  version: 4.2.7
-  resolution: "@navikt/aap-felles-css@npm:4.2.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-css%2F4.2.7%2F00a73c58bf36d9e673987e81b843e57b960f3fe3"
-  checksum: 10c0/2c8e9cf8b2fe162b0a704ef776de1a7aba5945b13c84d712eb8ffd7c00a6dfc7b06db537d504cbbea9b2bc1e5c166eb0b97ddc41d1ca8ee5a222875ae40c20d1
+"@navikt/aap-felles-css@npm:^4.2.8":
+  version: 4.2.8
+  resolution: "@navikt/aap-felles-css@npm:4.2.8::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-css%2F4.2.8%2Fe6ea48e3660dee87791fd80d1e35d373cff1bb77"
+  checksum: 10c0/b582c425ad914c1e99142d003484391337ecae35f8c37a6a704ee5266b85c1f034669959ace531d92ed9bb191e47d3f4222ee23f79a3f6a035325f5084b4b63f
   languageName: node
   linkType: hard
 
@@ -1169,9 +1169,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-react@npm:^4.2.7":
-  version: 4.2.7
-  resolution: "@navikt/aap-felles-react@npm:4.2.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-react%2F4.2.7%2F2b323c85e60742cc74f79bf9b9a6254564044248"
+"@navikt/aap-felles-react@npm:^4.2.8":
+  version: 4.2.8
+  resolution: "@navikt/aap-felles-react@npm:4.2.8::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-react%2F4.2.8%2F18187a562ca5d512391b6f3116dfde13f4b50e59"
   dependencies:
     "@navikt/aksel-icons": "npm:^7.5.2"
     "@navikt/ds-css": "npm:^7.5.2"
@@ -1181,7 +1181,7 @@ __metadata:
     react-hook-form: "npm:^7.54.2"
     react-select: "npm:^5.8.3"
     uuid: "npm:^10.0.0"
-  checksum: 10c0/5f7b0464b07fac92491b444e1e5de7a7153f39450821a97ff5bf62f748362130a5a45565cb36f91e8c5bb6bb5b6d53de75ab135a462c3a155440b013e7655e36
+  checksum: 10c0/488d2cd7cf6731df1c12b78ab7cdbd7a1346b118fd407ab41b0d363c83c86192d541c70f6c4183e3fc8d5aa60c495286811895b931e1cec110f247bc41d9bf5f
   languageName: node
   linkType: hard
 
@@ -2564,9 +2564,9 @@ __metadata:
   resolution: "aap-produksjonsstyring@workspace:."
   dependencies:
     "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.374"
-    "@navikt/aap-felles-css": "npm:^4.2.7"
+    "@navikt/aap-felles-css": "npm:^4.2.8"
     "@navikt/aap-felles-prettier": "npm:^2.0.28"
-    "@navikt/aap-felles-react": "npm:^4.2.7"
+    "@navikt/aap-felles-react": "npm:^4.2.8"
     "@navikt/aap-felles-utils": "npm:^2.0.28"
     "@navikt/aap-oppgave-typescript-types": "npm:^0.0.71"
     "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.81"
