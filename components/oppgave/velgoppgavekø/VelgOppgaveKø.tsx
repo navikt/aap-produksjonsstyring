@@ -47,6 +47,7 @@ export const VelgOppgaveKø = ({ køer, valgtKøListener, enheter, valgtEnhetLis
         </VStack>
         <VStack>
           <KøSelect
+            label={'Velg kø du skal jobbe på'}
             køer={køer}
             valgtKøListener={(kø) => {
               setAktivKø(kø);

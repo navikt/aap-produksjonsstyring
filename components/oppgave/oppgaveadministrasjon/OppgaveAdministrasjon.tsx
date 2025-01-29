@@ -3,7 +3,7 @@
 import { OppgaveTabell } from 'components/oppgave/oppgavetabell/OppgaveTabell';
 import { oppgaveBehandlingstyper } from 'lib/utils/behandlingstyper';
 import { Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { oppgaveAvklaringsbehov } from 'lib/utils/avklaringsbehov';
 import useSWR from 'swr';
 import { oppgavesokClient } from 'lib/services/client';
@@ -11,9 +11,14 @@ import { ValgteEnheterContext } from 'components/valgteenheterprovider/ValgteEnh
 import { useSearchParams } from 'next/navigation';
 import { ComboboxControlled } from 'components/comboboxcontrolled/ComboboxControlled';
 import { ComboboxOption } from '@navikt/ds-react/cjs/form/combobox/types';
-import { AvklaringsbehovKode, OppgaveBehandlingstype } from 'lib/types/types';
-
-export const OppgaveAdministrasjon = () => {
+import { AvklaringsbehovKode, Kø, OppgaveBehandlingstype } from 'lib/types/types';
+import { KøSelect } from 'components/oppgave/køselect/KøSelect';
+interface Props {
+  køer: Array<Kø>;
+}
+export const OppgaveAdministrasjon = ({ køer }: Props) => {
+  const [aktivKøId, setAktivKøId] = useState<number>(køer[0]?.id ?? 0);
+  const valgtKø = useMemo(() => køer.find((kø) => kø.id === aktivKøId), [køer, aktivKøId]);
   const searchParams = useSearchParams();
   const behandlingstyperFraUrl = searchParams
     .getAll('behandlingstype')
@@ -27,13 +32,50 @@ export const OppgaveAdministrasjon = () => {
   const [selectedAvklaringsbehov, setSelectedAvklaringsbehov] = useState<ComboboxOption[]>(avklaringsbehovFraUrl);
   const valgteEnheter = useContext(ValgteEnheterContext);
 
-  const oppgavesok = useSWR(`api/oppgave/oppgavesok`, () =>
-    oppgavesokClient(
-      selectedAvklaringsbehov.map((behov) => behov.value as AvklaringsbehovKode),
-      selectedBehandlingstyper.map((type) => type.value as OppgaveBehandlingstype),
+  function oppgavesokFetcher({
+    args,
+  }: {
+    url: string;
+    args: { behandlingstyper: ComboboxOption[]; avklaringsbehov: ComboboxOption[] };
+  }) {
+    return oppgavesokClient(
+      args.avklaringsbehov.map((behov) => behov.value as AvklaringsbehovKode),
+      args.behandlingstyper.map((type) => type.value as OppgaveBehandlingstype),
       valgteEnheter
-    )
+    );
+  }
+  const oppgavesok = useSWR(
+    {
+      url: `api/oppgave/oppgavesok`,
+      args: { behandlingstyper: selectedBehandlingstyper, avklaringsbehov: selectedAvklaringsbehov },
+    },
+    oppgavesokFetcher
   );
+  useEffect(() => {
+    const behandlingstyperOptions = (valgtKø?.behandlingstyper || [])
+      .map((behandlingstype: string) => oppgaveBehandlingstyper.find((e) => e.value === behandlingstype))
+      .filter((e) => e !== undefined);
+    const avklaringsbehovOptions = (valgtKø?.avklaringsbehovKoder || [])
+      .map((avklaringsKode: string) => oppgaveAvklaringsbehov.find((e) => e.value === avklaringsKode))
+      .filter((e) => e !== undefined);
+    setSelectedBehandlingstyper(behandlingstyperOptions);
+    setSelectedAvklaringsbehov(avklaringsbehovOptions);
+  }, [valgtKø]);
+  const isValgtKøEndret = useMemo(() => {
+    const behandlingstyperFraKø = valgtKø?.behandlingstyper || [];
+    const avklaringsbehovkoderFraKø = valgtKø?.avklaringsbehovKoder || [];
+    const behandlingstyperMatch =
+      behandlingstyperFraKø.length === selectedBehandlingstyper.length &&
+      behandlingstyperFraKø.every((behandlingstype) =>
+        selectedBehandlingstyper.find((e) => e.value === behandlingstype)
+      );
+    const avklaringsbehovMatch =
+      avklaringsbehovkoderFraKø.length === selectedAvklaringsbehov.length &&
+      avklaringsbehovkoderFraKø.every((avklaringskode) =>
+        selectedAvklaringsbehov.find((e) => e.value === avklaringskode)
+      );
+    return !behandlingstyperMatch || !avklaringsbehovMatch;
+  }, [valgtKø, selectedBehandlingstyper, selectedAvklaringsbehov]);
 
   return (
     <VStack gap={'5'}>
@@ -41,20 +83,22 @@ export const OppgaveAdministrasjon = () => {
         Oppgavesøk
       </Heading>
       <HStack gap={'3'} wrap>
+        <KøSelect label={'Velg kø'} køer={køer} valgtKøListener={setAktivKøId} />
         <ComboboxControlled
           label={'Behandlingstype'}
           options={oppgaveBehandlingstyper}
-          initialSelectedOptions={selectedBehandlingstyper}
-          onToggleListener={(selectedOptions) => setSelectedBehandlingstyper(selectedOptions)}
+          selectedOptions={selectedBehandlingstyper}
+          setSelectedOptions={setSelectedBehandlingstyper}
         />
         <ComboboxControlled
-          label={'Behandlingstype'}
-          options={oppgaveBehandlingstyper}
-          initialSelectedOptions={selectedAvklaringsbehov}
-          onToggleListener={(selectedOptions) => setSelectedAvklaringsbehov(selectedOptions)}
+          label={'Avklaringsbehov'}
+          options={oppgaveAvklaringsbehov}
+          selectedOptions={selectedAvklaringsbehov}
+          setSelectedOptions={setSelectedAvklaringsbehov}
         />
       </HStack>
-      <HStack>
+      <HStack gap={'5'}>
+        {isValgtKøEndret && <Button size={'small'}>Lagre endringer i kø</Button>}
         <Button size={'small'}>Lagre som ny kø</Button>
       </HStack>
       <OppgaveTabell oppgaver={oppgavesok.data || []} heading={'Oppgaver'} showDropdownActions />

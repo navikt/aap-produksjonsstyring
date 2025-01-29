@@ -127,7 +127,8 @@ export const OppgaveTabell = ({
                 <ComboboxControlled
                   label={'Behandlingstype'}
                   options={oppgaveBehandlingstyper}
-                  onToggleListener={(selectedOptions) => setSelectedBehandlingstyper(selectedOptions)}
+                  selectedOptions={selectedBehandlingstyper}
+                  setSelectedOptions={setSelectedBehandlingstyper}
                 />
               ) : (
                 'Behandlingstype'
@@ -138,7 +139,8 @@ export const OppgaveTabell = ({
                 <ComboboxControlled
                   label={'Avklaringsbehov'}
                   options={oppgaveAvklaringsbehov}
-                  onToggleListener={(selectedOptions) => setSelectedAvklaringsbehov(selectedOptions)}
+                  selectedOptions={selectedAvklaringsbehov}
+                  setSelectedOptions={setSelectedAvklaringsbehov}
                 />
               ) : (
                 'Avklaringsbehov'

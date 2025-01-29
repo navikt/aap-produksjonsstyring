@@ -8,13 +8,14 @@ interface Props {
   køer: Kø[];
   valgtKøListener?: (kø: number) => void;
   defaultAktivKøId?: number;
+  label?: string;
 }
-export const KøSelect = ({ køer, valgtKøListener, defaultAktivKøId }: Props) => {
+export const KøSelect = ({ køer, valgtKøListener, defaultAktivKøId, label }: Props) => {
   const defaultId = defaultAktivKøId ? defaultAktivKøId : (køer[0]?.id ?? 0);
   const [aktivKø, setAktivKø] = useState<number>(defaultId);
   return (
     <Select
-      label="Velg køen du skal jobbe på"
+      label={label || ''}
       size="small"
       value={aktivKø}
       onChange={(event) => {

@@ -79,10 +79,18 @@ const oppgaveMock: Oppgave[] = [
 export const hentKøer = async (): Promise<Kø[]> => {
   if (isLocal()) {
     return [
+      {
+        navn: 'Kø en',
+        id: 0,
+        beskrivelse: 'Beskrivelse for kø en',
+        avklaringsbehovKoder: ['5001', '5012'],
+        // @ts-ignore
+        behandlingstyper: ['KLAGE', 'REVURDERING'],
+      },
       // @ts-ignore
-      { navn: 'Kø en', id: 0, beskrivelse: 'Beskrivelse for kø en' },
+      { navn: 'Kø to', id: 1, beskrivelse: 'Beskrivelse for kø to', behandlingstyper: [], avklaringsbehovKoder: [] },
       // @ts-ignore
-      { navn: 'Kø to', id: 1, beskrivelse: 'Beskrivelse for kø to' },
+      { navn: 'Kø tre', id: 3, beskrivelse: 'Beskrivelse for kø tre' },
     ];
   }
   const url = `${oppgaveApiBaseURL}/filter`;
