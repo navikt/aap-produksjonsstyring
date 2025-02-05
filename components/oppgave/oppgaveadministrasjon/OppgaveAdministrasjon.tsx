@@ -101,7 +101,12 @@ export const OppgaveAdministrasjon = ({ køer }: Props) => {
         {isValgtKøEndret && <Button size={'small'}>Lagre endringer i kø</Button>}
         <Button size={'small'}>Lagre som ny kø</Button>
       </HStack>
-      <OppgaveTabell oppgaver={oppgavesok.data || []} heading={'Oppgaver'} showDropdownActions />
+      <OppgaveTabell
+        oppgaver={oppgavesok.data || []}
+        heading={'Oppgaver'}
+        includeColumns={['reservertAv']}
+        showDropdownActions
+      />
     </VStack>
   );
 };

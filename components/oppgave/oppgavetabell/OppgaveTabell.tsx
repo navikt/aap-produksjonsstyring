@@ -20,6 +20,7 @@ interface Props {
   showBehandleKnapp?: boolean;
   showDropdownActions?: boolean;
   showSortAndFilters?: boolean;
+  includeColumns?: 'reservertAv'[];
 }
 interface ScopedSortState extends SortState {
   orderBy: keyof Oppgave;
@@ -30,6 +31,7 @@ export const OppgaveTabell = ({
   showDropdownActions = false,
   showSortAndFilters = false,
   showBehandleKnapp = false,
+  includeColumns = [],
 }: Props) => {
   const [sort, setSort] = useState<ScopedSortState | undefined>();
   const [loadingID, setLoadingID] = useState<number | null>(null);
@@ -152,9 +154,11 @@ export const OppgaveTabell = ({
             <Table.ColumnHeader sortKey={'behandlingOpprettet'} sortable={showSortAndFilters}>
               Behandling opprettet
             </Table.ColumnHeader>
-            <Table.ColumnHeader sortKey={'reservertAv'} sortable={showSortAndFilters}>
-              Reservert av
-            </Table.ColumnHeader>
+            {includeColumns?.includes('reservertAv') && (
+              <Table.ColumnHeader sortKey={'reservertAv'} sortable={showSortAndFilters}>
+                Reservert av
+              </Table.ColumnHeader>
+            )}
             <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -171,7 +175,7 @@ export const OppgaveTabell = ({
               </Table.DataCell>
               <Table.DataCell>{formaterDato(oppgave.opprettetTidspunkt)}</Table.DataCell>
               <Table.DataCell>{formaterDato(oppgave.behandlingOpprettet)}</Table.DataCell>
-              <Table.DataCell>{oppgave.reservertAv || ''}</Table.DataCell>
+              {includeColumns?.includes('reservertAv') && <Table.DataCell>{oppgave.reservertAv || ''}</Table.DataCell>}
               <Table.DataCell>
                 <HStack gap={'1'}>
                   {showBehandleKnapp && (
