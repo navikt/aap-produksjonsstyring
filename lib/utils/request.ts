@@ -67,7 +67,18 @@ export function hentStatistikkQueryParams(req: NextRequest): StatistikkQueryPara
     enheter,
   };
 }
-export function buildSaksbehandlingsURL(oppgave: Oppgave | AvklaringsbehovReferanse): string {
+function buildSaksbehandlingsURL(oppgave: Oppgave | AvklaringsbehovReferanse): string {
   // @ts-ignore
   return `${process.env.NEXT_PUBLIC_SAKSBEHANDLING_URL}/sak/${oppgave.saksnummer}/${oppgave?.behandlingRef ?? oppgave?.referanse}`;
+}
+function buildPostmottakURL(oppgave: Oppgave | AvklaringsbehovReferanse): string {
+  // @ts-ignore
+  return `${process.env.NEXT_PUBLIC_POSTMOTTAK_URL}/postmottak/${oppgave?.behandlingRef ?? oppgave?.referanse}`;
+}
+export function byggKelvinURL(oppgave: Oppgave | AvklaringsbehovReferanse): string {
+  if (oppgave.journalpostId) {
+    return buildPostmottakURL(oppgave);
+  } else {
+    return buildSaksbehandlingsURL(oppgave);
+  }
 }

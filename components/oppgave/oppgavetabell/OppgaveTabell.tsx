@@ -4,7 +4,6 @@ import { AvklaringsbehovKode, Oppgave } from 'lib/types/types';
 import { Button, Dropdown, Heading, HStack, Loader, SortState, Table } from '@navikt/ds-react';
 import { formaterDato } from 'lib/utils/date';
 import { mapBehovskodeTilBehovstype, mapTilOppgaveBehandlingstypeTekst } from 'lib/utils/oversettelser';
-import { buildSaksbehandlingsURL } from 'lib/utils/request';
 import { useMemo, useState } from 'react';
 import { ComboboxControlled } from 'components/comboboxcontrolled/ComboboxControlled';
 import { oppgaveBehandlingstyper } from 'lib/utils/behandlingstyper';
@@ -13,6 +12,7 @@ import { ChevronDownIcon } from '@navikt/aksel-icons';
 import { revalidateMineOppgaver } from 'lib/actions/actions';
 import { avreserverOppgaveClient, plukkOppgaveClient } from 'lib/services/client';
 import { ComboboxOption } from '@navikt/ds-react/cjs/form/combobox/types';
+import { byggKelvinURL } from 'lib/utils/request';
 
 interface Props {
   heading?: string;
@@ -90,7 +90,7 @@ export const OppgaveTabell = ({
       const plukketOppgave = await plukkOppgaveClient(oppgave.id, oppgave.versjon);
       if (plukketOppgave) {
         console.log('plukket oppgave:', plukketOppgave);
-        window.location.assign(buildSaksbehandlingsURL(plukketOppgave));
+        window.location.assign(byggKelvinURL(plukketOppgave));
       }
     }
   }

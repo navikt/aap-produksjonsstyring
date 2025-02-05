@@ -4,9 +4,9 @@ import { BodyShort, Button, Heading, HStack, Label, VStack } from '@navikt/ds-re
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 import { Enhet, Kø } from 'lib/types/types';
 import { plukkNesteOppgaveClient } from 'lib/services/client';
-import { buildSaksbehandlingsURL } from 'lib/utils/request';
 import { EnhetSelect } from 'components/oppgave/enhetselect/EnhetSelect';
 import { KøSelect } from 'components/oppgave/køselect/KøSelect';
+import { byggKelvinURL } from 'lib/utils/request';
 
 interface Props {
   køer: Kø[];
@@ -23,7 +23,7 @@ export const VelgOppgaveKø = ({ køer, valgtKøListener, enheter, valgtEnhetLis
       const nesteOppgave = await plukkNesteOppgaveClient(aktivKø, aktivEnhet);
       if (nesteOppgave) {
         console.log('plukket oppgave:', nesteOppgave);
-        window.location.assign(buildSaksbehandlingsURL(nesteOppgave.avklaringsbehovReferanse));
+        window.location.assign(byggKelvinURL(nesteOppgave.avklaringsbehovReferanse));
       }
     }
   }
