@@ -9,6 +9,7 @@ import {
   NesteOppgaveResponse,
   Oppgave,
   OppgaveBehandlingstype,
+  OppgavelisteResponse,
 } from 'lib/types/types';
 import {
   NoNavAapOppgaveOppgaveDtoBehandlingstype,
@@ -133,12 +134,15 @@ export const hentKøer = async (): Promise<Kø[]> => {
   const url = `${oppgaveApiBaseURL}/filter`;
   return await fetchProxy<Kø[]>(url, oppgaveApiScope, 'GET');
 };
-export const hentOppgaverForFilter = async (filterId: number): Promise<Oppgave[]> => {
+export const hentOppgaverForFilter = async (filterId: number): Promise<OppgavelisteResponse> => {
   if (isLocal()) {
-    return oppgaveMock;
+    return {
+      antallTotalt: 34,
+      oppgaver: oppgaveMock,
+    };
   }
   const url = `${oppgaveApiBaseURL}/oppgaveliste`;
-  return await fetchProxy<Oppgave[]>(url, oppgaveApiScope, 'POST', { filterId });
+  return await fetchProxy<OppgavelisteResponse>(url, oppgaveApiScope, 'POST', { filterId, maxAntall: 25 });
 };
 export async function hentAntallOppgaver(behandlingstype?: string) {
   if (isLocal())

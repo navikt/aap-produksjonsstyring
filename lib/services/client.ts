@@ -11,6 +11,7 @@ import {
   NesteOppgaveResponse,
   Oppgave,
   OppgaveBehandlingstype,
+  OppgavelisteResponse,
   PlukkOppgaveDto,
   VenteÅrsakOgGjennomsnitt,
 } from 'lib/types/types';
@@ -70,7 +71,7 @@ export async function årsakTilBehandlingClient(url: string) {
 
 // oppgave
 export async function hentOppgaverClient(filterId: number, enheter: string[]) {
-  return clientFetcher<Oppgave[]>('/api/oppgave/oppgaveliste', 'POST', { filterId, enheter });
+  return clientFetcher<OppgavelisteResponse>('/api/oppgave/oppgaveliste', 'POST', { filterId, enheter });
 }
 export async function avreserverOppgaveClient(oppgave: Oppgave) {
   const body: AvklaringsbehovReferanse = {
