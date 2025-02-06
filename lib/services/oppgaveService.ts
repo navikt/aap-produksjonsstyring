@@ -165,12 +165,15 @@ export async function hentAntallOppgaver(behandlingstype?: string) {
   });
 }
 
-export const hentMineOppgaver = async (): Promise<Oppgave[]> => {
+export const hentMineOppgaver = async (): Promise<OppgavelisteResponse> => {
   if (isLocal()) {
-    return oppgaveMock;
+    return {
+      antallTotalt: 12,
+      oppgaver: oppgaveMock,
+    };
   }
   const url = `${oppgaveApiBaseURL}/mine-oppgaver`;
-  return await fetchProxy<Oppgave[]>(url, oppgaveApiScope, 'GET', undefined, 'oppgaveservice/mine-oppgaver');
+  return await fetchProxy<OppgavelisteResponse>(url, oppgaveApiScope, 'GET', undefined, 'oppgaveservice/mine-oppgaver');
 };
 
 export async function hentEnheter() {

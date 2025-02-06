@@ -13,7 +13,7 @@ const Page = async () => {
       <Kort>
         <OppgaveTabell
           heading={'Mine reserverte oppgaver'}
-          oppgaver={mineOppgaver || []}
+          oppgaver={mineOppgaver.oppgaver || []}
           showBehandleKnapp
           showDropdownActions
           showSortAndFilters
