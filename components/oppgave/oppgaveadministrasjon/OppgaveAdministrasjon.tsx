@@ -50,7 +50,7 @@ export const OppgaveAdministrasjon = ({ køer }: Props) => {
       args: { behandlingstyper: selectedBehandlingstyper, avklaringsbehov: selectedAvklaringsbehov },
     },
     oppgavesokFetcher
-  );
+  ).data;
   useEffect(() => {
     const behandlingstyperOptions = (valgtKø?.behandlingstyper || [])
       .map((behandlingstype: string) => oppgaveBehandlingstyper.find((e) => e.value === behandlingstype))
@@ -101,12 +101,14 @@ export const OppgaveAdministrasjon = ({ køer }: Props) => {
         {isValgtKøEndret && <Button size={'small'}>Lagre endringer i kø</Button>}
         <Button size={'small'}>Lagre som ny kø</Button>
       </HStack>
-      <OppgaveTabell
-        oppgaver={oppgavesok.data || []}
-        heading={'Oppgaver'}
-        includeColumns={['reservertAv']}
-        showDropdownActions
-      />
+      {oppgavesok?.type === 'success' && (
+        <OppgaveTabell
+          oppgaver={oppgavesok.data || []}
+          heading={'Oppgaver'}
+          includeColumns={['reservertAv']}
+          showDropdownActions
+        />
+      )}
     </VStack>
   );
 };

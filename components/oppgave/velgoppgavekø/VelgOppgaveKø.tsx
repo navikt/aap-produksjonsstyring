@@ -18,16 +18,21 @@ interface Props {
 export const VelgOppgaveKø = ({ køer, valgtKøListener, enheter, valgtEnhetListener }: Props) => {
   const [aktivKø, setAktivKø] = useState<number>(køer[0]?.id ?? 0);
   const [aktivEnhet, setAktivEnhet] = useState<string | undefined>(enheter[0]?.enhetNr);
+
   async function plukkOgGåTilOppgave() {
     if (aktivEnhet) {
       const nesteOppgave = await plukkNesteOppgaveClient(aktivKø, aktivEnhet);
-      if (nesteOppgave) {
-        console.log('plukket oppgave:', nesteOppgave);
-        window.location.assign(byggKelvinURL(nesteOppgave.avklaringsbehovReferanse));
+      if (nesteOppgave.type === 'success') {
+        if (nesteOppgave.data) {
+          console.log('plukket oppgave:', nesteOppgave);
+          window.location.assign(byggKelvinURL(nesteOppgave.data.avklaringsbehovReferanse));
+        }
       }
     }
   }
+
   const aktivKøBeskrivelse = useMemo(() => køer.find((e) => e.id === aktivKø)?.beskrivelse, [aktivKø, køer]);
+
   return (
     <VStack gap={'4'}>
       <Heading level="2" size="medium">

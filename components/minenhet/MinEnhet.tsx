@@ -40,54 +40,61 @@ export const MinEnhet = () => {
   const antallÅpneBehandlinger = useSWR(
     `/api/statistikk/apne-behandlinger?${behandlingstyperQuery}`,
     antallÅpneBehandlingerPerBehandlingstypeClient
-  );
+  ).data;
   const behandlingerUtvikling = useSWR(
     `/api/statistikk/behandlinger/utvikling?antallDager=${0}&${behandlingstyperQuery}`,
     behandlingerUtviklingClient
-  );
+  ).data;
   const fordelingÅpneBehandlinger = useSWR(
     `/api/statistikk/behandlinger/fordeling-apne-behandlinger?${behandlingstyperQuery}`,
     fordelingÅpneBehandlingerClient
-  );
+  ).data;
   const fordelingLukkedeBehandlinger = useSWR(
     `/api/statistikk/behandlinger/fordeling-lukkede-behandlinger?${behandlingstyperQuery}`,
     fordelingLukkedeBehandlingerClient
-  );
-  const venteÅrsaker = useSWR(`/api/statistikk/behandlinger/pa-vent?${behandlingstyperQuery}`, venteÅrsakerClient);
-  const antallPåVent = venteÅrsaker.data?.map((årsak) => årsak.antall).reduce((acc, curr) => acc + curr, 0);
+  ).data;
+  const venteÅrsaker = useSWR(`/api/statistikk/behandlinger/pa-vent?${behandlingstyperQuery}`, venteÅrsakerClient).data;
+  const antallPåVent =
+    venteÅrsaker && venteÅrsaker.type === 'success'
+      ? venteÅrsaker.data?.map((årsak) => årsak.antall).reduce((acc, curr) => acc + curr, 0)
+      : undefined;
   const behandlingerPerSteggruppe = useSWR(
     `/api/statistikk/behandling-per-steggruppe?${behandlingstyperQuery}`,
     behandlingerPerSteggruppeClient
-  );
+  ).data;
   const årsakerTilBehandling = useSWR(
     `/api/statistikk/behandlinger/arsak-til-behandling?${behandlingstyperQuery}`,
     årsakTilBehandlingClient
-  );
+  ).data;
   return (
     <HGrid columns={'1fr 6fr'}>
       <FilterSamling />
       <VStack padding={'5'} gap={'5'}>
         <HStack gap={'4'}>
-          {!behandlingerUtvikling.error && (
+          {behandlingerUtvikling?.type === 'success' && (
             <BehandlingerInnUt behandlingerEndringer={behandlingerUtvikling.data || []} />
           )}
-          {!antallÅpneBehandlinger.error && (
+          {antallÅpneBehandlinger?.type === 'success' && (
             <ApneBehandlinger antallPåVent={antallPåVent} åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />
           )}
-          {!antallÅpneBehandlinger.error && <TypeBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />}
-          {!fordelingÅpneBehandlinger.error && (
+          {antallÅpneBehandlinger?.type === 'success' && (
+            <TypeBehandlinger åpneOgGjennomsnitt={antallÅpneBehandlinger.data || []} />
+          )}
+          {fordelingÅpneBehandlinger?.type === 'success' && (
             <FordelingÅpneBehandlingerPerDag fordelingÅpneBehandlingerPerDag={fordelingÅpneBehandlinger.data || []} />
           )}
-          {!fordelingLukkedeBehandlinger.error && (
+          {fordelingLukkedeBehandlinger?.type === 'success' && (
             <FordelingLukkedeBehandlingerPerDag
               fordelingLukkedeBehandlinger={fordelingLukkedeBehandlinger.data || []}
             />
           )}
-          {!venteÅrsaker.error && <VenteÅrsaker venteÅrsaker={venteÅrsaker.data || []} />}
-          {!behandlingerPerSteggruppe.error && (
+          {venteÅrsaker?.type === 'success' && <VenteÅrsaker venteÅrsaker={venteÅrsaker.data || []} />}
+          {behandlingerPerSteggruppe?.type === 'success' && (
             <BehandlingerPerSteggruppe data={behandlingerPerSteggruppe.data || []} />
           )}
-          {!årsakerTilBehandling.error && <ÅrsakTilBehandling årsakTilBehandling={årsakerTilBehandling.data || []} />}
+          {årsakerTilBehandling?.type === 'success' && (
+            <ÅrsakTilBehandling årsakTilBehandling={årsakerTilBehandling.data || []} />
+          )}
         </HStack>
       </VStack>
     </HGrid>

@@ -15,28 +15,37 @@ import {
   PlukkOppgaveDto,
   VenteÅrsakOgGjennomsnitt,
 } from 'lib/types/types';
-
+type ClientFetch<T> =
+  | { type: 'loading' }
+  | { type: 'success'; data: T }
+  | { type: 'error'; status: number; message: string };
 export async function clientFetcher<ResponseBody>(
   url: string,
   method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
   body?: object
-): Promise<ResponseBody | undefined> {
+): Promise<ClientFetch<ResponseBody>> {
   try {
     const res = await fetch(url, {
       method,
       body: body && JSON.stringify(body),
     });
 
-    const data = await res.json();
-
     if (res.ok) {
-      return data;
+      const data: ResponseBody = await res.json();
+      return { type: 'success', data };
     } else {
-      console.error(data.message);
-      return data || undefined;
+      return {
+        type: 'error',
+        status: res.status,
+        message: res.statusText,
+      };
     }
-  } catch (e) {
-    throw new Error('Noe gikk galt.');
+  } catch (e: any) {
+    return {
+      type: 'error',
+      status: 5000,
+      message: e?.message,
+    };
   }
 }
 

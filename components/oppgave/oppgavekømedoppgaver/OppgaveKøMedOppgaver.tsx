@@ -20,14 +20,18 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
 
   const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}/${aktivEnhet}`, () =>
     hentOppgaverClient(aktivKø, [aktivEnhet])
-  );
-  console.log('oppgaver', oppgaverValgtKø);
+  ).data;
+
   return (
     <Kort>
       <VStack gap={'5'}>
         <VelgOppgaveKø køer={køer} valgtKøListener={setAktivKø} enheter={enheter} valgtEnhetListener={setAktivEnhet} />
-        {!oppgaverValgtKø.data?.oppgaver?.length && <BodyShort>Ingen oppgaver i valgt kø for valgt enhet</BodyShort>}
-        <OppgaveTabell oppgaver={oppgaverValgtKø.data?.oppgaver || []} showBehandleKnapp showSortAndFilters />
+        {oppgaverValgtKø?.type === 'success' && !oppgaverValgtKø.data?.oppgaver?.length && (
+          <BodyShort>Ingen oppgaver i valgt kø for valgt enhet</BodyShort>
+        )}
+        {oppgaverValgtKø?.type === 'success' && oppgaverValgtKø.data?.oppgaver?.length > 0 && (
+          <OppgaveTabell oppgaver={oppgaverValgtKø.data?.oppgaver || []} showBehandleKnapp showSortAndFilters />
+        )}
       </VStack>
     </Kort>
   );

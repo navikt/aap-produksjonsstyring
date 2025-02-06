@@ -1,7 +1,7 @@
 'use client';
 
 import { AvklaringsbehovKode, Oppgave } from 'lib/types/types';
-import { Button, Dropdown, Heading, HStack, Loader, SortState, Table } from '@navikt/ds-react';
+import { Alert, Button, Dropdown, Heading, HStack, Loader, SortState, Table } from '@navikt/ds-react';
 import { formaterDato } from 'lib/utils/date';
 import { mapBehovskodeTilBehovstype, mapTilOppgaveBehandlingstypeTekst } from 'lib/utils/oversettelser';
 import { useMemo, useState } from 'react';
@@ -33,7 +33,7 @@ export const OppgaveTabell = ({
   showBehandleKnapp = false,
   includeColumns = [],
 }: Props) => {
-  console.log('OppgaveTabell', oppgaver);
+  const [feilmelding, setFeilmelding] = useState<string | undefined>();
   const [sort, setSort] = useState<ScopedSortState | undefined>();
   const [loadingID, setLoadingID] = useState<number | null>(null);
   const [selectedBehandlingstyper, setSelectedBehandlingstyper] = useState<ComboboxOption[]>([]);
@@ -91,15 +91,18 @@ export const OppgaveTabell = ({
     console.log(oppgave);
     if (oppgave.id !== undefined && oppgave.id !== null && oppgave.versjon >= 0) {
       const plukketOppgave = await plukkOppgaveClient(oppgave.id, oppgave.versjon);
-      if (plukketOppgave) {
+      if (plukketOppgave.type === 'success') {
         console.log('plukket oppgave:', plukketOppgave);
-        window.location.assign(byggKelvinURL(plukketOppgave));
+        window.location.assign(byggKelvinURL(plukketOppgave.data));
+      } else if (plukketOppgave.type === 'error') {
+        setFeilmelding(plukketOppgave.message);
       }
     }
   }
 
   return (
     <div>
+      {feilmelding && <Alert variant={'error'}>{feilmelding}</Alert>}
       {heading && (
         <Heading size={'medium'} level={'2'} spacing>
           {heading}

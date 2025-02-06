@@ -47,7 +47,7 @@ export const KøOversikt = ({ køer }: Props) => {
       args: { behandlingstyper: selectedBehandlingstyper, avklaringsbehov: selectedAvklaringsbehov },
     },
     oppgavesokFetcher
-  );
+  ).data;
   useEffect(() => {
     const behandlingstyperOptions = (valgtKø?.behandlingstyper || [])
       .map((behandlingstype: string) => oppgaveBehandlingstyper.find((e) => e.value === behandlingstype))
@@ -78,7 +78,9 @@ export const KøOversikt = ({ køer }: Props) => {
           setSelectedOptions={setSelectedAvklaringsbehov}
         />
       </HStack>
-      <OppgaveTabell oppgaver={oppgavesok.data || []} heading={'Oppgaver'} showDropdownActions />
+      {oppgavesok?.type === 'success' && (
+        <OppgaveTabell oppgaver={oppgavesok.data || []} heading={'Oppgaver'} showDropdownActions />
+      )}
     </VStack>
   );
 };
