@@ -21,6 +21,7 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
   const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}/${aktivEnhet}`, () =>
     hentOppgaverClient(aktivKø, [aktivEnhet])
   );
+  console.log('oppgaver', oppgaverValgtKø);
   return (
     <Kort>
       <VStack gap={'5'}>

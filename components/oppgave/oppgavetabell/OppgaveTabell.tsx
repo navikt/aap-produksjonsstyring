@@ -33,6 +33,7 @@ export const OppgaveTabell = ({
   showBehandleKnapp = false,
   includeColumns = [],
 }: Props) => {
+  console.log('OppgaveTabell', oppgaver);
   const [sort, setSort] = useState<ScopedSortState | undefined>();
   const [loadingID, setLoadingID] = useState<number | null>(null);
   const [selectedBehandlingstyper, setSelectedBehandlingstyper] = useState<ComboboxOption[]>([]);
