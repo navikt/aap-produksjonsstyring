@@ -30,7 +30,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-plotly.js": "^2.6.0",
-    "swr": "^2.3.0"
+    "swr": "^2.3.2"
   },
   "devDependencies": {
     "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.424",
