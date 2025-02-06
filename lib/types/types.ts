@@ -1,7 +1,7 @@
 import {
   components as statistikk,
   NoNavAapStatistikkProduksjonsstyringBehandlingPerSteggruppeSteggruppe,
-  PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper,
+  paths,
 } from '@navikt/aap-statistikk-typescript-types';
 import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
 import { components as postmottak } from '@navikt/aap-postmottak-backend-typescript-types';
@@ -32,8 +32,9 @@ export type BehandlingÅrsakAntallGjennomsnitt =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.BehandlingAarsakAntallGjennomsnitt'];
 // typer fra enums
 export type Steggruppe = `${NoNavAapStatistikkProduksjonsstyringBehandlingPerSteggruppeSteggruppe}`;
-export type BehandlingstyperRequestQuery =
-  `${PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper}`;
+export type BehandlingstyperRequestQuery = `${NonNullable<
+  NonNullable<paths['/behandlingstid']['get']['parameters']['query']>['behandlingstyper']
+>[number]}`;
 
 // behandlingsflyt
 export type BehandlingsFlytAvklaringsbehovKode =

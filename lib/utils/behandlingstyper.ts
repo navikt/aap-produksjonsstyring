@@ -1,7 +1,7 @@
-import { PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper } from '@navikt/aap-statistikk-typescript-types';
 import { exhaustiveCheck } from 'lib/utils/typescript';
 import { BehandlingstyperRequestQuery } from 'lib/types/types';
 import { NoNavAapOppgaveOppgaveDtoBehandlingstype } from '@navikt/aap-oppgave-typescript-types';
+import { PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper } from '@navikt/aap-statistikk-typescript-types';
 
 export const oppgaveBehandlingstyper = Object.keys(
   NoNavAapOppgaveOppgaveDtoBehandlingstype as unknown as keyof (typeof NoNavAapOppgaveOppgaveDtoBehandlingstype)[]
