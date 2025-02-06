@@ -1215,10 +1215,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-statistikk-typescript-types@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@navikt/aap-statistikk-typescript-types@npm:0.1.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-statistikk-typescript-types%2F0.1.3%2Fd2e84bcd70e1f3eeeb000252f70805babe191944"
-  checksum: 10c0/a76b72a485f1fa26efa7ea48a458e96a51148752256f6fe0cd80bac0888c5eae05aeb5ac390a2c10cb77ae945f4639a3e52a6277ba1a19782f54eac4a4c3fd20
+"@navikt/aap-statistikk-typescript-types@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "@navikt/aap-statistikk-typescript-types@npm:0.1.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-statistikk-typescript-types%2F0.1.6%2F89dc6a060c842d51c7474c5660b0640166aea57c"
+  checksum: 10c0/3509ce83d1a431ed82e575230c60a151cb4550b38e790ce594c467140b770bd91857977784136ebcbdd2850531d2c9b611672beb5580097581e31b1f649e3ae2
   languageName: node
   linkType: hard
 
@@ -2540,7 +2540,7 @@ __metadata:
     "@navikt/aap-felles-utils": "npm:^2.0.28"
     "@navikt/aap-oppgave-typescript-types": "npm:^0.0.82"
     "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.101"
-    "@navikt/aap-statistikk-typescript-types": "npm:^0.1.3"
+    "@navikt/aap-statistikk-typescript-types": "npm:^0.1.6"
     "@navikt/ds-css": "npm:^7.11.0"
     "@navikt/ds-react": "npm:^7.11.0"
     "@navikt/eslint-config-aap": "npm:^1.9.7"
