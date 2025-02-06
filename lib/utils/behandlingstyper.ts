@@ -1,4 +1,4 @@
-import { PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper } from 'lib/types/schema-statistikk';
+import { PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper } from '@navikt/aap-statistikk-typescript-types';
 import { exhaustiveCheck } from 'lib/utils/typescript';
 import { BehandlingstyperRequestQuery } from 'lib/types/types';
 import { NoNavAapOppgaveOppgaveDtoBehandlingstype } from '@navikt/aap-oppgave-typescript-types';
@@ -39,6 +39,10 @@ const behandlingsTypeAlternativerFraEnum = Object.keys(
         return 'Revurdering';
       case 'Klage':
         return 'Klage';
+      case 'Dokumenth_ndtering':
+        return 'Dokumenthåndtering';
+      case 'Journalf_ring':
+        return 'Journalføring';
     }
     exhaustiveCheck(key);
   });

@@ -2,7 +2,7 @@ import {
   components as statistikk,
   NoNavAapStatistikkProduksjonsstyringBehandlingPerSteggruppeSteggruppe,
   PathsBehandlingstidLukkedeSisteDagerAntallDagerGetParametersQueryBehandlingstyper,
-} from 'lib/types/schema-statistikk';
+} from '@navikt/aap-statistikk-typescript-types';
 import { components as behandlingsflyt } from '@navikt/aap-behandlingsflyt-typescript-types';
 import { components as postmottak } from '@navikt/aap-postmottak-backend-typescript-types';
 import {
@@ -13,17 +13,17 @@ import {
 
 // statistikk
 export type BehandlingstidPerDagDTO =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$BehandlingstidPerDagDTO`'];
+  statistikk['schemas']['no.nav.aap.statistikk.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$BehandlingstidPerDagDTO`'];
 export type BehandlingPerAvklaringsbehov =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.BehandlingPerAvklaringsbehov'];
 export type BehandlingEndringerPerDag =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$BehandlinEndringerPerDag`'];
+  statistikk['schemas']['no.nav.aap.statistikk.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$BehandlinEndringerPerDag`'];
 export type AntallÅpneOgGjennomsnitt =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$Antall\u00C5pneOgTypeOgGjennomsnittsalder`'];
+  statistikk['schemas']['no.nav.aap.statistikk.api.`ProduksjonsstyringApiKt$hentBehandlingstidPerDag$Antall\u00C5pneOgTypeOgGjennomsnittsalder`'];
 export type FordelingÅpneBehandlinger =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.Fordeling\u00C5pneBehandlinger'];
+  statistikk['schemas']['no.nav.aap.statistikk.api.Fordeling\u00C5pneBehandlinger'];
 export type FordelingLukkedeBehandlinger =
-  statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.api.FordelingLukkedeBehandlinger'];
+  statistikk['schemas']['no.nav.aap.statistikk.api.FordelingLukkedeBehandlinger'];
 export type VenteÅrsakOgGjennomsnitt =
   statistikk['schemas']['no.nav.aap.statistikk.produksjonsstyring.Vente\u00E5rsakOgGjennomsnitt'];
 export type BehandlingPerSteggruppe =
