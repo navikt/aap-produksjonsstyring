@@ -21,6 +21,7 @@ interface Props {
   showDropdownActions?: boolean;
   showSortAndFilters?: boolean;
   includeColumns?: 'reservertAv'[];
+  isLoading?: boolean;
 }
 interface ScopedSortState extends SortState {
   orderBy: keyof Oppgave;
@@ -32,6 +33,7 @@ export const OppgaveTabell = ({
   showSortAndFilters = false,
   showBehandleKnapp = false,
   includeColumns = [],
+  isLoading = false,
 }: Props) => {
   const [feilmelding, setFeilmelding] = useState<string | undefined>();
   const [sort, setSort] = useState<ScopedSortState | undefined>();
@@ -107,6 +109,11 @@ export const OppgaveTabell = ({
         <Heading size={'medium'} level={'2'} spacing>
           {heading}
         </Heading>
+      )}
+      {isLoading && (
+        <HStack justify={'center'}>
+          <Loader size={'2xlarge'} />
+        </HStack>
       )}
       <Table
         size={'small'}

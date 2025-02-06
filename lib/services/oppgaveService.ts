@@ -142,7 +142,7 @@ export const hentOppgaverForFilter = async (filterId: number): Promise<Oppgaveli
     };
   }
   const url = `${oppgaveApiBaseURL}/oppgaveliste`;
-  return await fetchProxy<OppgavelisteResponse>(url, oppgaveApiScope, 'POST', { filterId, maxAntall: 25 });
+  return await fetchProxy<OppgavelisteResponse>(url, oppgaveApiScope, 'POST', { filterId, maxAntall: 10 });
 };
 export async function hentAntallOppgaver(behandlingstype?: string) {
   if (isLocal())
