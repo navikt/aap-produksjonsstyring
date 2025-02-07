@@ -5,27 +5,27 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
   switch (kode) {
     //Behandlingsflyt
     case '5001':
-      return 'Avklar student (§ 11-14)';
+      return '§ 11-14 Student';
     case '5003':
-      return 'Avklar sykdom (§ 11-5)';
+      return '§ 11-5 Nedsatt arbeidsevne';
     case '5004':
-      return 'Vurdering av etablert og uutnyttet arbeidsevne (§ 11-23)';
+      return '§ 11-23 Arbeidsevne som ikke er utnyttet';
     case '5005':
-      return 'Fritak meldeplikt (§ 11-10)';
+      return '§ 11-10 Fritak fra meldeplikt';
     case '5006':
-      return 'Avklar bistandsbehov (§ 11-6)';
+      return '§ 11-6 Behov for bistand';
     case '5007':
-      return 'Vurder sykepengeerstatning (§ 11 -13)';
+      return '§ 11-13 Sykepengeerstatning';
     case '5008':
-      return 'Fastsett beregningstidspunkt';
+      return '§ 11-19 Beregningstidspunkt';
     case '5009':
-      return 'Avklar barnetillegg';
+      return '§ 11-20 Barnetillegg';
     case '5098':
       return 'Foreslå vedtak';
     case '5099':
-      return 'Fatte vedtak';
+      return 'Beslutte sak';
     case '5097':
-      return 'Kvalitetssikring';
+      return 'Kvalitetssikre sak';
     case '9001':
       return 'Manuelt satt på vent';
     case '9002':
@@ -33,17 +33,17 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
     case '9003':
       return 'Bestill legeerklæring';
     case '5010':
-      return 'Avklar soningsvurdering';
+      return '§ 11-26 Soning';
     case '5011':
-      return 'Avklar helseinstitusjon';
+      return '§ 11-25 Helseinstitusjon';
     case '5012':
       return 'Avklar samordning gradering';
     case '5013':
-      return 'Avklar yrkesskade';
+      return '§ 11-22 Yrkesskade';
     case '5014':
       return 'Fastsett yrkesskadebeløp';
     case '5015':
-      return 'Effektuer 11-17';
+      return '§ 11-17 AAP som arbeidssøker';
     case '5016':
       return 'Forhåndsvarsel aktivitetsplikt';
     case '5017':
