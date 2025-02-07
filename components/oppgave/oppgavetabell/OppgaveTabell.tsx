@@ -130,10 +130,7 @@ export const OppgaveTabell = ({
               Fnr
             </Table.ColumnHeader>
             <Table.ColumnHeader sortKey={'saksnummer'} sortable={showSortAndFilters}>
-              SaksID
-            </Table.ColumnHeader>
-            <Table.ColumnHeader sortKey={'journalpostId'} sortable={showSortAndFilters}>
-              JournalpostID
+              SaksID / JournalpostID
             </Table.ColumnHeader>
             <Table.HeaderCell>
               {showSortAndFilters ? (
@@ -178,8 +175,7 @@ export const OppgaveTabell = ({
             <Table.Row key={`oppgave-${i}`}>
               <Table.DataCell>{`${oppgave.personNavn}`}</Table.DataCell>
               <Table.DataCell>{`${oppgave.personIdent}`}</Table.DataCell>
-              <Table.DataCell>{`${oppgave.saksnummer}`}</Table.DataCell>
-              <Table.DataCell>{`${oppgave.journalpostId}`}</Table.DataCell>
+              <Table.DataCell>{`${oppgave.saksnummer || oppgave.journalpostId}`}</Table.DataCell>
               <Table.DataCell>{mapTilOppgaveBehandlingstypeTekst(oppgave.behandlingstype)}</Table.DataCell>
               <Table.DataCell>
                 {mapBehovskodeTilBehovstype(oppgave.avklaringsbehovKode as AvklaringsbehovKode)}
