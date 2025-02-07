@@ -134,7 +134,7 @@ export const hentKøer = async (): Promise<Kø[]> => {
   const url = `${oppgaveApiBaseURL}/filter`;
   return await fetchProxy<Kø[]>(url, oppgaveApiScope, 'GET');
 };
-export const hentOppgaverForFilter = async (filterId: number): Promise<OppgavelisteResponse> => {
+export const hentOppgaverForFilter = async (filterId: number, enheter: string[]): Promise<OppgavelisteResponse> => {
   if (isLocal()) {
     return {
       antallTotalt: 34,
@@ -142,7 +142,7 @@ export const hentOppgaverForFilter = async (filterId: number): Promise<Oppgaveli
     };
   }
   const url = `${oppgaveApiBaseURL}/oppgaveliste`;
-  return await fetchProxy<OppgavelisteResponse>(url, oppgaveApiScope, 'POST', { filterId, maxAntall: 10 });
+  return await fetchProxy<OppgavelisteResponse>(url, oppgaveApiScope, 'POST', { filterId, enheter, maxAntall: 10 });
 };
 export async function hentAntallOppgaver(behandlingstype?: string) {
   if (isLocal())
