@@ -90,7 +90,6 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
           <OppgaveTabell
             oppgaver={oppgaverValgtKø?.data?.data?.oppgaver || []}
             showBehandleKnapp
-            showSortAndFilters
             isLoading={oppgaverValgtKø.isLoading || oppgaverValgtKø.isValidating}
           />
         )}
