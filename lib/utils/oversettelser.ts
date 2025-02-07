@@ -47,7 +47,7 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
     case '5016':
       return 'Forhåndsvarsel aktivitetsplikt';
     case '5017':
-      return 'Avklar lovvalg for medlemskap';
+      return '$ 11-2 Lovvalg og medlemskap';
     case '5050':
       return 'Skriv brev';
     case '5018':
