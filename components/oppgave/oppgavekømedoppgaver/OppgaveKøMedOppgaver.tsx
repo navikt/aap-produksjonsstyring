@@ -91,7 +91,7 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
             oppgaver={oppgaverValgtKø?.data?.data?.oppgaver || []}
             showBehandleKnapp
             showSortAndFilters
-            isLoading={oppgaverValgtKø.isLoading}
+            isLoading={oppgaverValgtKø.isLoading || oppgaverValgtKø.isValidating}
           />
         )}
       </VStack>
