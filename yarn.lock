@@ -1145,10 +1145,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.459":
-  version: 0.0.459
-  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.459::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.459%2F410ec2ad5b65d85b050c0cdf56ca76a3b85c13ef"
-  checksum: 10c0/3c564019b690d7809d616c61a39b93cf902060cd1c7c9b551bcd2f8f840d6475645b54ef1b81a481ab2d50398cd8e16212cc4228c36d544681370599bf0e6a49
+"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.461":
+  version: 0.0.461
+  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.461::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.461%2Fa87468d1ace90bd1e68e6dc8f98d56cd4f884a07"
+  checksum: 10c0/9ab711880f5606a16480e713c3225dcc71bdd2174c361567ab00dd1014f6b88899e2666c6dde0b05eab55d3a740309efc05117f823b2487e90a8abc5a7db769d
   languageName: node
   linkType: hard
 
@@ -2533,7 +2533,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aap-produksjonsstyring@workspace:."
   dependencies:
-    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.459"
+    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.461"
     "@navikt/aap-felles-css": "npm:^4.3.1"
     "@navikt/aap-felles-prettier": "npm:^2.0.28"
     "@navikt/aap-felles-react": "npm:^4.3.1"
