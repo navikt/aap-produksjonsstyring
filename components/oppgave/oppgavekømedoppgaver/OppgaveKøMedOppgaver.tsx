@@ -25,10 +25,6 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
     hentOppgaverClient(aktivKø, [aktivEnhet])
   );
 
-  // DEBUG
-  console.log('enheter', enheter);
-  console.log('køer', køer);
-
   async function plukkOgGåTilOppgave() {
     if (aktivEnhet) {
       const nesteOppgave = await plukkNesteOppgaveClient(aktivKø, aktivEnhet);
