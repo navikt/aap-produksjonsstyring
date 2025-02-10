@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { Enhet, Kø } from 'lib/types/types';
 import { OppgaveTabell } from 'components/oppgave/oppgavetabell/OppgaveTabell';
 import useSWR from 'swr';
-import { BodyShort, Button, Heading, HStack, Label, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, HStack, Label, VStack } from '@navikt/ds-react';
 import { Kort } from 'components/kort/Kort';
 import { hentOppgaverClient, plukkNesteOppgaveClient } from 'lib/services/client';
 import { EnhetSelect } from 'components/oppgave/enhetselect/EnhetSelect';
@@ -24,6 +24,10 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
   const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}/${aktivEnhet}`, () =>
     hentOppgaverClient(aktivKø, [aktivEnhet])
   );
+
+  // DEBUG
+  console.log('enheter', enheter);
+  console.log('køer', køer);
 
   async function plukkOgGåTilOppgave() {
     if (aktivEnhet) {
@@ -83,6 +87,12 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
             </Button>
           </HStack>
         </VStack>
+        {oppgaverValgtKø?.data?.type === 'error' && (
+          <Alert
+            variant={'error'}
+            title={'Feil'}
+          >{`Status ${oppgaverValgtKø?.data?.status}, msg: ${oppgaverValgtKø?.data?.message}`}</Alert>
+        )}
         {oppgaverValgtKø?.data?.type === 'success' && !oppgaverValgtKø?.data?.data?.oppgaver?.length && (
           <BodyShort>Ingen oppgaver i valgt kø for valgt enhet</BodyShort>
         )}
