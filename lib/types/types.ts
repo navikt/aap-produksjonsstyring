@@ -40,6 +40,8 @@ export type BehandlingstyperRequestQuery = `${NonNullable<
 export type BehandlingsFlytAvklaringsbehovKode =
   behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.kontrakt.avklaringsbehov.Definisjon']['kode'];
 export type VenteÅrsak = behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.flyt.SettP\u00E5VentRequest']['grunn'];
+export type SaksInfo =
+  behandlingsflyt['schemas']['no.nav.aap.behandlingsflyt.sakogbehandling.sak.flate.UtvidetSaksinfoDTO'];
 
 // postmottak
 export type PostmottakAvklaringsbehovKode =
