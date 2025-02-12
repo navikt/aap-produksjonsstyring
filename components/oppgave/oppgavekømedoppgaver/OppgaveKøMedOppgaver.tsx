@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { Enhet, Kø } from 'lib/types/types';
 import { OppgaveTabell } from 'components/oppgave/oppgavetabell/OppgaveTabell';
 import useSWR from 'swr';
-import { Alert, BodyShort, Button, Heading, HStack, Label, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, HStack, Label, Loader, Skeleton, VStack } from '@navikt/ds-react';
 import { Kort } from 'components/kort/Kort';
 import { hentOppgaverClient, plukkNesteOppgaveClient } from 'lib/services/client';
 import { EnhetSelect } from 'components/oppgave/enhetselect/EnhetSelect';
@@ -76,6 +76,11 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
                 <BodyShort spacing>{oppgaverValgtKø?.data?.data.antallTotalt}</BodyShort>
               )}
             </VStack>
+            {oppgaverValgtKø.isValidating && (
+              <VStack justify={'center'}>
+                <Loader size={'2xlarge'} />
+              </VStack>
+            )}
           </HStack>
           <HStack>
             <Button size="small" onClick={() => plukkOgGåTilOppgave()}>
@@ -92,12 +97,17 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
         {oppgaverValgtKø?.data?.type === 'success' && !oppgaverValgtKø?.data?.data?.oppgaver?.length && (
           <BodyShort>Ingen oppgaver i valgt kø for valgt enhet</BodyShort>
         )}
+        {oppgaverValgtKø?.data?.type !== 'success' && oppgaverValgtKø?.data?.type !== 'error' && (
+          <VStack gap={'1'}>
+            <Skeleton variant="rectangle" width="100%" height={40} />
+            <Skeleton variant="rectangle" width="100%" height={40} />
+            <Skeleton variant="rectangle" width="100%" height={40} />
+            <Skeleton variant="rectangle" width="100%" height={40} />
+            <Skeleton variant="rectangle" width="100%" height={40} />
+          </VStack>
+        )}
         {oppgaverValgtKø?.data?.type === 'success' && oppgaverValgtKø?.data?.data?.oppgaver?.length > 0 && (
-          <OppgaveTabell
-            oppgaver={oppgaverValgtKø?.data?.data?.oppgaver || []}
-            showBehandleKnapp
-            isLoading={oppgaverValgtKø.isLoading || oppgaverValgtKø.isValidating}
-          />
+          <OppgaveTabell oppgaver={oppgaverValgtKø?.data?.data?.oppgaver || []} showBehandleKnapp />
         )}
       </VStack>
     </Kort>
