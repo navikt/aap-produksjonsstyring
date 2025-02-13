@@ -48,6 +48,8 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
       return 'Forhåndsvarsel aktivitetsplikt';
     case '5017':
       return '$ 11-2 Lovvalg og medlemskap';
+    case '5019':
+      return 'Venter på utenlandsoverføring';
     case '5050':
       return 'Skriv brev';
     case '5018':
@@ -81,6 +83,8 @@ export function mapTilVenteÅrsakTekst(årsak: VenteÅrsak): string {
       return 'Venter på svar fra bruker';
     case 'VENTER_PÅ_MASKINELL_AVKLARING':
       return 'Venter på maskinell avklaring';
+    case 'VENTER_PÅ_UTENLANDSK_VIDEREFORING_AVKLARING':
+      return 'Venter på videreføring av sak til utenlandsk trygdemyndighet';
   }
   exhaustiveCheck(årsak);
 }
