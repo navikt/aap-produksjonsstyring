@@ -18,6 +18,7 @@ interface Props {
 
 export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
   const [aktivKø, setAktivKø] = useState<number>(køer[0]?.id ?? 0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [aktivEnhet, setAktivEnhet] = useState<string>(enheter[0]?.enhetNr ?? '');
   const aktivKøBeskrivelse = useMemo(() => køer.find((e) => e.id === aktivKø)?.beskrivelse, [aktivKø, køer]);
 
@@ -26,6 +27,7 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
   );
 
   async function plukkOgGåTilOppgave() {
+    setIsLoading(true);
     if (aktivEnhet) {
       const nesteOppgave = await plukkNesteOppgaveClient(aktivKø, aktivEnhet);
       if (nesteOppgave.type === 'success') {
@@ -35,6 +37,7 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
         }
       }
     }
+    setIsLoading(false);
   }
 
   return (
@@ -84,7 +87,14 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
           </HStack>
           <HStack>
             <Button size="small" onClick={() => plukkOgGåTilOppgave()}>
-              Behandle neste oppgave
+              <HStack gap={'2'}>
+                Behandle neste oppgave
+                {isLoading && (
+                  <VStack justify={'center'}>
+                    <Loader />
+                  </VStack>
+                )}
+              </HStack>
             </Button>
           </HStack>
         </VStack>

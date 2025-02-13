@@ -92,6 +92,7 @@ export const OppgaveTabell = ({
   async function plukkOgGåTilOppgave(oppgave: Oppgave) {
     console.log(oppgave);
     if (oppgave.id !== undefined && oppgave.id !== null && oppgave.versjon >= 0) {
+      setLoadingID(oppgave.id);
       const plukketOppgave = await plukkOppgaveClient(oppgave.id, oppgave.versjon);
       if (plukketOppgave.type === 'success') {
         console.log('plukket oppgave:', plukketOppgave);
@@ -99,6 +100,7 @@ export const OppgaveTabell = ({
       } else if (plukketOppgave.type === 'error') {
         setFeilmelding(plukketOppgave.message);
       }
+      setLoadingID(null);
     }
   }
 
@@ -187,7 +189,7 @@ export const OppgaveTabell = ({
                 <HStack gap={'1'}>
                   {showBehandleKnapp && (
                     <Button type={'button'} size={'small'} onClick={() => plukkOgGåTilOppgave(oppgave)}>
-                      Behandle
+                      {loadingID === oppgave.id ? <Loader /> : 'Behandle'}
                     </Button>
                   )}
                   {showDropdownActions && (
@@ -204,7 +206,6 @@ export const OppgaveTabell = ({
                             }}
                           >
                             Frigi oppgave
-                            {loadingID === oppgave.id && <Loader />}
                           </Dropdown.Menu.GroupedList.Item>
                         </Dropdown.Menu.GroupedList>
                       </Dropdown.Menu>
