@@ -164,6 +164,9 @@ export const OppgaveTabell = ({
             <Table.ColumnHeader sortKey={'behandlingOpprettet'} sortable={showSortAndFilters}>
               Behandling opprettet
             </Table.ColumnHeader>
+            <Table.ColumnHeader sortKey={'veileder'} sortable={showSortAndFilters}>
+              Veileder
+            </Table.ColumnHeader>
             {includeColumns?.includes('reservertAv') && (
               <Table.ColumnHeader sortKey={'reservertAv'} sortable={showSortAndFilters}>
                 Reservert av
@@ -184,6 +187,7 @@ export const OppgaveTabell = ({
               </Table.DataCell>
               <Table.DataCell>{formaterDato(oppgave.opprettetTidspunkt)}</Table.DataCell>
               <Table.DataCell>{formaterDato(oppgave.behandlingOpprettet)}</Table.DataCell>
+              <Table.DataCell>{oppgave.veileder}</Table.DataCell>
               {includeColumns?.includes('reservertAv') && <Table.DataCell>{oppgave.reservertAv || ''}</Table.DataCell>}
               <Table.DataCell>
                 <HStack gap={'1'}>

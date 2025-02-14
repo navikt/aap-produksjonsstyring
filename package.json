@@ -32,9 +32,9 @@
     "swr": "^2.3.2"
   },
   "devDependencies": {
-    "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.498",
+    "@navikt/aap-behandlingsflyt-typescript-types": "^0.0.503",
     "@navikt/aap-felles-prettier": "^2.0.28",
-    "@navikt/aap-oppgave-typescript-types": "^0.0.92",
+    "@navikt/aap-oppgave-typescript-types": "^0.0.93",
     "@navikt/aap-postmottak-backend-typescript-types": "^0.0.116",
     "@navikt/aap-statistikk-typescript-types": "^0.1.7",
     "@navikt/eslint-config-aap": "^1.9.7",
