@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { Enhet, Kø } from 'lib/types/types';
 import { OppgaveTabell } from 'components/oppgave/oppgavetabell/OppgaveTabell';
 import useSWR from 'swr';
-import { Alert, BodyShort, Button, Heading, HStack, Label, Loader, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, HStack, Label, Loader, Skeleton, Switch, VStack } from '@navikt/ds-react';
 import { Kort } from 'components/kort/Kort';
 import { hentOppgaverClient, plukkNesteOppgaveClient } from 'lib/services/client';
 import { EnhetSelect } from 'components/oppgave/enhetselect/EnhetSelect';
@@ -20,10 +20,11 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
   const [aktivKø, setAktivKø] = useState<number>(køer[0]?.id ?? 0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [aktivEnhet, setAktivEnhet] = useState<string>(enheter[0]?.enhetNr ?? '');
+  const [veilederFilter, setVeilederFilter] = useState<string>('');
   const aktivKøBeskrivelse = useMemo(() => køer.find((e) => e.id === aktivKø)?.beskrivelse, [aktivKø, køer]);
 
-  const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}/${aktivEnhet}`, () =>
-    hentOppgaverClient(aktivKø, [aktivEnhet])
+  const oppgaverValgtKø = useSWR(`api/oppgave/oppgaveliste/${aktivKø}/${aktivEnhet}/${veilederFilter}`, () =>
+    hentOppgaverClient(aktivKø, [aktivEnhet], veilederFilter === 'veileder')
   );
 
   async function plukkOgGåTilOppgave() {
@@ -78,6 +79,15 @@ export const OppgaveKøMedOppgaver = ({ køer, enheter }: Props) => {
               {oppgaverValgtKø?.data?.type === 'success' && (
                 <BodyShort spacing>{oppgaverValgtKø?.data?.data.antallTotalt}</BodyShort>
               )}
+            </VStack>
+            <VStack>
+              <Switch
+                value="veileder"
+                checked={veilederFilter === 'veileder'}
+                onChange={(e) => setVeilederFilter((x) => (x ? '' : e.target.value))}
+              >
+                Vis kun oppgaver jeg er veileder på
+              </Switch>
             </VStack>
             {oppgaverValgtKø.isValidating && (
               <VStack justify={'center'}>

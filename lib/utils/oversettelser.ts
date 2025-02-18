@@ -50,6 +50,8 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
       return '§ 11-2 Lovvalg og medlemskap';
     case '5019':
       return 'Venter på utenlandsoverføring';
+    case '5020':
+      return 'Forutgående medlemskap';
     case '5050':
       return 'Skriv brev';
     case '5018':

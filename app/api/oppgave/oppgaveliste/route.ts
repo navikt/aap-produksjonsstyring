@@ -8,10 +8,12 @@ export async function POST(req: NextRequest) {
     return new Response(JSON.stringify({ message: 'filterId mangler', status: 400 }), { status: 400 });
   } else if (!data.enheter) {
     return new Response(JSON.stringify({ message: 'enheter mangler', status: 400 }), { status: 400 });
+  } else if (data.veileder === undefined || data.veileder === null) {
+    return new Response(JSON.stringify({ message: 'veileder mangler', status: 400 }), { status: 400 });
   }
 
   try {
-    const result = await hentOppgaverForFilter(data.filterId, data.enheter);
+    const result = await hentOppgaverForFilter(data.filterId, data.enheter, data.veileder);
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     logError(`/api/oppgave/oppgaveliste`, error);

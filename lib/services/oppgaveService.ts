@@ -135,11 +135,16 @@ export const hentKøer = async (): Promise<Kø[]> => {
   const url = `${oppgaveApiBaseURL}/filter`;
   return await fetchProxy<Kø[]>(url, oppgaveApiScope, 'GET');
 };
-export const hentOppgaverForFilter = async (filterId: number, enheter: string[]): Promise<OppgavelisteResponse> => {
+export const hentOppgaverForFilter = async (
+  filterId: number,
+  enheter: string[],
+  veileder: boolean
+): Promise<OppgavelisteResponse> => {
   const payload: OppgavelisteRequest = {
     filterId,
     enheter,
     maxAntall: 10,
+    veileder,
   };
   if (isLocal()) {
     return {

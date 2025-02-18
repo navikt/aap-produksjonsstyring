@@ -79,8 +79,8 @@ export async function årsakTilBehandlingClient(url: string) {
 }
 
 // oppgave
-export async function hentOppgaverClient(filterId: number, enheter: string[]) {
-  return clientFetcher<OppgavelisteResponse>('/api/oppgave/oppgaveliste', 'POST', { filterId, enheter });
+export async function hentOppgaverClient(filterId: number, enheter: string[], veileder: boolean) {
+  return clientFetcher<OppgavelisteResponse>('/api/oppgave/oppgaveliste', 'POST', { filterId, enheter, veileder });
 }
 export async function avreserverOppgaveClient(oppgave: Oppgave) {
   const body: AvklaringsbehovReferanse = {
