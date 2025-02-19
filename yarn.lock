@@ -1145,27 +1145,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.523":
-  version: 0.0.523
-  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.523::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.523%2Ff23a50f1a1ebbe56637f92a92650e80ed34fba78"
-  checksum: 10c0/7750f1ec8f480a5c1978acb6759ac8f41168ff7fbf4bf223e22fa7a69ac437f213f91f90aeed714dd000db6f76feb55db6c6f3d28c6f66e3f1bf0381f4e31a74
+"@navikt/aap-behandlingsflyt-typescript-types@npm:^0.0.530":
+  version: 0.0.530
+  resolution: "@navikt/aap-behandlingsflyt-typescript-types@npm:0.0.530::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-behandlingsflyt-typescript-types%2F0.0.530%2Ffa06d343501f27499ca9103e6b8f164c742dc3f4"
+  checksum: 10c0/a17f2b53e492de5752661fa6a7d5776a9f04ba2a0ea4a8a4b74185b2e0eee14026e0daf14157d2aded1f3af683de09ac32bc48fcf349c1cc14d062ab1c0d6ded
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-css@npm:^4.3.4":
-  version: 4.3.4
-  resolution: "@navikt/aap-felles-css@npm:4.3.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-css%2F4.3.4%2F9407c2ffd8966b052b83e4d8483ceefd52232167"
-  checksum: 10c0/fe71f3be6b9994fdd6df82c65315fdb3623db7cf588427d0b738e38916f10e581194b629c51b4bcdb41e154cbd24578dc2847b5da9fe5afd3e495c287f5d5302
+"@navikt/aap-felles-css@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@navikt/aap-felles-css@npm:5.0.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-css%2F5.0.2%2F72f902d14e71aa1d0ab725c29b10a69427d7ff80"
+  checksum: 10c0/dbc2ab16b0c973791361dcb0c79b90bed890d0b0e7d10e908bc493e6ffd62aaaa00eab0b431d3c404d6970bcfe733dd3cbcc5d5eae2e1900404cd05376022c5e
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-prettier@npm:^2.0.28":
-  version: 2.0.28
-  resolution: "@navikt/aap-felles-prettier@npm:2.0.28::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-prettier%2F2.0.28%2F252678786dd523913c3db0764991c4ece80a493d"
+"@navikt/aap-felles-prettier@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@navikt/aap-felles-prettier@npm:5.0.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-prettier%2F5.0.2%2F6810a9d4ce46bd2d48eb903e0bf5e213d3fd7e94"
   dependencies:
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
     prettier: "npm:^3.3.3"
-  checksum: 10c0/ca8dea03e51d3d276fbb0648c128aac1a63e8cbee5f4991435583f7724f1826f1c496deb110a1af57b42885ad11ca1b2b36c3db15065a222b302201f40d8fa51
+  checksum: 10c0/052c2381df63d6d5e082afa415fe5b69c8d4e014e7b5fb3e0a820eb8f3027ef05aefb453683a7ff5e70dff68b2c0b9b8047e06585a852d82420844c6a887a87d
   languageName: node
   linkType: hard
 
@@ -1185,9 +1185,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-felles-utils@npm:^2.0.28":
-  version: 2.0.28
-  resolution: "@navikt/aap-felles-utils@npm:2.0.28::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-utils%2F2.0.28%2F81b575b1692e8f94a73ea6e7c79dd946bb8bd572"
+"@navikt/aap-felles-utils@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@navikt/aap-felles-utils@npm:5.0.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-felles-utils%2F5.0.2%2Fac37a7a91e918734a780bd9fd81fb3c2ba11f340"
   dependencies:
     "@navikt/oasis": "npm:^3.4.0"
     axios: "npm:^1.7.7"
@@ -1197,7 +1197,7 @@ __metadata:
     pino: "npm:^9.4.0"
     prom-client: "npm:^15.1.3"
     server-only: "npm:^0.0.1"
-  checksum: 10c0/4ed39517bef499219de4a62a8bdb889e27b816d8dff4b9c67a84cc17b1b539333aba84da89f221d91e5922fec2e449ee02206fb0625cd2eb402cbfd07f898f90
+  checksum: 10c0/ded50ac8c4bf6e9a908305bc18816fabbb77f47e5814e2c4399b9f0f59be6010c730d9df8d53f5a5573d9eb207cca44af0cda9bf32b1dc43791ebee053a3b007
   languageName: node
   linkType: hard
 
@@ -1215,10 +1215,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aap-statistikk-typescript-types@npm:^0.1.7":
-  version: 0.1.7
-  resolution: "@navikt/aap-statistikk-typescript-types@npm:0.1.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-statistikk-typescript-types%2F0.1.7%2F95e9ddd9344533e1d6d2af855224ce699aa42bcf"
-  checksum: 10c0/25c5cb057158e31ce83c2a356033d43209b192148770b175389870ff4721b9821254872d97b4703935a182dcf50efd0d7abbfae4759d6a69f56922a73f6cf4c0
+"@navikt/aap-statistikk-typescript-types@npm:^0.1.19":
+  version: 0.1.19
+  resolution: "@navikt/aap-statistikk-typescript-types@npm:0.1.19::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faap-statistikk-typescript-types%2F0.1.19%2Fd014e67f8a112c9abb1e2854e322be13e273dc44"
+  checksum: 10c0/a161a5243059d36b76a228c4ac0e379169659d0958b21efb898e00ef523ae72d9fec535cbd8f9982c77ae421daac8f8db281d9586a8c0e7a1e3a20873c714ec9
   languageName: node
   linkType: hard
 
@@ -1229,28 +1229,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^7.12.2":
-  version: 7.12.2
-  resolution: "@navikt/aksel-icons@npm:7.12.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.12.2%2Fa6ed5460e486ea663a6a0f0effb9d73e0031affc"
-  checksum: 10c0/af8d968432e62f59b2a69e622297317ff32b2e81f79001406fb57d6049ea8f19f90ba2b3bfbf6dab9f41a738031e027bd36aadc8c0e53d57535e657c2b51e197
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-css@npm:7.13.0":
+"@navikt/ds-css@npm:7.13.0, @navikt/ds-css@npm:^7.13.0":
   version: 7.13.0
   resolution: "@navikt/ds-css@npm:7.13.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F7.13.0%2F208180e5bb9f3c344913c7e96ac40256325b1bd3"
   checksum: 10c0/579242095ddf8c3532f76a6c2e12b723aa4f8965266d470e67af8bef742e6232fd9e23ac6bd2b78070f3dbbbb3896ea6b1c318876ba170cbc532709135417b1e
   languageName: node
   linkType: hard
 
-"@navikt/ds-css@npm:^7.12.2":
-  version: 7.12.2
-  resolution: "@navikt/ds-css@npm:7.12.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F7.12.2%2F4a5bba4799ef7a201c782015a01e7f7ee343e866"
-  checksum: 10c0/22224239e41a543a61a8c80e7e7f8c028d570088a9bc15cfb2c6e6096f2d70fe10240c3b03d899f4d953f551f48eee13040a329f22dd456197ababb72d36b142
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-react@npm:7.13.0":
+"@navikt/ds-react@npm:7.13.0, @navikt/ds-react@npm:^7.13.0":
   version: 7.13.0
   resolution: "@navikt/ds-react@npm:7.13.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F7.13.0%2F0aa70adf19e75769246a25fdf8487fe0dbfa3f0d"
   dependencies:
@@ -1265,31 +1251,6 @@ __metadata:
     "@types/react": ">=17.0.30"
     react: ">=17.0.0 || >19.0.0-rc"
   checksum: 10c0/35e646e25baa98cb50ff178316f234c4c80319a30f4582bfb27e5a6b95df1ff7d6c02215968bb9a7868ba87d2c3e5097460419d93c47af2dc5317649781b6873
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-react@npm:^7.12.2":
-  version: 7.12.2
-  resolution: "@navikt/ds-react@npm:7.12.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F7.12.2%2F16d52d4941f1c793b1ddb6d65473485a09ddce69"
-  dependencies:
-    "@floating-ui/react": "npm:0.25.4"
-    "@floating-ui/react-dom": "npm:^2.0.9"
-    "@navikt/aksel-icons": "npm:^7.12.2"
-    "@navikt/ds-tokens": "npm:^7.12.2"
-    clsx: "npm:^2.1.0"
-    date-fns: "npm:^3.0.0"
-    react-day-picker: "npm:8.10.1"
-  peerDependencies:
-    "@types/react": ">=17.0.30"
-    react: ">=17.0.0 || >19.0.0-rc"
-  checksum: 10c0/1803b8fee9e5bc697e46588ce518b6384856febb9f661da390f1f3e8c4f363d77e1ffdc13fa93e97840c64dbb41992fa6779c1c243e1205c450027cfdb1245a3
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-tokens@npm:^7.12.2":
-  version: 7.12.2
-  resolution: "@navikt/ds-tokens@npm:7.12.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tokens%2F7.12.2%2F7c20adc3b0e0b24697750f3672bd089366704355"
-  checksum: 10c0/612bebc2a2b13f06872bc5ba99e69d734111ddaccae80605482ef07e048aab7538beaaacec941c3242c59f14c1ab2abf570e6b3d5c1b4eebd789d40f4964c6fe
   languageName: node
   linkType: hard
 
@@ -1518,12 +1479,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/api-logs@npm:0.57.1, @opentelemetry/api-logs@npm:^0.57.1":
-  version: 0.57.1
-  resolution: "@opentelemetry/api-logs@npm:0.57.1"
+"@opentelemetry/api-logs@npm:0.57.2, @opentelemetry/api-logs@npm:^0.57.2":
+  version: 0.57.2
+  resolution: "@opentelemetry/api-logs@npm:0.57.2"
   dependencies:
     "@opentelemetry/api": "npm:^1.3.0"
-  checksum: 10c0/e2a86c5b72ae5c6050408150a3a67af88e5cacab327003c8f38a5f493d5f197d7b8ada21642c81aabc0918031f593d42cb9faa02294db1ef6a66f0f5d181c2f5
+  checksum: 10c0/1e514d3fd4ca68e7e8b008794a95ee0562a5d9e1d3ebb02647b245afaa6c2d72cc14e99e3ea47a1d1007f8a965c62bfb6170e1aa26756230bea063cfde2898bf
   languageName: node
   linkType: hard
 
@@ -1545,11 +1506,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation@npm:^0.57.1":
-  version: 0.57.1
-  resolution: "@opentelemetry/instrumentation@npm:0.57.1"
+"@opentelemetry/instrumentation@npm:^0.57.2":
+  version: 0.57.2
+  resolution: "@opentelemetry/instrumentation@npm:0.57.2"
   dependencies:
-    "@opentelemetry/api-logs": "npm:0.57.1"
+    "@opentelemetry/api-logs": "npm:0.57.2"
     "@types/shimmer": "npm:^1.2.0"
     import-in-the-middle: "npm:^1.8.1"
     require-in-the-middle: "npm:^7.1.1"
@@ -1557,7 +1518,7 @@ __metadata:
     shimmer: "npm:^1.2.1"
   peerDependencies:
     "@opentelemetry/api": ^1.3.0
-  checksum: 10c0/d09e90584e218f8c4127ba680c3643e7167cb15af5a94581220e70e03938a9738f661a9f6aa0e7dc78f50f1ff8d2fdfcc9f9cd6252bcfd226b40553bc9399e1e
+  checksum: 10c0/79ca65b66357665d19f89da7027da25ea1c6b55ecdacb0a99534923743c80deb9282870db563de8ae284b13e7e0aab8413efa1937f199deeaef069e07c7e4875
   languageName: node
   linkType: hard
 
@@ -1573,16 +1534,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/sdk-logs@npm:^0.57.1":
-  version: 0.57.1
-  resolution: "@opentelemetry/sdk-logs@npm:0.57.1"
+"@opentelemetry/sdk-logs@npm:^0.57.2":
+  version: 0.57.2
+  resolution: "@opentelemetry/sdk-logs@npm:0.57.2"
   dependencies:
-    "@opentelemetry/api-logs": "npm:0.57.1"
+    "@opentelemetry/api-logs": "npm:0.57.2"
     "@opentelemetry/core": "npm:1.30.1"
     "@opentelemetry/resources": "npm:1.30.1"
   peerDependencies:
     "@opentelemetry/api": ">=1.4.0 <1.10.0"
-  checksum: 10c0/d8f2617894a9008b99bc9237692cf915509e86884081a945564d236e41bd5036e1b84a2907a3b359bfeaa850967ae7c8e296b7c20f12960f1e8e72773b9e3ac6
+  checksum: 10c0/dda61cf656a93d2f5ef1ca0495db59bfa33efc8ca7ee11018850a9ff78ee0459fb0393e70be7ae5d3cd084e0652d36fbf5778c7b3e9028c6668f9bf0d6c9473e
   languageName: node
   linkType: hard
 
@@ -2086,12 +2047,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20":
-  version: 20.17.0
-  resolution: "@types/node@npm:20.17.0"
+"@types/node@npm:^22.13.4":
+  version: 22.13.4
+  resolution: "@types/node@npm:22.13.4"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10c0/ccab7800a679e11a47bb66dca2a6b944b6a0abaee0ef0972569c880c32e6399f3d4155e11df480bf18bf0e61f80db65b8b11bf08bd5ee4bf96fac01953c6ede1
+    undici-types: "npm:~6.20.0"
+  checksum: 10c0/3a234fa7766a3efc382cf81f66f474c26cdab2f54f43f757634c81c0444eb2160c2dabbde9741e4983078a318a88515b65416b5f1ab5478548579d7b3ead1d95
   languageName: node
   linkType: hard
 
@@ -2533,29 +2494,29 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aap-produksjonsstyring@workspace:."
   dependencies:
-    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.523"
-    "@navikt/aap-felles-css": "npm:^4.3.4"
-    "@navikt/aap-felles-prettier": "npm:^2.0.28"
+    "@navikt/aap-behandlingsflyt-typescript-types": "npm:^0.0.530"
+    "@navikt/aap-felles-css": "npm:^5.0.2"
+    "@navikt/aap-felles-prettier": "npm:^5.0.2"
     "@navikt/aap-felles-react": "npm:^5.0.2"
-    "@navikt/aap-felles-utils": "npm:^2.0.28"
+    "@navikt/aap-felles-utils": "npm:^5.0.2"
     "@navikt/aap-oppgave-typescript-types": "npm:^0.0.95"
     "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.124"
-    "@navikt/aap-statistikk-typescript-types": "npm:^0.1.7"
-    "@navikt/ds-css": "npm:^7.12.2"
-    "@navikt/ds-react": "npm:^7.12.2"
+    "@navikt/aap-statistikk-typescript-types": "npm:^0.1.19"
+    "@navikt/ds-css": "npm:^7.13.0"
+    "@navikt/ds-react": "npm:^7.13.0"
     "@navikt/eslint-config-aap": "npm:^1.9.7"
     "@opentelemetry/api": "npm:^1.9.0"
-    "@opentelemetry/api-logs": "npm:^0.57.1"
-    "@opentelemetry/instrumentation": "npm:^0.57.1"
+    "@opentelemetry/api-logs": "npm:^0.57.2"
+    "@opentelemetry/instrumentation": "npm:^0.57.2"
     "@opentelemetry/resources": "npm:^1.30.1"
-    "@opentelemetry/sdk-logs": "npm:^0.57.1"
+    "@opentelemetry/sdk-logs": "npm:^0.57.2"
     "@opentelemetry/sdk-metrics": "npm:^1.30.1"
     "@opentelemetry/sdk-trace-base": "npm:^1.30.1"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/react": "npm:^16.2.0"
     "@testing-library/user-event": "npm:^14.6.1"
-    "@types/node": "npm:^20"
+    "@types/node": "npm:^22.13.4"
     "@types/plotly.js": "npm:^2"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
@@ -9635,10 +9596,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
-  version: 6.19.8
-  resolution: "undici-types@npm:6.19.8"
-  checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
+"undici-types@npm:~6.20.0":
+  version: 6.20.0
+  resolution: "undici-types@npm:6.20.0"
+  checksum: 10c0/68e659a98898d6a836a9a59e6adf14a5d799707f5ea629433e025ac90d239f75e408e2e5ff086afc3cace26f8b26ee52155293564593fbb4a2f666af57fc59bf
   languageName: node
   linkType: hard
 
