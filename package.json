@@ -42,7 +42,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^20",
+    "@types/node": "^22.13.4",
     "@types/plotly.js": "^2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -68,5 +68,8 @@
     "*.{js,ts,tsx}": "eslint --cache --fix",
     "*.{js,ts,tsx,css,md}": "prettier --write"
   },
-  "packageManager": "yarn@4.5.1"
+  "packageManager": "yarn@4.5.1",
+  "engines": {
+    "node": "22.x"
+  }
 }
