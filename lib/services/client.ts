@@ -80,7 +80,11 @@ export async function årsakTilBehandlingClient(url: string) {
 
 // oppgave
 export async function hentOppgaverClient(filterId: number, enheter: string[], veileder: boolean) {
-  return clientFetcher<OppgavelisteResponse>('/api/oppgave/oppgaveliste', 'POST', { filterId, enheter, veileder });
+  return clientFetcher<OppgavelisteResponse>('/oppgave/api/oppgave/oppgaveliste', 'POST', {
+    filterId,
+    enheter,
+    veileder,
+  });
 }
 export async function avreserverOppgaveClient(oppgave: Oppgave) {
   const body: AvklaringsbehovReferanse = {
@@ -89,7 +93,7 @@ export async function avreserverOppgaveClient(oppgave: Oppgave) {
     saksnummer: oppgave.saksnummer,
     referanse: oppgave.behandlingRef,
   };
-  return clientFetcher('/api/oppgave/avreserver', 'POST', body);
+  return clientFetcher('/oppgave/api/oppgave/avreserver', 'POST', body);
 }
 
 export async function oppgavesokClient(
@@ -97,7 +101,7 @@ export async function oppgavesokClient(
   behandlingstyper: OppgaveBehandlingstype[],
   enheter: string[]
 ) {
-  return clientFetcher<Oppgave[]>('/api/oppgave/oppgavesok', 'POST', {
+  return clientFetcher<Oppgave[]>('/oppgave/api/oppgave/oppgavesok', 'POST', {
     avklaringsbehovKoder,
     behandlingstyper,
     enheter,
@@ -123,9 +127,9 @@ export async function oppgavesokClient(
 
 export async function plukkNesteOppgaveClient(filterId: number, aktivEnhet: string) {
   const payload: NesteOppgaveRequestBody = { filterId, enheter: [aktivEnhet || ''] };
-  return await clientFetcher<NesteOppgaveResponse>('/api/oppgave/neste', 'POST', payload);
+  return await clientFetcher<NesteOppgaveResponse>('/oppgave/api/oppgave/neste', 'POST', payload);
 }
 export async function plukkOppgaveClient(oppgaveId: number, versjon: number) {
   const payload: PlukkOppgaveDto = { oppgaveId, versjon };
-  return await clientFetcher<Oppgave>('/api/oppgave/plukk-oppgave', 'POST', payload);
+  return await clientFetcher<Oppgave>('/oppgave/api/oppgave/plukk-oppgave', 'POST', payload);
 }
