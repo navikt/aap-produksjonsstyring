@@ -38,32 +38,35 @@ export const MinEnhet = () => {
   );
 
   const antallÅpneBehandlinger = useSWR(
-    `/api/statistikk/apne-behandlinger?${behandlingstyperQuery}`,
+    `/oppgave/api/statistikk/apne-behandlinger?${behandlingstyperQuery}`,
     antallÅpneBehandlingerPerBehandlingstypeClient
   ).data;
   const behandlingerUtvikling = useSWR(
-    `/api/statistikk/behandlinger/utvikling?antallDager=${0}&${behandlingstyperQuery}`,
+    `/oppgave/api/statistikk/behandlinger/utvikling?antallDager=${0}&${behandlingstyperQuery}`,
     behandlingerUtviklingClient
   ).data;
   const fordelingÅpneBehandlinger = useSWR(
-    `/api/statistikk/behandlinger/fordeling-apne-behandlinger?${behandlingstyperQuery}`,
+    `/oppgave/api/statistikk/behandlinger/fordeling-apne-behandlinger?${behandlingstyperQuery}`,
     fordelingÅpneBehandlingerClient
   ).data;
   const fordelingLukkedeBehandlinger = useSWR(
-    `/api/statistikk/behandlinger/fordeling-lukkede-behandlinger?${behandlingstyperQuery}`,
+    `/oppgave/api/statistikk/behandlinger/fordeling-lukkede-behandlinger?${behandlingstyperQuery}`,
     fordelingLukkedeBehandlingerClient
   ).data;
-  const venteÅrsaker = useSWR(`/api/statistikk/behandlinger/pa-vent?${behandlingstyperQuery}`, venteÅrsakerClient).data;
+  const venteÅrsaker = useSWR(
+    `/oppgave/api/statistikk/behandlinger/pa-vent?${behandlingstyperQuery}`,
+    venteÅrsakerClient
+  ).data;
   const antallPåVent =
     venteÅrsaker && venteÅrsaker.type === 'success'
       ? venteÅrsaker.data?.map((årsak) => årsak.antall).reduce((acc, curr) => acc + curr, 0)
       : undefined;
   const behandlingerPerSteggruppe = useSWR(
-    `/api/statistikk/behandling-per-steggruppe?${behandlingstyperQuery}`,
+    `/oppgave/api/statistikk/behandling-per-steggruppe?${behandlingstyperQuery}`,
     behandlingerPerSteggruppeClient
   ).data;
   const årsakerTilBehandling = useSWR(
-    `/api/statistikk/behandlinger/arsak-til-behandling?${behandlingstyperQuery}`,
+    `/oppgave/api/statistikk/behandlinger/arsak-til-behandling?${behandlingstyperQuery}`,
     årsakTilBehandlingClient
   ).data;
   return (
