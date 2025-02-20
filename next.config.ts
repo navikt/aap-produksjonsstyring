@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  trailingSlash: true,
   basePath: '/oppgave',
   /* config options here */
   output: 'standalone',
