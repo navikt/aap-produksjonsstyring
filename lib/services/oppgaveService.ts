@@ -263,5 +263,5 @@ export async function oppgaveTekstSøk(søketekst: string) {
     ];
   }
   const url = `${oppgaveApiBaseURL}/sok`;
-  return await fetchProxy<Array<unknown>>(url, oppgaveApiScope, 'POST', { søketekst });
+  return await fetchProxy<Array<Oppgave>>(url, oppgaveApiScope, 'POST', { søketekst });
 }

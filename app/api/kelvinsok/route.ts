@@ -3,6 +3,7 @@ import { logError } from '@navikt/aap-felles-utils';
 import { SaksInfo } from 'lib/types/types';
 import { finnSakerForIdent } from 'lib/services/behandlingsflytservice';
 import { oppgaveTekstSøk } from 'lib/services/oppgaveService';
+import { byggKelvinURL } from 'lib/utils/request';
 
 export interface SøkeResultat {
   oppgaver?: {
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
   try {
     const oppgaver = await oppgaveTekstSøk(søketekst);
     if (oppgaver) {
-      oppgaveData = oppgaver.map((oppgave: unknown) => ({
+      oppgaveData = oppgaver.map((oppgave) => ({
         href: byggKelvinURL(oppgave),
         // @ts-ignore
         label: `${oppgave.avklaringsbehovKode} - ${oppgave.behandlingstype}`,
@@ -56,20 +57,4 @@ export async function POST(req: Request) {
   return NextResponse.json(data, {
     status: 200,
   });
-}
-function buildSaksbehandlingsURL(oppgave: unknown): string {
-  // @ts-ignore
-  return `${process.env.NEXT_PUBLIC_SAKSBEHANDLING_URL}/sak/${oppgave.saksnummer}/${oppgave?.behandlingRef ?? oppgave?.referanse}`;
-}
-function buildPostmottakURL(oppgave: unknown): string {
-  // @ts-ignore
-  return `${process.env.NEXT_PUBLIC_POSTMOTTAK_URL}/postmottak/${oppgave?.behandlingRef ?? oppgave?.referanse}`;
-}
-export function byggKelvinURL(oppgave: unknown): string {
-  // @ts-ignore
-  if (oppgave.journalpostId) {
-    return buildPostmottakURL(oppgave);
-  } else {
-    return buildSaksbehandlingsURL(oppgave);
-  }
 }
