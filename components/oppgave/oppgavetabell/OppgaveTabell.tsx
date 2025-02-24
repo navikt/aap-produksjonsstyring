@@ -132,7 +132,7 @@ export const OppgaveTabell = ({
               Fnr
             </Table.ColumnHeader>
             <Table.ColumnHeader sortKey={'saksnummer'} sortable={showSortAndFilters}>
-              SaksID / JournalpostID
+              Sak/Journal ID
             </Table.ColumnHeader>
             <Table.HeaderCell>
               {showSortAndFilters ? (
@@ -159,10 +159,10 @@ export const OppgaveTabell = ({
               )}
             </Table.HeaderCell>
             <Table.ColumnHeader sortKey={'opprettetTidspunkt'} sortable={showSortAndFilters}>
-              Oppgave opprettet
+              Oppg. opprettet
             </Table.ColumnHeader>
             <Table.ColumnHeader sortKey={'behandlingOpprettet'} sortable={showSortAndFilters}>
-              Behandling opprettet
+              Beh. opprettet
             </Table.ColumnHeader>
             <Table.ColumnHeader sortKey={'veileder'} sortable={showSortAndFilters}>
               Veileder
