@@ -129,6 +129,14 @@ export function mapTilSteggruppeTekst(steggruppe: string) {
       return 'Brev';
     case 'UDEFINERT':
       return 'Udefinert';
+    case 'AVKLAR_TEMA':
+      return 'Avklar tema';
+    case 'AVKLAR_SAK':
+      return 'Avklar sak';
+    case 'DIGITALISER':
+      return 'Digitaliser';
+    case 'OVERLEVER_TIL_FAGSYSTEM':
+      return 'Send til fagsystem';
     default:
       return `${steggruppe}`;
   }
