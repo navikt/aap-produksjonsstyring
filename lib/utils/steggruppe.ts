@@ -17,4 +17,8 @@ export const steggruppeRekkefølge = [
   'BREV',
   'IVERKSETT_VEDTAK,',
   'UDEFINERT',
+  'AVKLAR_TEMA',
+  'AVKLAR_SAK',
+  'DIGITALISER',
+  'OVERLEVER_TIL_FAGSYSTEM',
 ].toReversed();

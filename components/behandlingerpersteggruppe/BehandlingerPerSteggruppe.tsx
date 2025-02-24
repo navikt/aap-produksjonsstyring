@@ -26,6 +26,17 @@ export const BehandlingerPerSteggruppe = ({ data }: Props) => {
     },
     []
   );
+  const ukjenteSteg: BehandlingPerSteggruppe[] = data.reduce(
+    (acc: BehandlingPerSteggruppe[], steg: BehandlingPerSteggruppe) => {
+      const erISortertListe = sorterteSteg.find((e) => e.steggruppe === steg.steggruppe);
+      if (!erISortertListe) {
+        return [...acc, steg];
+      }
+      return acc;
+    },
+    []
+  );
+  const alleSteg = [...sorterteSteg, ...ukjenteSteg];
   return (
     <PlotWrapper>
       <HStack justify={'end'}>
@@ -43,7 +54,7 @@ export const BehandlingerPerSteggruppe = ({ data }: Props) => {
 
       {visning === 'chart' && (
         <ResponsivePlot
-          data={sorterteSteg.map((gruppe) => ({
+          data={alleSteg.map((gruppe) => ({
             y: [mapTilSteggruppeTekst(gruppe.steggruppe)],
             x: [gruppe.antall],
             type: 'bar',
@@ -66,7 +77,7 @@ export const BehandlingerPerSteggruppe = ({ data }: Props) => {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {sorterteSteg.toReversed().map((it, i) => (
+            {alleSteg.toReversed().map((it, i) => (
               <Table.Row key={`rad-${i}`}>
                 <Table.DataCell>{mapTilSteggruppeTekst(it.steggruppe)}</Table.DataCell>
                 <Table.DataCell>{it.antall}</Table.DataCell>
