@@ -1,5 +1,5 @@
 import { exhaustiveCheck } from 'lib/utils/typescript';
-import { AvklaringsbehovKode, OppgaveBehandlingstype, OppgaveStatus, Steggruppe, VenteÅrsak } from 'lib/types/types';
+import { AvklaringsbehovKode, OppgaveBehandlingstype, OppgaveStatus, VenteÅrsak } from 'lib/types/types';
 
 export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
   switch (kode) {
@@ -91,7 +91,7 @@ export function mapTilVenteÅrsakTekst(årsak: VenteÅrsak): string {
   exhaustiveCheck(årsak);
 }
 
-export function mapTilSteggruppeTekst(steggruppe: Steggruppe) {
+export function mapTilSteggruppeTekst(steggruppe: string) {
   switch (steggruppe) {
     case 'ALDER':
       return 'Alder';
@@ -129,8 +129,9 @@ export function mapTilSteggruppeTekst(steggruppe: Steggruppe) {
       return 'Brev';
     case 'UDEFINERT':
       return 'Udefinert';
+    default:
+      return `${steggruppe}`;
   }
-  exhaustiveCheck(steggruppe);
 }
 
 export function mapTilOppgaveBehandlingstypeTekst(behandlingsType: OppgaveBehandlingstype) {
