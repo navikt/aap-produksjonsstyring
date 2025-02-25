@@ -1236,10 +1236,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^7.14.0":
-  version: 7.14.0
-  resolution: "@navikt/aksel-icons@npm:7.14.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.14.0%2Ffad926b2e2d33664381ef53ee3337fbe48ad773b"
-  checksum: 10c0/2f0600127d3755a1340bae94912060e30860ba4e258b5b8e49a7d0eea8cd6ccadaec50277ff13101f6586b7a98dbb3c81809999ae7293b553afbecdfae08f6cf
+"@navikt/aksel-icons@npm:^7.14.2":
+  version: 7.14.2
+  resolution: "@navikt/aksel-icons@npm:7.14.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Faksel-icons%2F7.14.2%2F31e37d1f509e440652024be048a9d72a0704b705"
+  checksum: 10c0/2bf6cb4aa929664897049782f04da67f2ada4b3dc4431cb8994080ab369fe0ac4d63190ffc4fd12882eb447d567c6eb656d9b8a6d6bc3d0ae0acbf2e176fff2e
   languageName: node
   linkType: hard
 
@@ -1250,10 +1250,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-css@npm:^7.14.0":
-  version: 7.14.0
-  resolution: "@navikt/ds-css@npm:7.14.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F7.14.0%2F2b3274e65d68e8470b05d42a117852db2ca8c339"
-  checksum: 10c0/b537c50f50753037160b29ac454a73484e343c5b9b18e3d1f6345fc9052c1ed582566029ea29728c2ed5db8723fca247e2db6378f448c056807933a51c0005d0
+"@navikt/ds-css@npm:^7.14.2":
+  version: 7.14.2
+  resolution: "@navikt/ds-css@npm:7.14.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-css%2F7.14.2%2F63c8d178c3813a6ddc26cba3d120caf749d7867b"
+  checksum: 10c0/374c525a53b61e4196628d5686ff063d81da1d49f860bcec0f87f3897d4d5deab0416b0b04164ab53b291679104a8948046f9eb28a4fe32320e6e89d6361f60e
   languageName: node
   linkType: hard
 
@@ -1275,21 +1275,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-react@npm:^7.14.0":
-  version: 7.14.0
-  resolution: "@navikt/ds-react@npm:7.14.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F7.14.0%2F3dc4fcae19a9ddbcd9365d5b9ae260561f3a55a7"
+"@navikt/ds-react@npm:^7.14.2":
+  version: 7.14.2
+  resolution: "@navikt/ds-react@npm:7.14.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-react%2F7.14.2%2F3ca5fca06c8842dea5ddee5332720c7ce07f83e8"
   dependencies:
     "@floating-ui/react": "npm:0.25.4"
     "@floating-ui/react-dom": "npm:^2.0.9"
-    "@navikt/aksel-icons": "npm:^7.14.0"
-    "@navikt/ds-tokens": "npm:^7.14.0"
+    "@navikt/aksel-icons": "npm:^7.14.2"
+    "@navikt/ds-tokens": "npm:^7.14.2"
     clsx: "npm:^2.1.0"
     date-fns: "npm:^4.0.0"
     react-day-picker: "npm:9.5.0"
   peerDependencies:
     "@types/react": ">=17.0.30"
     react: ">=17.0.0 || >19.0.0-rc"
-  checksum: 10c0/dbde6a36a817ebd16b735d37aff2a7d2caab4a009643853c9d46cad0d5cb1131194011f79f036d45d231511b6331c9ae1edcfbc5dd8260bea8607a15de9b2404
+  checksum: 10c0/b883c495d4ae6dd7e9b632d66e67a42a865f2ec3e873e2c8ea0ea7125b1ece7ba12a147d2e4451ae6ae33ba7ad9dce303d851f0f967e7a4c44fc5b381a634fd3
   languageName: node
   linkType: hard
 
@@ -1300,10 +1300,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-tokens@npm:^7.14.0":
-  version: 7.14.0
-  resolution: "@navikt/ds-tokens@npm:7.14.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tokens%2F7.14.0%2F21b9e33867933aaf69c867bf68df997b8d93e84b"
-  checksum: 10c0/1c80bdd0f59dc4313f804c8975fbed127733e0c040cd762be8c4d9c681d2ce33d1757fbdb455d35772cc30446ff6eb13e34ff58a41bd04e10f2c010ec962ac22
+"@navikt/ds-tokens@npm:^7.14.2":
+  version: 7.14.2
+  resolution: "@navikt/ds-tokens@npm:7.14.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40navikt%2Fds-tokens%2F7.14.2%2F53d678e7e12650c8d1aad8b06a329697680e6c1f"
+  checksum: 10c0/58eee016e5624c60ca3576d94cc2181ecbef756a51b395e2a2d365e1b91c26bd5f9e0f1577df804647cbc2201b112b7071f1569e885fccb4cace1c6338b56b2f
   languageName: node
   linkType: hard
 
@@ -2548,8 +2548,8 @@ __metadata:
     "@navikt/aap-oppgave-typescript-types": "npm:^0.0.97"
     "@navikt/aap-postmottak-backend-typescript-types": "npm:^0.0.129"
     "@navikt/aap-statistikk-typescript-types": "npm:^0.1.27"
-    "@navikt/ds-css": "npm:^7.14.0"
-    "@navikt/ds-react": "npm:^7.14.0"
+    "@navikt/ds-css": "npm:^7.14.2"
+    "@navikt/ds-react": "npm:^7.14.2"
     "@navikt/eslint-config-aap": "npm:^1.9.7"
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/api-logs": "npm:^0.57.2"
