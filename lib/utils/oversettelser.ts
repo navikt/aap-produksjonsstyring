@@ -47,15 +47,19 @@ export function mapBehovskodeTilBehovstype(kode: AvklaringsbehovKode): string {
     case '5016':
       return 'Forhåndsvarsel aktivitetsplikt';
     case '5017':
-      return '§ 11-2 Lovvalg og medlemskap';
+      return 'Lovvalg og medlemskap';
     case '5019':
       return 'Venter på utenlandsoverføring';
     case '5020':
-      return 'Forutgående medlemskap';
+      return '§ 11-2 Forutgående medlemskap';
     case '5050':
       return 'Skriv brev';
     case '5018':
       return 'Venter på uttalelse fra bruker på forhåndsvarsel';
+    case '5021':
+      return 'Overstyr lovvalg og medlemskap';
+    case '5022':
+      return 'Overstyr § 11-2 Forutgående medlemskap';
     // Postmottak
     case '1337':
       return 'Kategoriser dokument';
